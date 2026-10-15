@@ -1,0 +1,16 @@
+# /visual_tracker 节点参数（由 launch/visual_tracker.launch 以 rosparam 加载）
+# 对应 scripts/visual_tracker_node.py 里的 rospy.get_param("~xxx", ...)
+# 算法：卡尔曼滤波 + 两阶段 IoU 关联（BoT-SORT 核心），输出 /visual/tracks（稳定 ID + area_ratio）
+
+track_high_thresh: 0.5     # 高置信检测 → 参与「位置关联」并可新建航迹
+track_low_thresh: 0.1      # 低置信检测 → 只与已有航迹关联，不新建（两阶段关联的关键）
+new_track_thresh: 0.6      # 新建航迹所需的置信度
+track_buffer: 30           # 丢失后保留 ID 的帧数（30 帧 ≈ 1 s @30fps）
+match_thresh: 0.8          # 关联的匹配置信阈值
+min_area_ratio: 0.0        # 小于该面积比的检测直接忽略（0 = 不过滤）
+
+width: 640                 # 图像尚未到达时，算 area_ratio 用的兜底画面尺寸
+height: 480
+detections_topic: "/detections"
+image_topic: "/camera/image_raw"
+use_image: true            # 用实际图像尺寸算 area_ratio；置 false 则只用上面的 width/height

@@ -1,0 +1,103 @@
+==============================================================
+ M4 现场验证结果    2026-10-10 19:01:06 CST
+==============================================================
+
+--- 一、节点与话题 ---
+/camera/image_raw
+/detections
+/detector/debug_image
+/radar/tracks
+/rosout
+/rosout_agg
+/state
+/visual/tracks
+--- 各话题的发布者 ---
+[/camera/image_raw]
+    Type: sensor_msgs/Image
+    
+    Publishers: 
+     * /camera_node (http://ubuntu:35845/)
+    
+    Subscribers: 
+     * /detector (http://ubuntu:39045/)
+     * /visual_tracker (http://ubuntu:33013/)
+    
+    
+[/detections]
+    Type: uav_tracking/Detections
+    
+    Publishers: 
+     * /detector (http://ubuntu:39045/)
+    
+    Subscribers: 
+     * /visual_tracker (http://ubuntu:33013/)
+     * /state_machine (http://ubuntu:35103/)
+    
+    
+[/visual/tracks]
+    Type: uav_tracking/VisualTrackArray
+    
+    Publishers: 
+     * /visual_tracker (http://ubuntu:33013/)
+    
+    Subscribers: 
+     * /state_machine (http://ubuntu:35103/)
+    
+
+--- 二、/detections 真实目标（共 12 条）---
+      class_id: 0
+      confidence: 0.8486807346343994
+      bbox: [46.904335021972656, 394.4476623535156, 185.33163452148438, 509.1540832519531]
+      class_id: 5
+      confidence: 0.8246050477027893
+      bbox: [6.390644073486328, 227.59254455566406, 793.9190063476562, 525.0639038085938]
+      class_id: 0
+      confidence: 0.7503529191017151
+      bbox: [220.09556579589844, 402.59930419921875, 127.81626892089844, 451.5401611328125]
+      class_id: 0
+      confidence: 0.635138988494873
+      bbox: [670.3602905273438, 378.2049560546875, 139.20477294921875, 493.90789794921875]
+      class_id: 0
+      confidence: 0.8486807346343994
+      bbox: [46.904335021972656, 394.4476623535156, 185.33163452148438, 509.1540832519531]
+      class_id: 5
+
+--- 三、/visual/tracks 航迹 ---
+      area_ratio: 0.10786735266447067
+      area_ratio: 0.47651830315589905
+      area_ratio: 0.06597413867712021
+      area_ratio: 0.07859434932470322
+      area_ratio: 0.10786735266447067
+      area_ratio: 0.47651830315589905
+      area_ratio: 0.06597413867712021
+      area_ratio: 0.07859434932470322
+      area_ratio: 0.10786735266447067
+      area_ratio: 0.47651830315589905
+      area_ratio: 0.06597413867712021
+      area_ratio: 0.07859434932470322
+
+--- 四、/state 状态跃迁 ---
+  WARNING: topic [/state] does not appear to be published yet
+  data: "VISUAL_LOCK"
+  ---
+
+--- 五、带检测框的图片 ---
+  -rw-rw-r-- 1 demo demo 1737742 10月 10 19:01 /tmp/m4_evidence/debug_image_0.png
+  -rw-rw-r-- 1 demo demo 1737742 10月 10 19:01 /tmp/m4_evidence/debug_image_1.png
+  -rw-rw-r-- 1 demo demo 1737742 10月 10 19:01 /tmp/m4_evidence/debug_image_2.png
+
+--- 六、节点启动日志 ---
+  [camera]
+    [INFO] [1791620087.118063]: [camera_node] ready: source=image fps=5.0 out=/camera/image_raw
+  [detector]
+    [INFO] [1791630008.396321]: [detector] ready: model=/tmp/m4_infer/yolov8n.pt conf=0.40 imgsz=320 device=cpu in=/camera/image_raw out=/detections
+    [INFO] [1791630008.400374]: [detector] numpy 1.21.6 @ /home/demo/桌面/ai4/catkin_ws/src/uav_tracking/lib/m4_deps/numpy（隔离生效，目录 /home/demo/桌面/ai4/catkin_ws/src/uav_tracking/lib/m4_deps）
+  [tracker]
+    [INFO] [1791630044.042210]: [visual_tracker] ready: 兜底尺寸=640x480 use_image=True high=0.50 low=0.10 buffer=30 in=/detections,/camera/image_raw out=/visual/tracks
+  [state]
+    [INFO] [1791630052.912206]: [state_machine] ready: N/M/K=3/3/5 conf=0.80 area=0.020 state=RADAR_GUIDE
+    [INFO] [1791630053.357347]: [state_machine] RADAR_GUIDE -> VISUAL_LOCK (visual_lock=True radar_lost=True)
+
+--- 七、有没有 ERROR / Traceback ---
+
+==============================================================

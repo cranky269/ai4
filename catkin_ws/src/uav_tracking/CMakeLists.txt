@@ -42,6 +42,10 @@ catkin_install_python(PROGRAMS
   scripts/tracker_node.py
   scripts/navigator_node.py
   scripts/pid_controller_node.py
+  ## ---- M4 视觉链（相机驱动 / 检测 / 跟踪）----
+  scripts/camera_node.py
+  scripts/detector_node.py
+  scripts/visual_tracker_node.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

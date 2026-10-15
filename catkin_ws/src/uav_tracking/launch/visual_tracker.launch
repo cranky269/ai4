@@ -1,0 +1,12 @@
+<launch>
+  <!-- M4 · 跟踪节点：订阅 /detections（+ /camera/image_raw 取实际画面尺寸）→ 发布 /visual/tracks
+       参数默认值见 config/visual_tracker.yaml；命令行可覆盖，例如：
+         roslaunch uav_tracking visual_tracker.launch track_buffer:=60
+         roslaunch uav_tracking visual_tracker.launch use_image:=false -->
+  <arg name="use_image" default="true"/>
+
+  <node pkg="uav_tracking" type="visual_tracker_node.py" name="visual_tracker" output="screen">
+    <rosparam command="load" file="$(find uav_tracking)/config/visual_tracker.yaml"/>
+    <param name="use_image" value="$(arg use_image)"/>
+  </node>
+</launch>

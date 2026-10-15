@@ -7,3 +7,24 @@
 scikit-learn==1.3.2   # Python 3.8 最后支持版；官方 DBSCAN 所在包（/cluster 使用）
 scipy==1.8.1          # 与 numpy 1.17.4 兼容的最后档（scipy 1.9+ 起要求 numpy>=1.18.5）
 pytest==8.3.5         # Python 3.8 最后支持档（pytest 8.4+ 起要求 Python>=3.9）
+
+
+
+# ---------------------------------------------------------------------------
+# 模块 4 /detector —— 视觉依赖（组长 2026-10-06 已确认，见说明文档）
+# ---------------------------------------------------------------------------
+# ⚠️ 以下 3 行保持**注释态**，请勿用 `pip3 install -r requirements.txt` 安装：
+#    那样会升级系统 numpy，破坏上方基线。
+#   正确安装方式 —— **直接用工程根的安装脚本**（已处理 CPU 版 torch、numpy 锁版、
+#   隔离校验、逐包验证、网络重试；幂等，可重复执行）：
+#       bash install_m4_deps.sh
+#   其他用法：
+#       bash install_m4_deps.sh --check        # 只检查现状，不安装
+#       bash install_m4_deps.sh --uninstall    # 删除 lib/m4_deps（系统不受影响）
+#   严格隔离：只有 scripts/detector_node.py 把 lib/m4_deps 注入 sys.path，
+#   其他节点壳只加 lib/，取不到这里的 numpy。
+#   完整命令、隔离验证与回滚方式见：
+#       design_module/M4/交付说明/组长确认冲突库下载说明文档.md
+# torch==2.4.1
+# torchvision==0.19.1
+# ultralytics>=8.0.0

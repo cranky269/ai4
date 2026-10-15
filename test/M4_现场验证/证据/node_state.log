@@ -1,0 +1,2 @@
+[INFO] [1791630052.912206]: [state_machine] ready: N/M/K=3/3/5 conf=0.80 area=0.020 state=RADAR_GUIDE
+[INFO] [1791630053.357347]: [state_machine] RADAR_GUIDE -> VISUAL_LOCK (visual_lock=True radar_lost=True)

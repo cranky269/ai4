@@ -1,0 +1,18 @@
+<launch>
+  <!-- M4 · 检测节点：订阅 /camera/image_raw → 发布 /detections（每帧必发，无目标发空数组）
+       参数默认值见 config/detector.yaml；命令行可覆盖，例如：
+         roslaunch uav_tracking detector.launch conf_thres:=0.8
+         roslaunch uav_tracking detector.launch model_path:=/abs/path/yolov8n.pt
+
+       注意 model_path：roslaunch 起节点时的工作目录默认是 ROS_HOME（不是仓库根），
+       所以 yaml 里那个相对路径 "yolov8n.pt" 只能给 rosrun（cwd=仓库根）用；
+       这里默认改为「由包路径反推仓库根」的绝对路径
+       （catkin_ws/src/uav_tracking/../../.. = 仓库根），避免被当成模型名去联网下载。
+       权重默认为 gitignore 项，若本地没有该文件，请用 model_path:= 指到你自己的权重。 -->
+  <arg name="model_path" default="$(find uav_tracking)/../../../yolov8n.pt"/>
+
+  <node pkg="uav_tracking" type="detector_node.py" name="detector" output="screen">
+    <rosparam command="load" file="$(find uav_tracking)/config/detector.yaml"/>
+    <param name="model_path" value="$(arg model_path)"/>
+  </node>
+</launch>

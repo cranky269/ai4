@@ -1,0 +1,26 @@
+<launch>
+  <!-- M4 · 相机驱动节点：把 视频 / 图片 / USB 相机 / 仿真图像 统一发到 /camera/image_raw
+       参数默认值见 config/camera.yaml；命令行可覆盖，例如：
+         roslaunch uav_tracking camera.launch source:=video video_path:=/tmp/e2e_test.avi
+         roslaunch uav_tracking camera.launch source:=image image_path:=/home/demo/桌面/ai4/test/M4_现场验证/实时演示/assets/bus.jpg
+         roslaunch uav_tracking camera.launch source:=usb device_id:=0
+
+       注：仿真链路下 /camera/image_raw 由 Gazebo 相机插件直接提供，本节点可不启动
+          （或 source:=gazebo 做话题中转）。 -->
+  <arg name="source" default="video"/>
+  <arg name="video_path" default=""/>
+  <arg name="image_path" default=""/>
+  <arg name="device_id" default="0"/>
+  <arg name="fps" default="30.0"/>
+  <arg name="loop" default="true"/>
+
+  <node pkg="uav_tracking" type="camera_node.py" name="camera_node" output="screen">
+    <rosparam command="load" file="$(find uav_tracking)/config/camera.yaml"/>
+    <param name="source" value="$(arg source)"/>
+    <param name="fps" value="$(arg fps)"/>
+    <param name="loop" value="$(arg loop)"/>
+    <param name="device_id" value="$(arg device_id)"/>
+    <param name="video_path" value="$(arg video_path)" if="$(eval arg('video_path') != '')"/>
+    <param name="image_path" value="$(arg image_path)" if="$(eval arg('image_path') != '')"/>
+  </node>
+</launch>

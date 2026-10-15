@@ -1,0 +1,60 @@
+/camera/image_raw
+/detections
+/detector/debug_image
+/radar/tracks
+/rosout
+/rosout_agg
+/state
+/visual/tracks
+--- 各话题的发布者 ---
+[/camera/image_raw]
+    Type: sensor_msgs/Image
+    
+    Publishers: 
+     * /camera_node (http://ubuntu:35845/)
+    
+    Subscribers: 
+     * /detector (http://ubuntu:39045/)
+     * /visual_tracker (http://ubuntu:33013/)
+    
+    
+[/detections]
+    Type: uav_tracking/Detections
+    
+    Publishers: 
+     * /detector (http://ubuntu:39045/)
+    
+    Subscribers: 
+     * /visual_tracker (http://ubuntu:33013/)
+     * /state_machine (http://ubuntu:35103/)
+    
+    
+[/visual/tracks]
+    Type: uav_tracking/VisualTrackArray
+    
+    Publishers: 
+     * /visual_tracker (http://ubuntu:33013/)
+    
+    Subscribers: 
+     * /state_machine (http://ubuntu:35103/)
+    
+    
+[/state]
+    Type: std_msgs/String
+    
+    Publishers: 
+     * /state_machine (http://ubuntu:35103/)
+    
+    Subscribers: 
+     * /rostopic_153427_1791620084201 (http://ubuntu:38211/)
+    
+    
+[/detector/debug_image]
+    Type: sensor_msgs/Image
+    
+    Publishers: 
+     * /detector (http://ubuntu:39045/)
+    
+    Subscribers: None
+    
+    

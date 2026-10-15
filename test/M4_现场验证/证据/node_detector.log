@@ -1,0 +1,2 @@
+[INFO] [1791630008.396321]: [detector] ready: model=/tmp/m4_infer/yolov8n.pt conf=0.40 imgsz=320 device=cpu in=/camera/image_raw out=/detections
+[INFO] [1791630008.400374]: [detector] numpy 1.21.6 @ /home/demo/桌面/ai4/catkin_ws/src/uav_tracking/lib/m4_deps/numpy（隔离生效，目录 /home/demo/桌面/ai4/catkin_ws/src/uav_tracking/lib/m4_deps）

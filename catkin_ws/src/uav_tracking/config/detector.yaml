@@ -1,0 +1,14 @@
+# /detector 节点参数（由 launch/detector.launch 以 rosparam 加载）
+# 对应 scripts/detector_node.py 里的 rospy.get_param("~xxx", ...)
+# 说明：默认值与本文件一致，改这里即可调参；也可用命令行覆盖，例如
+#   roslaunch uav_tracking detector.launch conf_thres:=0.8
+
+model_path: "yolov8n.pt"   # 相对路径按「启动时的工作目录」解析，建议给绝对路径
+conf_thres: 0.5            # 刻意低于 /state_machine 的 0.8 判据，保证 0.8~1.0 区间不被截断
+iou_thres: 0.45            # NMS 的 IoU 阈值
+imgsz: 640                 # 推理输入边长；4 核 CPU 实测 320→约22FPS、416→约16FPS、640→约10FPS
+device: cpu                # 仿真机无 CUDA；有 GPU 时改 "0"
+classes: []                # 类别白名单：空 = 全部类别；[0] = 只保留 person
+max_det: 20                # 单帧最多输出目标数
+publish_debug: true        # 是否发布绘制了 bbox 的调试图（供 rqt_image_view 观察）
+image_topic: "/camera/image_raw"

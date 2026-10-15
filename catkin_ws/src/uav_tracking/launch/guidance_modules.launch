@@ -1,11 +1,19 @@
 <launch>
-  <!-- 全链路入口：一次性启动已完成的模块 1/2/3/6/7/8。
-       模块 4（detector）与 5（visual_tracker）尚未实现，视觉链未闭合，
-       /detections 与 /visual/tracks 暂无数据源，状态机将保持 RADAR_GUIDE。 -->
+  <!-- 全链路入口：一次性启动各模块（1/2/3/4/5/6/7/8）。
+       视觉链（模块 4/5）已实现：detector 发布 /detections、visual_tracker 发布 /visual/tracks，
+       由本入口一并启动，状态机的视觉锁定判据因此有了数据源。
+       /camera/image_raw 在仿真链路由 Gazebo 相机插件提供；需要用视频/图片源联调时，
+       单独起 camera.launch（见其注释）即可。 -->
   <include file="$(find uav_tracking)/launch/cluster.launch" />
   <include file="$(find uav_tracking)/launch/tracker.launch" />
   <include file="$(find uav_tracking)/launch/navigator.launch" />
   <include file="$(find uav_tracking)/launch/pid_controller.launch" />
   <include file="$(find uav_tracking)/launch/state_machine.launch" />
   <include file="$(find uav_tracking)/launch/control_mux.launch" />
+  <!-- M4 视觉链（模块 4 检测 / 模块 5 跟踪）。
+       注：detector 的 model_path 默认取 config/detector.yaml 里的 "yolov8n.pt"，
+       按「启动时的工作目录」解析；跨目录启动时可单独覆盖：
+         roslaunch uav_tracking detector.launch model_path:=/abs/path/yolov8n.pt -->
+  <include file="$(find uav_tracking)/launch/detector.launch" />
+  <include file="$(find uav_tracking)/launch/visual_tracker.launch" />
 </launch>

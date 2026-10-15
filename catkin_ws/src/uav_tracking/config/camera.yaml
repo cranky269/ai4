@@ -1,0 +1,21 @@
+# /camera_node 节点参数（由 launch/camera.launch 以 rosparam 加载）
+# 对应 scripts/camera_node.py 里的 rospy.get_param("~xxx", ...)
+# 作用：把「视频 / 图片 / USB 相机 / 仿真图像」统一发到 /camera/image_raw，下游节点无感。
+
+source: video              # video / image / usb / gazebo
+fps: 30.0                  # 出图频率（Hz）；仿真链路一般由 Gazebo 决定，本节点不参与
+width: 640                 # 兜底画面尺寸（真实图像到达后以实际尺寸为准）
+height: 480
+frame_id: camera_optical_frame
+image_topic: "/camera/image_raw"
+loop: true                 # video / image 源播完是否循环
+
+# ---- 按 source 取用的路径 ----
+video_path: ""             # source=video：视频文件路径
+image_path: ""             # source=image：单张图片路径
+device_id: 0               # source=usb：摄像头序号
+gazebo_topic: "/camera/image_raw"   # source=gazebo：从该话题中转（与 image_topic 相同则空转）
+
+# 没有测试素材时，可先生成一段：
+#   python3 test/camera/e2e_test/make_media.py /tmp 15.0
+# 然后：roslaunch uav_tracking camera.launch video_path:=/tmp/e2e_test.avi
