@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.6"><world name="base_scene">
+  <physics type="ode"><max_step_size>0.001</max_step_size><real_time_update_rate>1000</real_time_update_rate></physics>
+  <include><uri>model://sun</uri></include>
+  <include><uri>model://ground_plane</uri></include>
+  <include><uri>model://ai4_static_iris</uri><name>static_uav</name><pose>0 0 0.12 0 0 0</pose></include>
+  <gui><camera name="user_camera"><pose>2 -2 1.5 0 0.4 2.35</pose></camera></gui>
+<model name="camera_marker"><static>true</static><pose>2 0 0.24 0 0 0</pose><link name="marker_link"><visual name="marker_visual"><geometry><box><size>0.04 0.6 0.4</size></box></geometry><material><ambient>1 0.02 0.02 1</ambient><diffuse>1 0.02 0.02 1</diffuse><emissive>1 0.02 0.02 1</emissive></material></visual></link></model><model name="marker_blue_left"><static>true</static><pose>1.975 0.18 0.24 0 0 0</pose><link name="marker_link"><visual name="marker_visual"><geometry><box><size>0.01 0.15 0.3</size></box></geometry><material><ambient>0.02 0.02 1 1</ambient><diffuse>0.02 0.02 1 1</diffuse><emissive>0.02 0.02 1 1</emissive></material></visual></link></model></world></sdf>

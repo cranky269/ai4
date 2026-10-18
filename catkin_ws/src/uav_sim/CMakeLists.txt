@@ -3,14 +3,30 @@ project(uav_sim)
 
 find_package(catkin REQUIRED COMPONENTS
   rospy
+  roscpp
+  sensor_msgs
   gazebo_ros
   xacro
 )
 
 catkin_package()
 
+find_package(gazebo REQUIRED)
+include_directories(${catkin_INCLUDE_DIRS} ${GAZEBO_INCLUDE_DIRS})
+link_directories(${GAZEBO_LIBRARY_DIRS})
+add_executable(ray_cloud_bridge src/ray_cloud_bridge.cpp)
+target_compile_features(ray_cloud_bridge PRIVATE cxx_std_17)
+target_link_libraries(ray_cloud_bridge ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
+install(TARGETS ray_cloud_bridge RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
 ## ------------------------------------------------------------------
 ## 安装仿真资源（文件就位后取消注释）
 ## ------------------------------------------------------------------
 # install(DIRECTORY worlds launch config
 #   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+
+install(DIRECTORY worlds launch config
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+
+install(PROGRAMS scripts/start_static_scene.sh scripts/figure_eight_target.py scripts/spawn_planar_lidar.py scripts/spawn_radar_3d.py scripts/start_radar_3d.sh scripts/camera_motion_demo.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})

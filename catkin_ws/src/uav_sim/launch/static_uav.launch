@@ -1,0 +1,57 @@
+<launch>
+  <arg name="gui" default="true"/>
+  <arg name="lidar" default="false"/>
+  <arg name="lidar_calibration" default="false"/>
+  <arg name="lidar_noise_mean" default="0.0"/>
+  <arg name="lidar_noise_stddev" default="0.0"/>
+  <arg name="dynamic_target" default="false"/>
+  <!-- 8字桌面入口同时打开真实机载图像；旧静态入口仍自行管理窗口。 -->
+  <arg name="camera_view" default="$(arg dynamic_target)"/>
+  <arg name="markers" default="true"/>
+  <arg name="target_center_x" default="4.0"/>
+  <arg name="target_center_y" default="0.0"/>
+  <arg name="target_height" default="0.6"/>
+  <arg name="target_scale_x" default="0.8"/>
+  <arg name="target_scale_y" default="0.9"/>
+  <arg name="target_period" default="12.0"/>
+  <arg name="target_rate" default="20.0"/>
+  <env name="GAZEBO_MODEL_DATABASE_URI" value=""/>
+  <env name="GAZEBO_MODEL_PATH" value="$(find uav_description)/models:/usr/share/gazebo-11/models"/>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(eval find('uav_sim') + '/worlds/static_uav' + ('' if arg('markers') else '_no_markers') + '.world')"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="verbose" value="true"/>
+    <arg name="server_required" value="true"/>
+  </include>
+  <!-- Static model pose and physical camera mounting; optical z=body x, x=-body y, y=-body z. -->
+  <!-- Actual model pose TF; movement is idle unless explicitly triggered. -->
+  <node pkg="uav_sim" type="camera_motion_demo.py" name="world_uav_tf" output="screen"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="uav_camera_mount_tf" args="0.20 0 0.12 0 0 0 1 uav_base_link uav_camera_link"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="uav_camera_optical_tf" args="0 0 0 -0.5 0.5 -0.5 0.5 uav_camera_link uav_camera_optical_frame"/>
+  <node if="$(arg camera_view)" pkg="image_view" type="image_view" name="onboard_camera_view" output="screen">
+    <remap from="image" to="/uav/front_camera/image_raw"/>
+    <param name="autosize" value="true"/>
+    <param name="window_name" value="AI4 onboard camera - live"/>
+  </node>
+  <node if="$(arg dynamic_target)" pkg="uav_sim" type="figure_eight_target.py" name="figure_eight_target" output="screen" required="true">
+    <param name="model_file" value="$(find uav_description)/models/ai4_target_iris/model.sdf"/>
+    <param name="center_x" value="$(arg target_center_x)"/>
+    <param name="center_y" value="$(arg target_center_y)"/>
+    <param name="height" value="$(arg target_height)"/>
+    <param name="scale_x" value="$(arg target_scale_x)"/>
+    <param name="scale_y" value="$(arg target_scale_y)"/>
+    <param name="period" value="$(arg target_period)"/>
+    <param name="update_rate" value="$(arg target_rate)"/>
+  </node>
+  <group if="$(arg lidar)">
+    <node pkg="tf2_ros" type="static_transform_publisher" name="world_lidar_tf" args="0 -2 1 0 0 0 1 world lidar_link"/>
+    <node pkg="uav_sim" type="spawn_planar_lidar.py" name="spawn_planar_lidar" output="screen" required="true">
+      <param name="model_file" value="$(find uav_description)/models/ai4_planar_lidar/model.sdf"/>
+      <param name="noise_mean" value="$(arg lidar_noise_mean)"/>
+      <param name="noise_stddev" value="$(arg lidar_noise_stddev)"/>
+      <param name="calibration" value="$(arg lidar_calibration)"/>
+    </node>
+  </group>
+</launch>

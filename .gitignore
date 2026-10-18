@@ -36,3 +36,15 @@ design_old/
 .mcp.json
 mcp_filters/
 mcp使用注意事项/
+
+# ---- 项目 Python 虚拟环境 ----
+/.venv/
+
+# ---- 本机任务记录、验收产物与离线安装材料（保留本地）----
+/WORK_LOG.md
+/HANDOFF.md
+/AGENTS.md
+/reports/
+/offline-materials/
+/offline-preparation/
+/scripts/*.desktop

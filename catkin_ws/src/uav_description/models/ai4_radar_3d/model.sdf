@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="ai4_radar_3d"><static>true</static>
+    <link name="radar_link">
+      <visual name="housing"><pose>0 0 -0.06 0 0 0</pose><geometry><cylinder><radius>0.06</radius><length>0.1</length></cylinder></geometry><material><ambient>0.2 0.3 0.4 1</ambient><diffuse>0.2 0.3 0.4 1</diffuse></material></visual>
+      <sensor name="ray_3d" type="ray">
+        <always_on>true</always_on><update_rate>5</update_rate><visualize>true</visualize>
+        <ray><scan>
+          <horizontal><samples>181</samples><resolution>1</resolution><min_angle>-0.7853981633974483</min_angle><max_angle>0.7853981633974483</max_angle></horizontal>
+          <vertical><samples>5</samples><resolution>1</resolution><min_angle>-0.17453292519943295</min_angle><max_angle>0.17453292519943295</max_angle></vertical>
+        </scan>
+        <range><min>0.1</min><max>10</max><resolution>0.001</resolution></range>
+        <noise><type>gaussian</type><mean>0</mean><stddev>0.02</stddev><bias_mean>0</bias_mean><bias_stddev>0</bias_stddev><dynamic_bias_stddev>0</dynamic_bias_stddev></noise>
+        </ray>
+      </sensor>
+    </link>
+  </model>
+</sdf>

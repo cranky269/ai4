@@ -11,8 +11,21 @@
   <license>TODO</license>
 
   <buildtool_depend>catkin</buildtool_depend>
+  <depend>roscpp</depend>
+  <depend>sensor_msgs</depend>
+  <build_depend>gazebo_dev</build_depend>
+  <build_depend>gazebo_ros</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>xacro</build_depend>
 
   <exec_depend>gazebo_ros</exec_depend>
+  <exec_depend>tf2_ros</exec_depend>
+  <exec_depend>std_srvs</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>gazebo_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>rosgraph_msgs</exec_depend>
   <exec_depend>gazebo_plugins</exec_depend>
   <exec_depend>xacro</exec_depend>
   <exec_depend>robot_state_publisher</exec_depend>
