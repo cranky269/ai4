@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.6"><world name="base_scene">
+  <physics type="ode"><max_step_size>0.001</max_step_size><real_time_update_rate>1000</real_time_update_rate></physics>
+  <include><uri>model://sun</uri></include>
+  <include><uri>model://ground_plane</uri></include>
+  <include><uri>model://ai4_static_iris</uri><name>static_uav</name><pose>0 0 0.12 0 0 0</pose></include>
+  <gui><camera name="user_camera"><pose>2 -2 1.5 0 0.4 2.35</pose></camera></gui>
+</world></sdf>

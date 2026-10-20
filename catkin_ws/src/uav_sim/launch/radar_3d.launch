@@ -1,0 +1,21 @@
+<launch>
+  <arg name="gui" default="true"/>
+  <arg name="calibration" default="false"/>
+  <arg name="config" default="$(find uav_sim)/config/radar_3d.yaml"/>
+  <arg name="noise_stddev" default=""/>
+  <arg name="x" default="0"/><arg name="y" default="-2"/><arg name="z" default="1"/>
+  <include file="$(find uav_sim)/launch/static_uav.launch">
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="dynamic_target" value="false"/><arg name="lidar" value="false"/>
+  </include>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="world_radar_tf"
+        args="$(arg x) $(arg y) $(arg z) 0 0 0 1 world radar_link"/>
+  <node pkg="uav_sim" type="ray_cloud_bridge" name="ray_cloud_bridge" output="screen" required="true"/>
+  <node pkg="uav_sim" type="spawn_radar_3d.py" name="spawn_radar_3d" output="screen" required="true">
+    <rosparam command="load" file="$(arg config)"/>
+    <param if="$(eval arg('noise_stddev') != '')" name="noise_stddev" value="$(arg noise_stddev)"/>
+    <param name="model_file" value="$(find uav_description)/models/ai4_radar_3d/model.sdf"/>
+    <param name="x" value="$(arg x)"/><param name="y" value="$(arg y)"/><param name="z" value="$(arg z)"/>
+    <param name="calibration" value="$(arg calibration)"/>
+  </node>
+</launch>

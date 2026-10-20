@@ -1,0 +1,12 @@
+# 米、弧度、仿真时间Hz；保持resolution=1，905条真实物理射线，无插值。
+horizontal_samples: 181
+horizontal_min_angle: -0.7853981633974483
+horizontal_max_angle: 0.7853981633974483
+vertical_samples: 5
+vertical_min_angle: -0.17453292519943295
+vertical_max_angle: 0.17453292519943295
+range_min: 0.1
+range_max: 10.0
+range_resolution: 0.001
+update_rate: 5.0
+noise_stddev: 0.02 # 径向标准差，米；mean与所有bias固定为0

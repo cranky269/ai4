@@ -13,3 +13,6 @@ catkin_package()
 ## ------------------------------------------------------------------
 # install(DIRECTORY urdf models meshes
 #   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+
+install(DIRECTORY models
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})

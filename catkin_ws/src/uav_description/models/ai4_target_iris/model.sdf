@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.6"><model name="ai4_target_iris"><static>true</static><link name="base_link"><pose>0 0 0 0 0 0</pose>
+      <collision name="base_link_inertia_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.47 0.47 0.11</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <min_depth>0.001</min_depth>
+              <max_vel>0</max_vel>
+            </ode>
+          </contact>
+          <friction>
+            <ode />
+          </friction>
+        </surface>
+      </collision>
+      <visual name="base_link_inertia_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://ai4_static_iris/meshes/iris.stl</uri>
+          </mesh>
+        </geometry>
+        <material><ambient>0.02 0.9 0.08 1</ambient><diffuse>0.02 0.9 0.08 1</diffuse><emissive>0.02 0.9 0.08 1</emissive></material></visual>
+      </link><link name="rotor_0"><pose>0.13 -0.22 0.023 0 0 0</pose>
+      <collision name="rotor_0_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.005</length>
+            <radius>0.128</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode />
+          </contact>
+          <friction>
+            <ode />
+          </friction>
+        </surface>
+      </collision>
+      <visual name="rotor_0_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://ai4_static_iris/meshes/iris_prop_ccw.dae</uri>
+          </mesh>
+        </geometry>
+        <material><ambient>0.02 0.9 0.08 1</ambient><diffuse>0.02 0.9 0.08 1</diffuse><emissive>0.02 0.9 0.08 1</emissive></material></visual>
+      </link><link name="rotor_1"><pose>-0.13 0.2 0.023 0 0 0</pose>
+      <collision name="rotor_1_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.005</length>
+            <radius>0.128</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode />
+          </contact>
+          <friction>
+            <ode />
+          </friction>
+        </surface>
+      </collision>
+      <visual name="rotor_1_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://ai4_static_iris/meshes/iris_prop_ccw.dae</uri>
+          </mesh>
+        </geometry>
+        <material><ambient>0.02 0.9 0.08 1</ambient><diffuse>0.02 0.9 0.08 1</diffuse><emissive>0.02 0.9 0.08 1</emissive></material></visual>
+      </link><link name="rotor_2"><pose>0.13 0.22 0.023 0 0 0</pose>
+      <collision name="rotor_2_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.005</length>
+            <radius>0.128</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode />
+          </contact>
+          <friction>
+            <ode />
+          </friction>
+        </surface>
+      </collision>
+      <visual name="rotor_2_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://ai4_static_iris/meshes/iris_prop_cw.dae</uri>
+          </mesh>
+        </geometry>
+        <material><ambient>0.02 0.9 0.08 1</ambient><diffuse>0.02 0.9 0.08 1</diffuse><emissive>0.02 0.9 0.08 1</emissive></material></visual>
+      </link><link name="rotor_3"><pose>-0.13 -0.2 0.023 0 0 0</pose>
+      <collision name="rotor_3_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.005</length>
+            <radius>0.128</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode />
+          </contact>
+          <friction>
+            <ode />
+          </friction>
+        </surface>
+      </collision>
+      <visual name="rotor_3_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://ai4_static_iris/meshes/iris_prop_cw.dae</uri>
+          </mesh>
+        </geometry>
+        <material><ambient>0.02 0.9 0.08 1</ambient><diffuse>0.02 0.9 0.08 1</diffuse><emissive>0.02 0.9 0.08 1</emissive></material></visual>
+      </link></model></sdf>
