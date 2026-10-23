@@ -22,6 +22,7 @@ def main():
         'range_min': './/range/min', 'range_max': './/range/max',
         'range_resolution': './/range/resolution',
         'update_rate': './/update_rate', 'noise_stddev': './/noise/stddev',
+        'noise_mean': './/noise/mean',
     }.items():
         value = float(rospy.get_param('~' + key))
         if not math.isfinite(value):

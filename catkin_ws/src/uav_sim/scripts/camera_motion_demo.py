@@ -106,7 +106,12 @@ class Demo:
                     command.pose.position.x,command.pose.position.y,command.pose.position.z = x,y,z
                     command.pose.orientation.z,command.pose.orientation.w = math.sin(yaw/2),math.cos(yaw/2)
                     # Static kinematic model: no gravity/dynamics and no residual commanded twist.
-                    result = self.set(command)
+                    try:
+                        result = self.set(command)
+                    except rospy.ServiceException as exc:
+                        rospy.logwarn_throttle(5, '观测机位姿写入暂时失败，重试: %s', str(exc))
+                        time.sleep(.1)
+                        continue
                     if not result.success: raise RuntimeError(result.status_message)
             try:
                 actual = self.get('static_uav','world')

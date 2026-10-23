@@ -2,6 +2,21 @@
 # 前台运行本轮静态场景；Ctrl-C仅停止本次launch及其子进程。
 set -eo pipefail
 REPO="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../../../.." && pwd)"
+# radar:=true 显式启用机载三维Ray与逐帧记录；保留原入口默认行为。
+RADAR_ENABLED=false
+RADAR_DYNAMIC=false
+RADAR_ARGS=()
+for ARG in "$@"; do
+  case "$ARG" in
+    radar:=*) RADAR_ENABLED="${ARG#radar:=}" ;;
+    *) RADAR_ARGS+=("$ARG") ;;
+  esac
+  case "$ARG" in dynamic_target:=true) RADAR_DYNAMIC=true ;; esac
+done
+if [[ "$RADAR_ENABLED" == true && "$RADAR_DYNAMIC" == true ]]; then
+  exec bash "$REPO/catkin_ws/src/uav_sim/scripts/start_mounted_radar.sh" "${RADAR_ARGS[@]}"
+fi
+set -- "${RADAR_ARGS[@]}"
 source /opt/ros/noetic/setup.bash
 source "$REPO/catkin_ws/devel/setup.bash"
 # 同一入口的并发启动在分配端口之前拒绝；锁随本次launch释放。

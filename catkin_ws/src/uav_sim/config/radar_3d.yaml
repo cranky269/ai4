@@ -10,3 +10,5 @@ range_max: 10.0
 range_resolution: 0.001
 update_rate: 5.0
 noise_stddev: 0.02 # 径向标准差，米；mean与所有bias固定为0
+
+noise_mean: 0.0 # 米；独立径向高斯均值

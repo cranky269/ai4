@@ -1,4 +1,5 @@
 <launch>
+  <arg name="paused" default="false"/>
   <arg name="gui" default="true"/>
   <arg name="lidar" default="false"/>
   <arg name="lidar_calibration" default="false"/>
@@ -8,6 +9,7 @@
   <!-- 8字桌面入口同时打开真实机载图像；旧静态入口仍自行管理窗口。 -->
   <arg name="camera_view" default="$(arg dynamic_target)"/>
   <arg name="markers" default="true"/>
+  <arg name="world_file" default="$(eval find('uav_sim') + '/worlds/static_uav' + ('' if arg('markers') else '_no_markers') + '.world')"/>
   <arg name="target_center_x" default="4.0"/>
   <arg name="target_center_y" default="0.0"/>
   <arg name="target_height" default="0.6"/>
@@ -18,9 +20,9 @@
   <env name="GAZEBO_MODEL_DATABASE_URI" value=""/>
   <env name="GAZEBO_MODEL_PATH" value="$(find uav_description)/models:/usr/share/gazebo-11/models"/>
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(eval find('uav_sim') + '/worlds/static_uav' + ('' if arg('markers') else '_no_markers') + '.world')"/>
+    <arg name="world_name" value="$(arg world_file)"/>
     <arg name="gui" value="$(arg gui)"/>
-    <arg name="paused" value="false"/>
+    <arg name="paused" value="$(arg paused)"/>
     <arg name="use_sim_time" value="true"/>
     <arg name="verbose" value="true"/>
     <arg name="server_required" value="true"/>

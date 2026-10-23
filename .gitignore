@@ -42,3 +42,7 @@ mcp使用注意事项/
 # 视觉依赖按组长要求隔离安装在工程内（1.1 GB），必须排除；模型权重同理。
 catkin_ws/src/uav_tracking/lib/m4_deps/
 *.pt
+
+# M0 本地采集及隔离运行环境
+/data/
+/.venv-sensors/

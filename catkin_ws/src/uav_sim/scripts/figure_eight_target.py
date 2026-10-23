@@ -97,10 +97,18 @@ class FigureEightTarget:
             with self.lock:
                 if self.paused:
                     continue
-                applied = set_state(command)
+                try:
+                    applied = set_state(command)
+                except rospy.ServiceException as exc:
+                    rospy.logwarn_throttle(5, '目标位姿写入暂时失败，重试: %s', str(exc))
+                    continue
             if not applied.success:
                 raise RuntimeError('设置目标位姿失败：' + applied.status_message)
-            actual = get_state(self.name, 'world')
+            try:
+                actual = get_state(self.name, 'world')
+            except rospy.ServiceException as exc:
+                rospy.logwarn_throttle(5, '目标位姿读取暂时失败，重试: %s', str(exc))
+                continue
             if not actual.success:
                 raise RuntimeError('读取目标实际状态失败：' + actual.status_message)
             expected = PoseStamped()

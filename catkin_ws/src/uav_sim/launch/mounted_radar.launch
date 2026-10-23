@@ -1,0 +1,60 @@
+<?xml version="1.0" ?>
+<launch>
+  <arg name="target_rate" default="20.0"/>
+  <arg name="target_period" default="12.0"/>
+  <arg name="target_scale_y" default="0.9"/>
+  <arg name="target_scale_x" default="0.8"/>
+  <arg name="target_height" default="0.6"/>
+  <arg name="target_center_y" default="0.0"/>
+  <arg name="target_center_x" default="4.0"/>
+  <arg name="lidar_noise_stddev" default="0.0"/>
+  <arg name="lidar_noise_mean" default="0.0"/>
+  <arg name="lidar_calibration" default="false"/>
+  <arg name="world_file"/>
+  <arg name="markers" default="false"/>
+  <arg name="lidar" default="false"/>
+  <arg name="run_dir"/>
+  <arg name="gui" default="true"/>
+  <arg name="dynamic_target" default="true"/>
+  <arg name="camera_view" default="true"/>
+  <arg name="observer_motion" default="$(arg dynamic_target)"/>
+  <param name="/gazebo/pub_clock_frequency" value="100.0"/>
+  <include file="$(find uav_sim)/launch/static_uav.launch">
+    <arg name="world_file" value="$(arg world_file)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="dynamic_target" value="$(arg dynamic_target)"/>
+    <arg name="camera_view" value="false"/>
+    <arg name="paused" value="true"/>
+    <arg name="markers" value="$(arg markers)"/>
+    <arg name="lidar" value="$(arg lidar)"/>
+    <arg name="lidar_calibration" value="$(arg lidar_calibration)"/>
+    <arg name="lidar_noise_mean" value="$(arg lidar_noise_mean)"/>
+    <arg name="lidar_noise_stddev" value="$(arg lidar_noise_stddev)"/>
+    <arg name="target_center_x" value="$(arg target_center_x)"/>
+    <arg name="target_center_y" value="$(arg target_center_y)"/>
+    <arg name="target_height" value="$(arg target_height)"/>
+    <arg name="target_scale_x" value="$(arg target_scale_x)"/>
+    <arg name="target_scale_y" value="$(arg target_scale_y)"/>
+    <arg name="target_period" value="$(arg target_period)"/>
+    <arg name="target_rate" value="$(arg target_rate)"/>
+  </include>
+  <node if="$(arg observer_motion)" pkg="uav_sim" type="repeat_camera_motion.py" name="repeat_camera_motion" required="true" output="screen"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="mounted_radar_tf" args="0.30 0 0.12 0 0 0 1 uav_base_link radar_link"/>
+  <node pkg="uav_sim" type="ray_cloud_bridge" name="ray_cloud_bridge" required="true" output="screen">
+    <param name="require_recorder" value="true"/>
+    <param name="gazebo_topic" value="/gazebo/base_scene/static_uav/base_link/ray_3d/scan"/>
+  </node>
+  <node pkg="uav_sim" type="record_radar.py" name="radar_recorder" required="true" output="screen">
+    <param name="run_dir" value="$(arg run_dir)"/>
+  </node>
+  <node pkg="uav_sim" type="sensor_source_audit" name="sensor_source_audit" required="true" output="screen">
+    <param name="output" value="$(arg run_dir)/source_sensor_stamps.csv"/>
+  </node>
+  <node pkg="uav_sim" type="sensor_interfaces.py" name="sensor_interfaces" required="true" output="screen"><param name="run_dir" value="$(arg run_dir)"/></node>
+  <node pkg="uav_sim" type="start_sensor_clock.py" name="start_sensor_clock" output="screen" required="true"><param name="viewer_required" value="$(arg camera_view)"/></node>
+  <node if="$(arg camera_view)" pkg="uav_sim" type="sensor_viewer.py" name="sensor_viewer" output="screen" required="true"><param name="run_dir" value="$(arg run_dir)"/></node>
+  <node pkg="uav_sim" type="audited_cluster.py" name="cluster" output="screen" launch-prefix="$(optenv AI4_CLUSTER_PYTHON /usr/bin/python3)">
+    <rosparam command="load" file="$(find uav_tracking)/config/cluster.yaml"/>
+    <param name="audit_file" value="$(arg run_dir)/cluster_received.csv"/>
+  </node>
+</launch>

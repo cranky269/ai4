@@ -20,6 +20,12 @@ class RayCloudBridge {
         "/gazebo/base_scene/radar_3d/radar_link/ray_3d/scan");
     nh_.param<std::string>("cloud_topic", output, "/radar/points");
     publisher_ = nh_.advertise<sensor_msgs::PointCloud2>(output, 2);
+    bool require_recorder = false;
+    nh_.param("require_recorder", require_recorder, false);
+    // Mounted launch starts the writer first; do not silently discard startup scans.
+    while (require_recorder && ros::ok() && publisher_.getNumSubscribers() == 0) {
+      ros::WallDuration(0.05).sleep();
+    }
     node_.reset(new gazebo::transport::Node());
     node_->Init();
     subscriber_ = node_->Subscribe(input, &RayCloudBridge::OnScan, this);
