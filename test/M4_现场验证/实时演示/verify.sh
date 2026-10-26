@@ -98,7 +98,7 @@ FIRST_BBOX="$(timeout 15 rostopic echo -n1 /detections 2>/dev/null | grep -m1 'b
 WEB="$(curl -s -m 8 "http://127.0.0.1:$PORT/status" 2>/dev/null || true)"
 
 if [ -z "$WEB" ]; then
-  bad "取不到直播服务数据（$PORT 端口）—— 先跑: bash ~/m4/start_stream.sh"
+  bad "取不到直播服务数据（$PORT 端口）—— 先跑: bash ~/m4/demo.sh"
 else
   WEB_N="$(echo "$WEB" | python3 -c 'import sys,json;print(json.load(sys.stdin)["det_n"])' 2>/dev/null || echo -1)"
   WEB_ST="$(echo "$WEB" | python3 -c 'import sys,json;print(json.load(sys.stdin)["state"])' 2>/dev/null || echo '?')"

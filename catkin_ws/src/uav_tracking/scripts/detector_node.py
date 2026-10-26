@@ -24,13 +24,13 @@
 ``ultralytics`` 要求 ``numpy>=1.18.5``，而项目基线是系统 numpy 1.17.4
 （见 ``requirements.txt``）。故视觉依赖装在**工程内**的独立目录::
 
-    <工程根>/catkin_ws/src/uav_tracking/lib/m4_deps/
+    <工程根>/lib/m4/
 
 **严格隔离**：只有**本节点**把这个目录加进 ``sys.path``：
 
 - 其他节点壳只把 ``lib/`` 加进 ``sys.path``；解释器查找 ``import numpy``
-  时只会去看 ``lib/numpy``（不存在），**不会**进 ``lib/m4_deps/numpy``；
-- ``m4_deps`` 不在任何默认搜索路径上，也不会被写进 ``.pth`` / ``PYTHONPATH``；
+  时只会去看 ``lib/numpy``（不存在），**不会**进 ``lib/m4/numpy``；
+- ``lib/m4`` 不在任何默认搜索路径上，也不会被写进 ``.pth`` / ``PYTHONPATH``；
 - 本节点启动时会打印实际加载的 numpy 版本与路径，便于核对。
 
 下载/安装命令见 ``M4交付说明/组长确认冲突库下载说明文档.md``。
@@ -57,8 +57,9 @@ if _LIB_DIR not in sys.path:
     sys.path.insert(0, _LIB_DIR)
 
 # --- 视觉依赖隔离目录 ---
-# 放在工程内的 lib/m4_deps：随仓库分发，不依赖各人 HOME 目录。
-_M4_DEPS = os.path.join(_LIB_DIR, "m4_deps")
+# 仓库根 lib/m4（lib/ 下按模块建子目录，由 scripts/冲突库下载/install_m4_deps.sh 安装）。
+_M4_DEPS = os.path.abspath(
+    os.path.join(_LIB_DIR, "..", "..", "..", "..", "lib", "m4"))
 if os.path.isdir(_M4_DEPS) and _M4_DEPS not in sys.path:
     sys.path.insert(0, _M4_DEPS)
 

@@ -1,22 +1,23 @@
 #!/bin/bash
 # =============================================================================
-# M4 视觉依赖安装脚本（组长批准方案：装到工程内 lib/m4_deps，严格隔离）
+# M4 视觉依赖安装脚本（冲突库隔离下载，严格隔离，系统包不动）
 #
-# 归属：本脚本是**冲突库隔离下载脚本**，按《项目要求汇总.md》Q4/A4 放在 lib/ 下，
-#       并在仓库根《冲突库汇总.md》的 M4 段登记（库名、版本、下载指令）。
+# 归属：按《项目要求汇总.md》Q4/A4 —— 一键下载脚本统一放 scripts/冲突库下载/，
+#       依赖装在仓库根 lib/ 下的模块子目录 lib/m4/，
+#       库名/版本/指令登记在 scripts/冲突库下载/冲突库汇总.md 的 M4 段。
 #
 # 用法（在任意目录执行，脚本自己定位工程根）：
-#   bash catkin_ws/src/uav_tracking/lib/install_m4_deps.sh            # 安装（约下载 300MB，装完 1.1GB）
-#   bash catkin_ws/src/uav_tracking/lib/install_m4_deps.sh --check    # 只检查现状，不安装
-#   bash catkin_ws/src/uav_tracking/lib/install_m4_deps.sh --uninstall# 删掉 lib/m4_deps（系统不受影响）
+#   bash scripts/冲突库下载/install_m4_deps.sh            # 安装（约下载 300MB，装完 1.1GB）
+#   bash scripts/冲突库下载/install_m4_deps.sh --check    # 只检查现状，不安装
+#   bash scripts/冲突库下载/install_m4_deps.sh --uninstall# 删掉 lib/m4（系统不受影响）
 #
 # 设计约束（**不可破坏**）：
-#   1. numpy 锁 1.21.6，且**只装在 m4_deps 里**；系统 numpy 1.17.4 一动不动；
+#   1. numpy 锁 1.21.6，且**只装在 lib/m4 里**；系统 numpy 1.17.4 一动不动；
 #   2. torch 用 **CPU 版**（仿真机无 CUDA，避免拉几百 MB 无用数据）；
 #   3. **不装 opencv-python**（否则遮蔽系统 cv2，与 cv_bridge 版本错配）；
 #   4. 装完必须打印隔离自检结果，并**逐包验证**（缺一个就报错）。
 #
-# 踩过的坑（详见 M4交付说明/组长确认冲突库下载说明文档.md §3.1）：
+# 踩过的坑（都是实测踩出来的，改脚本前先看）：
 #   ① 清华 PyPI 镜像会返回 403 → 本脚本用阿里云
 #   ② pip 默认给 torch 拉 CUDA 版 → 本脚本用 pytorch 官方 CPU 索引
 #   ③ pip --target 不把目标目录当"已安装"，且遇同名目录会**静默不覆盖**
@@ -29,10 +30,10 @@
 
 set -u
 
-# --- 路径：脚本自己定位工程根，不写死（本脚本就在 .../uav_tracking/lib/ 下）---
-LIB_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "$LIB_DIR/../../../.." && pwd)"
-DIR="$LIB_DIR/m4_deps"
+# --- 路径：脚本自己定位工程根，不写死（本脚本在 scripts/冲突库下载/ 下）---
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+DIR="$REPO_ROOT/lib/m4"
 
 # --- 镜像（可用环境变量覆盖）---
 PYPI="${M4_PYPI_INDEX:-https://mirrors.aliyun.com/pypi/simple/}"
@@ -205,7 +206,7 @@ do_install() {
   echo "=== 6/6 剔除 opencv（否则遮蔽系统 cv2，与 cv_bridge 错配）==="
   if ls -d "$DIR"/cv2* "$DIR"/opencv_python* >/dev/null 2>&1; then
     rm -rf "$DIR"/cv2 "$DIR"/cv2-* "$DIR"/opencv_python* "$DIR"/opencv_python.libs
-    ok "已删除 m4_deps 内的 opencv"
+    ok "已删除 lib/m4 内的 opencv"
   else
     ok "本来就没有 opencv（无需处理）"
   fi
