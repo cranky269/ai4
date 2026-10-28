@@ -1,4 +1,6 @@
 <launch>
+  <arg name="continuous_observer" default="false"/>
+  <arg name="wait_for_radar_gui" default="false"/>
   <arg name="paused" default="false"/>
   <arg name="gui" default="true"/>
   <arg name="lidar" default="false"/>
@@ -21,15 +23,17 @@
   <env name="GAZEBO_MODEL_PATH" value="$(find uav_description)/models:/usr/share/gazebo-11/models"/>
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(arg world_file)"/>
-    <arg name="gui" value="$(arg gui)"/>
+    <arg name="gui" value="false"/>
     <arg name="paused" value="$(arg paused)"/>
     <arg name="use_sim_time" value="true"/>
     <arg name="verbose" value="true"/>
     <arg name="server_required" value="true"/>
   </include>
+  <!-- Native GUI avoids loading the server ROS API plugin into the client. -->
+  <node if="$(arg gui)" pkg="uav_sim" type="native_gzclient.sh" name="gazebo_gui" args="--verbose" output="screen"><env name="AI4_WAIT_RADAR_GUI" value="$(arg wait_for_radar_gui)"/><env name="AI4_WAIT_TARGET_GUI" value="$(arg dynamic_target)"/></node>
   <!-- Static model pose and physical camera mounting; optical z=body x, x=-body y, y=-body z. -->
   <!-- Actual model pose TF; movement is idle unless explicitly triggered. -->
-  <node pkg="uav_sim" type="camera_motion_demo.py" name="world_uav_tf" output="screen"/>
+  <node pkg="uav_sim" type="camera_motion_demo.py" name="world_uav_tf" output="screen"><param name="continuous" value="$(arg continuous_observer)"/></node>
   <node pkg="tf2_ros" type="static_transform_publisher" name="uav_camera_mount_tf" args="0.20 0 0.12 0 0 0 1 uav_base_link uav_camera_link"/>
   <node pkg="tf2_ros" type="static_transform_publisher" name="uav_camera_optical_tf" args="0 0 0 -0.5 0.5 -0.5 0.5 uav_camera_link uav_camera_optical_frame"/>
   <node if="$(arg camera_view)" pkg="image_view" type="image_view" name="onboard_camera_view" output="screen">

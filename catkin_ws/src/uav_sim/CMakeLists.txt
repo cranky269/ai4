@@ -12,8 +12,13 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package()
 
 find_package(gazebo REQUIRED)
+find_package(Qt5 REQUIRED COMPONENTS Widgets)
 include_directories(${catkin_INCLUDE_DIRS} ${GAZEBO_INCLUDE_DIRS})
 link_directories(${GAZEBO_LIBRARY_DIRS})
+add_library(ai4_scene_view SHARED src/scene_view.cpp)
+target_compile_features(ai4_scene_view PRIVATE cxx_std_17)
+target_link_libraries(ai4_scene_view ${GAZEBO_LIBRARIES} Qt5::Widgets)
+install(TARGETS ai4_scene_view LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION})
 add_executable(ray_cloud_bridge src/ray_cloud_bridge.cpp)
 target_compile_features(ray_cloud_bridge PRIVATE cxx_std_17)
 target_link_libraries(ray_cloud_bridge ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
@@ -28,7 +33,7 @@ install(TARGETS ray_cloud_bridge RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTIN
 install(DIRECTORY worlds launch config
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 
-install(PROGRAMS scripts/prepare_mounted_radar.py scripts/start_mounted_radar.sh scripts/record_radar.py scripts/check_radar_run.py scripts/repeat_camera_motion.py scripts/start_static_scene.sh scripts/figure_eight_target.py scripts/spawn_planar_lidar.py scripts/spawn_radar_3d.py scripts/start_radar_3d.sh scripts/camera_motion_demo.py
+install(PROGRAMS scripts/native_gzclient.sh scripts/check_mounted_motion.py scripts/teaching_capture.py scripts/prepare_mounted_radar.py scripts/start_mounted_radar.sh scripts/record_radar.py scripts/check_radar_run.py scripts/repeat_camera_motion.py scripts/start_static_scene.sh scripts/figure_eight_target.py scripts/spawn_planar_lidar.py scripts/spawn_radar_3d.py scripts/start_radar_3d.sh scripts/camera_motion_demo.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
 add_executable(sensor_source_audit src/sensor_source_audit.cpp)

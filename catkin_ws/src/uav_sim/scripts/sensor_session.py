@@ -22,12 +22,15 @@ try:code=p.wait(timeout=45)
 except subprocess.TimeoutExpired:
  os.killpg(p.pid,signal.SIGTERM);code=p.wait(timeout=10)
 try:
- stats=json.loads((root/'statistics.json').read_text())
- if stats.get('status')!='closed':code=code or 1
  manifest=json.loads((root/'run.json').read_text())
- manifest.update(status='closed_pending_verification' if code==0 else 'failed',
-                 actual_start_utc=stats.get('start_utc'),actual_end_utc=stats.get('end_utc'),
-                 radar_frames=stats.get('radar_frames'),camera_frames=stats.get('camera_png_frames'),exit_code=code)
+ if os.environ.get('AI4_RECORDING','true')=='true':
+  stats=json.loads((root/'statistics.json').read_text())
+  if stats.get('status')!='closed':code=code or 1
+  manifest.update(status='closed_pending_verification' if code==0 else 'failed',
+                  actual_start_utc=stats.get('start_utc'),actual_end_utc=stats.get('end_utc'),
+                  radar_frames=stats.get('radar_frames'),camera_frames=stats.get('camera_png_frames'),exit_code=code)
+ else:
+  manifest.update(status='stopped_live' if code==0 else 'failed',recording=False,exit_code=code)
  (root/'run.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2))
 except Exception as exc:
  print('Session statistics unavailable: '+str(exc),file=sys.stderr);code=code or 1

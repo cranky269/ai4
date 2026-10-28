@@ -27,7 +27,11 @@ class RayCloudBridge {
       ros::WallDuration(0.05).sleep();
     }
     node_.reset(new gazebo::transport::Node());
-    node_->Init();
+    // An unspecified namespace before world creation registers a phantom
+    // "default" world. gzclient may select it and show a frozen empty scene.
+    std::string world;
+    nh_.param<std::string>("world_name", world, "base_scene");
+    node_->Init(world);
     subscriber_ = node_->Subscribe(input, &RayCloudBridge::OnScan, this);
     ROS_INFO_STREAM("3D Ray bridge " << input << " -> " << output
                     << "; frame=" << frame_ << "; no additional noise");
