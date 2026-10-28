@@ -1,8 +1,8 @@
-# 米、弧度、仿真时间Hz；保持resolution=1，905条真实物理射线，无插值。
+# 米、弧度、仿真时间Hz；保持resolution=1，4525条真实物理射线，无插值。
 horizontal_samples: 181
 horizontal_min_angle: -0.7853981633974483
 horizontal_max_angle: 0.7853981633974483
-vertical_samples: 5
+vertical_samples: 25
 vertical_min_angle: -0.17453292519943295
 vertical_max_angle: 0.17453292519943295
 range_min: 0.1

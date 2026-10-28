@@ -24,19 +24,22 @@ def screenshot(path):
     app.primaryScreen().grabWindow(0).save(str(path))
 
 
-def arrange(out):
+def arrange(out, live=False):
     """沿用第三轮的固定旁观视角和窗口位置，不改机载相机。"""
     from PyQt5 import QtWidgets
     app = QtWidgets.QApplication.instance() or QtWidgets.QApplication([])
     rect = app.primaryScreen().geometry()
-    if rect.width() < 2200 or rect.height() < 1180:
+    if not live and (rect.width() < 2200 or rect.height() < 1180):
         raise RuntimeError('当前桌面不足2200×1180，不能完整保持已验证的并排布局；请调整桌面分辨率后重试')
     pose = ('camera {name: "user_camera" pose {position {x: 2 y: -6 z: 3} '
             'orientation {x: -0.140480431 y: 0.140480431 z: 0.693011723 w: 0.693011723}}}')
-    view = subprocess.run(['gz', 'topic', '-p', '/gazebo/base_scene/gui', '-m', pose],
-                          capture_output=True, text=True, timeout=12)
-    if view.returncode:
-        raise RuntimeError('固定旁观视角设置失败：' + view.stderr)
+    # The mounted world already specifies its spectator pose; avoid blocking the UI
+    # on Gazebo transport discovery before arranging native windows.
+    if not live and not (out / 'mounted.world').exists():
+        view = subprocess.run(['gz', 'topic', '-p', '/gazebo/base_scene/gui', '-m', pose],
+                              capture_output=True, text=True, timeout=30)
+        if view.returncode:
+            raise RuntimeError('固定旁观视角设置失败：' + view.stderr)
     x = ctypes.CDLL('libX11.so.6')
     x.XOpenDisplay.argtypes = [ctypes.c_char_p]
     x.XOpenDisplay.restype = ctypes.c_void_p
@@ -66,11 +69,13 @@ def arrange(out):
     x.XFlush.argtypes = [ctypes.c_void_p]
     x.XCloseDisplay.argtypes = [ctypes.c_void_p]
     try:
-        end = time.monotonic() + 25
+        end = time.monotonic() + (150 if live else 25)
         while time.monotonic() < end:
             tree = subprocess.check_output(['xwininfo', '-root', '-tree'], text=True, timeout=5)
             a = re.search(r'(0x[0-9a-f]+) "Gazebo":', tree)
             b = re.search(r'(0x[0-9a-f]+) "AI4 onboard camera - live":', tree)
+            mounted = re.search(r'(0x[0-9a-f]+) "AI4 Camera \+ 3D Radar[^"]*":', tree)
+            b = mounted or b
             if a and b:
                 break
             time.sleep(.2)
@@ -89,11 +94,21 @@ def arrange(out):
             x.XSendEvent(display, root, 0, (1 << 20) | (1 << 19), ctypes.byref(event))
         x.XFlush(display)
         time.sleep(1)
-        x.XMoveResizeWindow(display, wins[0], 80, 100, 1290, 1000)
-        x.XMoveResizeWindow(display, wins[1], 1480, 280, 640, 480)
+        if live:
+            usable = rect.width()-90
+            left = int(usable*.53)
+            height = max(500,rect.height()-150)
+            x.XMoveResizeWindow(display,wins[0],70,65,left,height)
+            x.XMoveResizeWindow(display,wins[1],80+left,65,usable-left-10,height)
+        else:
+            x.XMoveResizeWindow(display, wins[0], 10, 90, 1250 if mounted else 1290, 1000)
+            x.XMoveResizeWindow(display, wins[1], 1340 if mounted else 1480, 100 if mounted else 280, 1000 if mounted else 640, 950 if mounted else 480)
         for window in wins:
             x.XRaiseWindow(display, window)
         x.XFlush(display)
+        if live:
+            (out/'window_geometry.txt').write_text(subprocess.check_output(['xwininfo','-root','-tree'],text=True,timeout=5))
+            return
         time.sleep(2)
         screenshot(out / 'before.png')
         (out / 'window_geometry.txt').write_text(subprocess.check_output(['xwininfo', '-root', '-tree'], text=True, timeout=5))
@@ -280,6 +295,9 @@ def check_files(out):
 
 if __name__ == '__main__':
     action, output = sys.argv[1], Path(sys.argv[2]).resolve()
+    if action == 'layout-live':
+        arrange(output, live=True)
+        sys.exit(0)
     if action == 'screen':
         sys.exit(record_screen(output))
     if action == 'export':

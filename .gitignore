@@ -43,3 +43,4 @@ catkin_ws/src/uav_tracking/lib/m4_deps/
 # M0 本地采集及隔离运行环境
 /data/
 /.venv-sensors/
+/lib/venv/sensor_python/

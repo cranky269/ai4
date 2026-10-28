@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Real live ROS Image + embedded RViz; lossless-file frame browser with timestamp pairing."""
-import sys,os,json,csv,time,bisect,argparse
+import sys,os,json,csv,time,bisect,argparse,threading,subprocess
 from pathlib import Path
 import numpy as np
 from PyQt5 import QtWidgets,QtCore,QtGui
@@ -22,12 +22,16 @@ class Window(QtWidgets.QMainWindow):
   self.image=QtWidgets.QLabel('Waiting for actual camera image');self.image.setAlignment(QtCore.Qt.AlignCenter);self.image.setMinimumSize(320,240);self.image.setStyleSheet('background:#15181c;color:white');split.addWidget(self.image)
   self.render=rviz.VisualizationFrame();self.render.setSplashPath('');self.render.initialize();self.render.setMenuBar(None);self.render.setStatusBar(None);self.render.setHideButtonVisibility(False);[dock.hide() for dock in self.render.findChildren(QtWidgets.QDockWidget)];split.addWidget(self.render);split.setSizes([640,740])
   self.manager=self.render.getManager();self.manager.setFixedFrame('radar_link')
+  options=self.manager.getRootDisplayGroup().subProp('Global Options')
+  if options is not None:
+   frame_rate=options.subProp('Frame Rate')
+   if frame_rate is not None:frame_rate.setValue(10)
   grid=self.manager.createDisplay('rviz/Grid','Metre grid',True);grid.subProp('Cell Size').setValue(1.0)
   axes=self.manager.createDisplay('rviz/Axes','Radar axes [m]',True);axes.subProp('Length').setValue(.5);axes.subProp('Radius').setValue(.015)
   self.cloud=self.manager.createDisplay('rviz/PointCloud2','Measured Ray XYZ',True)
   self.cloud.subProp('Position Transformer').setValue('XYZ')
   self.cloud.subProp('Topic').setValue('/viewer/points' if offline else '/radar/points')
-  self.cloud.subProp('Queue Size').setValue(50);self.cloud.subProp('Style').setValue('Flat Squares');self.cloud.subProp('Size (m)').setValue(.035);self.cloud.subProp('Size (Pixels)').setValue(4)
+  self.cloud.subProp('Queue Size').setValue(2);self.cloud.subProp('Style').setValue('Flat Squares');self.cloud.subProp('Size (m)').setValue(.035);self.cloud.subProp('Size (Pixels)').setValue(4)
   self.cloud.subProp('Color Transformer').setValue('AxisColor');self.cloud.subProp('Axis').setValue('Z');self.cloud.subProp('Decay Time').setValue(0.0)
   self.manager.getViewManager().setCurrentViewControllerType('rviz/Orbit')
   view=self.manager.getViewManager().getCurrent();view.subProp('Distance').setValue(7.0);view.subProp('Focal Point').subProp('X').setValue(2.0);view.subProp('Pitch').setValue(.5);view.subProp('Yaw').setValue(.9)
@@ -42,7 +46,8 @@ class Window(QtWidgets.QMainWindow):
   self.camera_signal.connect(self.show_camera);self.radar_signal.connect(self.note_radar)
   self.timer=QtCore.QTimer();self.timer.timeout.connect(self.advance)
   self.prev.clicked.connect(lambda:self.step(-1));self.next.clicked.connect(lambda:self.step(1));self.play.clicked.connect(self.toggle);self.slider.valueChanged.connect(self.seek);self.mode.currentIndexChanged.connect(self.change_mode)
-  self.evidence=QtCore.QTimer();self.evidence.timeout.connect(self.capture);self.evidence.start(10000);self.shots=0
+  self.evidence=QtCore.QTimer();self.evidence.timeout.connect(self.capture);self.shots=0
+  if rospy.get_param('~auto_capture',False):self.evidence.start(10000)
   if offline:
    self.evidence.stop()
    self.camera_rows=list(csv.DictReader((self.root/'camera_frames.csv').open()));self.radar_rows=list(csv.DictReader((self.root/'frames.csv').open()))
@@ -52,8 +57,20 @@ class Window(QtWidgets.QMainWindow):
    if self_test:QtCore.QTimer.singleShot(2500,self.test_controls)
   else:
    for w in (self.mode,self.prev,self.next,self.play,self.slider):w.setEnabled(False)
-   self.subs=[rospy.Subscriber('/camera/image_raw',Image,self.camera_signal.emit,queue_size=100,buff_size=64*1024*1024),rospy.Subscriber('/radar/points',PointCloud2,self.radar_signal.emit,queue_size=100)]
+   self.pending={};self.pending_lock=threading.Lock()
+   self.subs=[rospy.Subscriber('/camera/image_raw',Image,lambda m:self.receive_latest('camera',m),queue_size=1,buff_size=4*1024*1024),rospy.Subscriber('/radar/points',PointCloud2,lambda m:self.receive_latest('radar',m),queue_size=1)]
+   self.live_timer=QtCore.QTimer();self.live_timer.timeout.connect(self.flush_live);self.live_timer.start(100)
    rospy.set_param('~ready',True)
+ def receive_latest(self,kind,msg):
+  with self.pending_lock:self.pending[kind]=msg
+ def flush_live(self):
+  with self.pending_lock:pending,self.pending=self.pending,{}
+  if 'camera' in pending:self.show_camera(pending['camera'])
+  if 'radar' in pending:self.note_radar(pending['radar'])
+  # Small diagnostics only; no automatic screen capture or focus stealing.
+  if not hasattr(self,'last_health') or time.monotonic()-self.last_health>=1:
+   self.last_health=time.monotonic()
+   (self.root/'viewer_health.json').write_text(json.dumps(dict(displayed=self.counts,latest=self.latest,wall=time.time())))
  def color(self,index):
   if index==0:self.cloud.subProp('Color Transformer').setValue('AxisColor');self.cloud.subProp('Axis').setValue('Z')
   else:self.cloud.subProp('Color Transformer').setValue('Intensity');self.cloud.subProp('Channel Name').setValue('range')
@@ -118,6 +135,7 @@ class Window(QtWidgets.QMainWindow):
   self.raise_();self.activateWindow();QtWidgets.QApplication.processEvents()
   pos=self.mapToGlobal(QtCore.QPoint(0,0))
   QtWidgets.QApplication.primaryScreen().grabWindow(0,pos.x(),pos.y(),self.width(),self.height()).save(str(folder/(name+'.png')))
+  QtWidgets.QApplication.primaryScreen().grabWindow(0).save(str(folder/(name+'_desktop.png')))
   (folder/(name+'.json')).write_text(json.dumps(dict(mode='offline' if self.offline else 'live',displayed=self.counts,latest=self.latest,index=self.index),indent=2))
  def test_controls(self):
   self.slider.setValue(min(30,max(0,self.slider.maximum()-2)));initial=self.index;self.next.click();forward=self.index;self.prev.click();back=self.index
@@ -138,6 +156,10 @@ if __name__=='__main__':
  rospy.init_node('sensor_viewer',disable_signals=True)
  run=args.run or rospy.get_param('~run_dir')
  app=QtWidgets.QApplication(sys.argv);window=Window(run,args.offline,args.self_test);window.show()
+ if not args.offline:
+  # Window discovery and Gazebo transport may wait: keep them off the Qt thread.
+  layout_log=(Path(run)/'layout.log').open('w')
+  layout_process=subprocess.Popen([sys.executable,str(Path(__file__).with_name('teaching_capture.py')),'layout-live',run],stdout=layout_log,stderr=subprocess.STDOUT)
  timer=QtCore.QTimer();timer.timeout.connect(lambda:app.quit() if rospy.is_shutdown() else None);timer.start(200)
  import signal
  signal.signal(signal.SIGINT,lambda *_:app.quit());signal.signal(signal.SIGTERM,lambda *_:app.quit())
@@ -147,6 +169,8 @@ if __name__=='__main__':
  # flush its small evidence output, then release native objects with the
  # process rather than invoking unsafe SIP destructors. Preserve Qt's exit code.
  timer.stop();window.timer.stop();window.evidence.stop()
+ if hasattr(window,'live_timer'):window.live_timer.stop()
+ if not args.offline and layout_process.poll() is None:layout_process.terminate()
  for sub in getattr(window,'subs',[]):sub.unregister()
  window.manager.stopUpdate()
  rospy.signal_shutdown('viewer closed')

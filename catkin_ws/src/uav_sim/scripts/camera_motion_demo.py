@@ -35,6 +35,8 @@ def path(t):
 class Demo:
     def __init__(self):
         self.lock = threading.RLock()
+        self.continuous = rospy.get_param('~continuous', False)
+        self.last_tf_stamp = None
         self.mode = 'idle'
         self.epoch = None
         self.home_start = None
@@ -90,7 +92,11 @@ class Demo:
             with self.lock:
                 elapsed = start-self.epoch if self.epoch is not None else 0.
                 phase, desired = 'idle', None
-                if self.mode == 'demo':
+                if self.continuous:
+                    elapsed = rospy.Time.now().to_sec()
+                    a = 2*math.pi*elapsed/18.0
+                    phase, desired = 'continuous_sim_orbit', (.25*math.sin(a), .45*math.cos(a), 1.3+.08*math.sin(a), .08*math.sin(a))
+                elif self.mode == 'demo':
                     phase, desired = path(elapsed)
                     if elapsed >= 26:
                         self.mode, phase = 'idle', 'complete'
@@ -100,7 +106,8 @@ class Demo:
                     if elapsed >= 3: self.mode = 'idle'
                 if desired is not None:
                     x,y,z,yaw = desired
-                    if not (-.02<=x<=.5 and abs(y)<=.3 and abs(z-.12)<.02 and abs(yaw)<=.16):
+                    if not ((self.continuous and abs(x)<=.26 and abs(y)<=.46 and 1.2<=z<=1.4 and abs(yaw)<=.09) or
+                            (not self.continuous and -.02<=x<=.5 and abs(y)<=.3 and abs(z-.12)<.02 and abs(yaw)<=.16)):
                         raise ValueError('pose outside fixed demonstration bounds')
                     command = ModelState(model_name='static_uav', reference_frame='world')
                     command.pose.position.x,command.pose.position.y,command.pose.position.z = x,y,z
@@ -124,14 +131,16 @@ class Demo:
                     self.actual = actual
                     self.state = {'mode':self.mode,'phase':phase,'elapsed_wall_s':elapsed,
                                   'actual_xyz_yaw':self.coordinates(),'stamp':actual.header.stamp.to_sec(),
-                                  'desired_xyz_yaw':desired,'method':'Gazebo SetModelState; static model'}
+                                  'desired_xyz_yaw':desired,'method':'Gazebo SetModelState; kinematic model' if self.continuous else 'Gazebo SetModelState; static model'}
                     state_json = json.dumps(self.state)
                 pose=PoseStamped();pose.header=actual.header;pose.header.frame_id='world';pose.pose=actual.pose
                 self.pose_pub.publish(pose)
                 t=TransformStamped();t.header=pose.header;t.child_frame_id='uav_base_link'
                 t.transform.translation.x,t.transform.translation.y,t.transform.translation.z = actual.pose.position.x,actual.pose.position.y,actual.pose.position.z
                 t.transform.rotation=actual.pose.orientation
-                self.tf.sendTransform(t)
+                if self.last_tf_stamp != t.header.stamp:
+                    self.tf.sendTransform(t)
+                    self.last_tf_stamp = t.header.stamp
                 self.state_pub.publish(String(data=state_json))
             time.sleep(max(.001,.05-(time.monotonic()-start)))
 

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<sdf version="1.6"><model name="ai4_target_iris"><static>true</static><link name="base_link"><pose>0 0 0 0 0 0</pose>
+<sdf version="1.6"><model name="ai4_target_iris"><static>false</static><link name="base_link"><pose>0 0 0 0 0 0</pose>
       <collision name="base_link_inertia_collision">
         <pose>0 0 0 0 0 0</pose>
         <geometry>
@@ -28,7 +28,7 @@
           </mesh>
         </geometry>
         <material><ambient>0.02 0.9 0.08 1</ambient><diffuse>0.02 0.9 0.08 1</diffuse><emissive>0.02 0.9 0.08 1</emissive></material></visual>
-      </link><link name="rotor_0"><pose>0.13 -0.22 0.023 0 0 0</pose>
+      <kinematic>true</kinematic><gravity>false</gravity></link><link name="rotor_0"><pose>0.13 -0.22 0.023 0 0 0</pose>
       <collision name="rotor_0_collision">
         <pose>0 0 0 0 0 0</pose>
         <geometry>
@@ -55,7 +55,7 @@
           </mesh>
         </geometry>
         <material><ambient>0.02 0.9 0.08 1</ambient><diffuse>0.02 0.9 0.08 1</diffuse><emissive>0.02 0.9 0.08 1</emissive></material></visual>
-      </link><link name="rotor_1"><pose>-0.13 0.2 0.023 0 0 0</pose>
+      <kinematic>true</kinematic><gravity>false</gravity></link><link name="rotor_1"><pose>-0.13 0.2 0.023 0 0 0</pose>
       <collision name="rotor_1_collision">
         <pose>0 0 0 0 0 0</pose>
         <geometry>
@@ -82,7 +82,7 @@
           </mesh>
         </geometry>
         <material><ambient>0.02 0.9 0.08 1</ambient><diffuse>0.02 0.9 0.08 1</diffuse><emissive>0.02 0.9 0.08 1</emissive></material></visual>
-      </link><link name="rotor_2"><pose>0.13 0.22 0.023 0 0 0</pose>
+      <kinematic>true</kinematic><gravity>false</gravity></link><link name="rotor_2"><pose>0.13 0.22 0.023 0 0 0</pose>
       <collision name="rotor_2_collision">
         <pose>0 0 0 0 0 0</pose>
         <geometry>
@@ -109,7 +109,7 @@
           </mesh>
         </geometry>
         <material><ambient>0.02 0.9 0.08 1</ambient><diffuse>0.02 0.9 0.08 1</diffuse><emissive>0.02 0.9 0.08 1</emissive></material></visual>
-      </link><link name="rotor_3"><pose>-0.13 -0.2 0.023 0 0 0</pose>
+      <kinematic>true</kinematic><gravity>false</gravity></link><link name="rotor_3"><pose>-0.13 -0.2 0.023 0 0 0</pose>
       <collision name="rotor_3_collision">
         <pose>0 0 0 0 0 0</pose>
         <geometry>
@@ -136,4 +136,4 @@
           </mesh>
         </geometry>
         <material><ambient>0.02 0.9 0.08 1</ambient><diffuse>0.02 0.9 0.08 1</diffuse><emissive>0.02 0.9 0.08 1</emissive></material></visual>
-      </link></model></sdf>
+      <kinematic>true</kinematic><gravity>false</gravity></link></model></sdf>
