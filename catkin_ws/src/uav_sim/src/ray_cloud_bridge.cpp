@@ -6,6 +6,11 @@
 #include <ros/ros.h>
 #include <sensor_msgs/PointCloud2.h>
 #include <sensor_msgs/PointField.h>
+#include <geometry_msgs/PoseStamped.h>
+#include <ignition/math/Pose3.hh>
+#include <mutex>
+#include <stdexcept>
+#include <vector>
 #include <cmath>
 #include <cstring>
 #include <limits>
@@ -20,6 +25,20 @@ class RayCloudBridge {
         "/gazebo/base_scene/radar_3d/radar_link/ray_3d/scan");
     nh_.param<std::string>("cloud_topic", output, "/radar/points");
     publisher_ = nh_.advertise<sensor_msgs::PointCloud2>(output, 2);
+    nh_.param("publish_uav_pose", publish_pose_, false);
+    if (publish_pose_) {
+      std::vector<double> mount;
+      std::string topic;
+      nh_.param<std::string>("uav_pose_topic", topic, "/radar/uav_pose_world");
+      if (!nh_.getParam("body_to_sensor", mount) || mount.size() != 6 ||
+          !nh_.getParam("scan_parent", scan_parent_))
+        throw std::runtime_error("UAV pose requires generated body_to_sensor and scan_parent");
+      for (double v : mount) if (!std::isfinite(v))
+        throw std::runtime_error("Nonfinite radar mounting transform");
+      body_to_sensor_ = ignition::math::Pose3d(mount[0], mount[1], mount[2],
+                                              mount[3], mount[4], mount[5]);
+      pose_publisher_ = nh_.advertise<geometry_msgs::PoseStamped>(topic, 2);
+    }
     bool require_recorder = false;
     nh_.param("require_recorder", require_recorder, false);
     // Mounted launch starts the writer first; do not silently discard startup scans.
@@ -43,6 +62,8 @@ class RayCloudBridge {
     std::memcpy(cloud.data.data() + offset, &value, sizeof(T));
   }
   void OnScan(ConstLaserScanStampedPtr &message) {
+    // Gazebo transport callbacks are serialized with respect to our stamp state.
+    std::lock_guard<std::mutex> guard(scan_mutex_);
     const auto &scan = message->scan();
     const uint32_t width = scan.count(), height = scan.vertical_count();
     if (width < 2 || height < 2 || width > 65535 || height > 65535 ||
@@ -98,9 +119,63 @@ class RayCloudBridge {
         Put<uint8_t>(cloud, at + 20, status);
       }
     }
+    if (publish_pose_) PublishPose(message, cloud.header.stamp);
     publisher_.publish(cloud);
     ROS_INFO_ONCE("Received native %u x %u rays, publishing organized PointCloud2", width, height);
   }
+  void PublishPose(const ConstLaserScanStampedPtr &message, const ros::Time &stamp) {
+    // No latest-pose lookup, interpolation or cross-frame cache: all pose data
+    // belongs to the same native LaserScanStamped as this cloud.
+    if (have_stamp_ && stamp < last_stamp_)
+      ROS_WARN("Radar simulation time moved backwards; starting a new pose epoch");
+    last_stamp_ = stamp;
+    have_stamp_ = true;
+    const auto &scan = message->scan();
+    if (scan.frame() != scan_parent_ || !scan.has_world_pose() ||
+        !scan.world_pose().has_position() || !scan.world_pose().has_orientation()) {
+      ROS_ERROR_THROTTLE(1, "Radar UAV pose pair missing: unexpected parent or absent source pose");
+      return;
+    }
+    const auto &p = scan.world_pose().position();
+    const auto &q = scan.world_pose().orientation();
+    const double values[] = {p.x(), p.y(), p.z(), q.w(), q.x(), q.y(), q.z()};
+    for (double v : values) if (!std::isfinite(v)) {
+      ROS_ERROR_THROTTLE(1, "Radar UAV pose pair missing: nonfinite source pose");
+      return;
+    }
+    const double norm = q.w()*q.w()+q.x()*q.x()+q.y()*q.y()+q.z()*q.z();
+    if (std::abs(norm - 1.0) > 1e-3) {
+      ROS_ERROR_THROTTLE(1, "Radar UAV pose pair missing: invalid source quaternion");
+      return;
+    }
+    ignition::math::Quaterniond rotation(q.w(), q.x(), q.y(), q.z());
+    rotation.Normalize();
+    const ignition::math::Pose3d sensor_world(ignition::math::Vector3d(p.x(), p.y(), p.z()), rotation);
+    const auto body_world = sensor_world * body_to_sensor_.Inverse();
+    const double output[] = {body_world.Pos().X(), body_world.Pos().Y(), body_world.Pos().Z(),
+        body_world.Rot().X(), body_world.Rot().Y(), body_world.Rot().Z(), body_world.Rot().W()};
+    for (double v : output) if (!std::isfinite(v)) {
+      ROS_ERROR_THROTTLE(1, "Radar UAV pose pair missing: nonfinite transformed pose");
+      return;
+    }
+    geometry_msgs::PoseStamped pose;
+    pose.header.stamp = stamp;
+    pose.header.frame_id = "world";
+    pose.pose.position.x = body_world.Pos().X();
+    pose.pose.position.y = body_world.Pos().Y();
+    pose.pose.position.z = body_world.Pos().Z();
+    pose.pose.orientation.x = body_world.Rot().X();
+    pose.pose.orientation.y = body_world.Rot().Y();
+    pose.pose.orientation.z = body_world.Rot().Z();
+    pose.pose.orientation.w = body_world.Rot().W();
+    pose_publisher_.publish(pose);
+  }
+  bool publish_pose_ = false, have_stamp_ = false;
+  ros::Time last_stamp_;
+  std::mutex scan_mutex_;
+  std::string scan_parent_;
+  ignition::math::Pose3d body_to_sensor_;
+  ros::Publisher pose_publisher_;
   ros::NodeHandle nh_;
   ros::Publisher publisher_;
   gazebo::transport::NodePtr node_;

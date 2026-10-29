@@ -32,13 +32,22 @@ if __name__ == '__main__':
     lock = threading.Lock()
     stamps = {k: set() for k in ('clock', 'camera', 'radar')}
     last = {}; last_stamp = {}; positions = {}; moved = set()
+    clock_reset_ceiling = None
     required_models = {'static_uav'}
     if rospy.get_param('~target_motion', True): required_models.add('target_uav')
     motion_models = set(required_models)
     if not rospy.get_param('~observer_motion', True): motion_models.discard('static_uav')
     def note(kind, stamp):
+        global clock_reset_ceiling
         with lock:
             value = stamp.to_nsec()
+            if kind == 'radar' and value < last_stamp.get(kind, value):
+                # Gazebo ROS may suppress /clock after reset until simulation
+                # catches the previous publish time. Keep actual ages intact;
+                # only suspend the clock-only stall check during that interval.
+                clock_reset_ceiling = last_stamp.get('clock')
+            if kind == 'clock' and value < last_stamp.get(kind, value):
+                clock_reset_ceiling = None
             if value != last_stamp.get(kind):
                 last_stamp[kind] = value
                 last[kind] = time.monotonic()
@@ -75,10 +84,15 @@ if __name__ == '__main__':
             now = time.monotonic()
             with lock:
                 fresh = {k: now-last.get(k, 0) for k in stamps}
+                clock_catching_up = (clock_reset_ceiling is not None and
+                                     last_stamp.get('radar', 0) < clock_reset_ceiling)
+                watched_ages = [age for k, age in fresh.items()
+                                if not (clock_catching_up and k == 'clock')]
                 ready = all(len(v) >= 2 for v in stamps.values()) and motion_models <= moved
                 payload = dict(status='running' if ready else 'starting', ages_wall_s=fresh,
                                actual_positions=positions.copy(), moving_models=sorted(moved),
-                               recording=rospy.get_param('~recorder_required', False))
+                               recording=rospy.get_param('~recorder_required', False),
+                               clock_reset_catching_up=clock_catching_up)
             if rospy.get_param('~gui_required', False):
                 payload['gui_view_ready'] = (root/'spectator_view.txt').exists()
                 ready = ready and payload['gui_view_ready']
@@ -95,7 +109,7 @@ if __name__ == '__main__':
                     healthy = True
                     rospy.loginfo('READY: simulation clock, both model poses, camera and mounted radar actually updating')
                 elif now > deadline: raise RuntimeError('startup data/motion timeout: '+str(payload))
-            elif max(fresh.values()) > 20:
+            elif max(watched_ages) > 20:
                 physics = bounded(rospy.ServiceProxy('/gazebo/get_physics_properties', GetPhysicsProperties))
                 if physics.pause:
                     rospy.logwarn_throttle(10, 'Gazebo is paused; live watchdog waiting for resume')
