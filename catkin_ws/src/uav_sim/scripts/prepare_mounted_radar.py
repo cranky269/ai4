@@ -68,6 +68,23 @@ def prepare(root, output, config, markers=False, scene_only=False, sensor_profil
     # Attached to base_link: SetModelState moves this sensor rigidly with the camera.
     body = model.find("link[@name='base_link']")
     body.append(sensor)
+    # Resolve the complete model -> base_link -> sensor chain. Reject unsupported
+    # frame graphs rather than silently using a partial mounting transform.
+    from tf.transformations import euler_matrix, euler_from_matrix
+    def fixed_pose(element):
+        pose = element.find('pose')
+        if pose is not None and pose.attrib:
+            raise ValueError('unsupported SDF relative pose attributes')
+        values = [float(v) for v in (pose.text if pose is not None else '0 0 0 0 0 0').split()]
+        if len(values) != 6 or not all(math.isfinite(v) for v in values):
+            raise ValueError('invalid fixed mounting pose')
+        matrix = euler_matrix(*values[3:])
+        matrix[:3, 3] = values[:3]
+        return matrix
+    if model.findall('joint'):
+        raise ValueError('mounted radar requires a fixed model/base_link chain')
+    mounting = fixed_pose(body).dot(fixed_pose(sensor))
+    mounting_values = mounting[:3, 3].tolist() + list(euler_from_matrix(mounting))
     if scene_only:
         # Only the generated run world changes; source sensors remain recoverable.
         for link in model.findall('link'):
@@ -104,6 +121,9 @@ def prepare(root, output, config, markers=False, scene_only=False, sensor_profil
     output.mkdir(parents=True, exist_ok=True)
     world.write(str(output/'mounted.world'), encoding='utf-8', xml_declaration=True)
     (output/'radar.yaml').write_text(yaml.safe_dump(cfg))
+    (output/'radar_pose.yaml').write_text(yaml.safe_dump(dict(
+        body_to_sensor=[float(v) for v in mounting_values],
+        scan_parent='static_uav::base_link')))
     import datetime, json
     (output/'run.json').write_text(json.dumps(dict(
         created_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),

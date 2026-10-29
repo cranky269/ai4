@@ -43,6 +43,8 @@
   </include>
   <node pkg="tf2_ros" type="static_transform_publisher" name="mounted_radar_tf" args="0.30 0 0.12 0 0 0 1 uav_base_link radar_link"/>
   <node pkg="uav_sim" type="ray_cloud_bridge" name="ray_cloud_bridge" required="true" output="screen" launch-prefix="bash $(find uav_sim)/scripts/native_gzclient.sh --wait-world-exec">
+    <rosparam command="load" file="$(arg run_dir)/radar_pose.yaml"/>
+    <param name="publish_uav_pose" value="true"/>
     <param name="require_recorder" value="$(arg record)"/>
     <param name="gazebo_topic" value="/gazebo/base_scene/static_uav/base_link/ray_3d/scan"/>
   </node>
