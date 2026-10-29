@@ -22,7 +22,7 @@ flowchart TB
     subgraph S1["感知 · 雷达支路"]
         direction LR
         target_sim["/target_sim<br/>敌机飞行脚本"]:::cRadar
-        radar_sim["/radar_sim<br/>3D Lidar + 噪声"]:::cRadar
+        radar_sim["/radar_sim<br/>机载 3D Lidar + 噪声<br/>（输出世界坐标）"]:::cRadar
         cluster["/cluster<br/>滤地 + DBSCAN 聚类"]:::cRadar
     end
     subgraph S2["感知 · 视觉支路"]
