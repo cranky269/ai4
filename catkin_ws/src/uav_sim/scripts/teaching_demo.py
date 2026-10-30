@@ -15,7 +15,7 @@ from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[4]
-RUNS = ROOT / 'reports/teaching-demo-runs'
+RUNS = ROOT / 'data/radar/teaching-demo-runs'
 ACTIVE = RUNS / 'active.json'
 
 

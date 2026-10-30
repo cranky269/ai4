@@ -6,7 +6,10 @@ import numpy as np
 OUT=Path(sys.argv[1]);result={};checks={}
 def check(name,condition,detail=None):
  checks[name]={'pass':bool(condition),'detail':detail}
-def load(name):return np.load(str(OUT/(name+'.npz')))
+def load(name):
+ data=np.load(str(OUT/(name+'.npz')))
+ assert 'frame_id' in data and str(data['frame_id'])=='world', 'Legacy local recording rejected'
+ return data
 zf=load('zero');nf=load('noisy');bf=load('boundary')
 z,n,b=zf['points'],nf['points'],bf['points']
 vertical=np.linspace(-np.pi/18,np.pi/18,5);horizontal=np.linspace(-np.pi/4,np.pi/4,181)
@@ -19,7 +22,7 @@ result['selected_rays']=[{'ring':int(v),'column':int(h),'true_range_m':float(tru
 check('zero_geometric_distance',np.max(np.abs(zero_error))<5e-5,float(np.max(np.abs(zero_error))))
 check('zero_static',np.max(np.ptp(zero_ranges,axis=0))<1e-6,float(np.max(np.ptp(zero_ranges,axis=0))))
 xyz=np.stack([z['x'][0,:,90],z['y'][0,:,90],z['z'][0,:,90]],axis=1)
-world_xyz=xyz+np.array([0,-2,1])
+world_xyz=xyz
 expected_height=1+5*np.tan(vertical)
 check('five_actual_target_heights',np.allclose(world_xyz[:,0],5,atol=1e-5) and np.allclose(world_xyz[:,2],expected_height,atol=1e-5),world_xyz.tolist())
 check('noise_mean',abs(errors.mean())<.002,float(errors.mean()))
@@ -43,7 +46,7 @@ check('no_false_noise_echo',np.all(~np.isfinite(n['range'][:,noecho])) and np.al
 for name,data,file in [('zero',z,zf),('noisy',n,nf),('boundary',b,bf)]:
  stamp=file['stamps'];wall=file['wall'];finite=np.isfinite(data['range'])
  points_xyz=np.stack([data['x'],data['y'],data['z']],axis=-1)
- rnorm=np.linalg.norm(points_xyz,axis=-1)
+ rnorm=np.linalg.norm(points_xyz-np.array([0,-2,1]),axis=-1)
  check(name+'_timestamp_monotonic',np.all(np.diff(stamp)>0))
  check(name+'_xyz_norm',np.max(np.abs(rnorm[finite]-data['range'][finite]))<3e-6)
  check(name+'_invalid_xyz_nan',np.all(np.isnan(points_xyz[~finite])))

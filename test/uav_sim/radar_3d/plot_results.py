@@ -7,9 +7,10 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D  # noqa: F401
-p=Path(sys.argv[1]);z=np.load(str(p/'zero.npz'))['points'][0];r=json.loads((p/'result.json').read_text())
+p=Path(sys.argv[1]);source=np.load(str(p/'zero.npz'));assert 'frame_id' in source and str(source['frame_id'])=='world', 'Legacy local recording rejected'
+z=source['points'][0];r=json.loads((p/'result.json').read_text())
 fig=plt.figure(figsize=(12,5));ax=fig.add_subplot(121,projection='3d')
-mask=np.isfinite(z['range']);x=z['x'][mask];y=z['y'][mask]-2;zz=z['z'][mask]+1
+mask=np.isfinite(z['range']);x=z['x'][mask];y=z['y'][mask];zz=z['z'][mask]
 ax.scatter(x,y,zz,c=z['ring'][mask],cmap='viridis',s=7)
 ax.scatter([0],[-2],[1],c='red',marker='x',s=50)
 ax.set(xlabel='World X (m)',ylabel='World Y (m)',zlabel='World Z (m)',title='Measured zero-noise 3D Ray returns')

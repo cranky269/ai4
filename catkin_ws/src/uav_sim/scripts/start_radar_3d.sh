@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -eo pipefail
 REPO="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../../../.." && pwd)"
-RUN="$REPO/reports/radar-3d-runs/$(date +%Y%m%d_%H%M%S)-$$"
+RUN="$REPO/data/radar/radar-3d-runs/$(date +%Y%m%d_%H%M%S)-$$"
 mkdir -p "$RUN"
 exec > >(tee -i "$RUN/launch.log") 2>&1
 trap 'echo "启动失败或退出异常，请查看：$RUN/launch.log"' ERR

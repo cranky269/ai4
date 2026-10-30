@@ -27,6 +27,11 @@ sys.path.insert(0,str(root/'catkin_ws/src/uav_sim/scripts'))
 from prepare_mounted_radar import prepare
 prepare(root,run,root/'catkin_ws/src/uav_sim/config/radar_3d.yaml',sensor_profile='desktop')
 world=ET.parse(str(run/'mounted.world')); w=world.getroot().find('world')
+# Independent stationary acceptance surface, never fed as a detection input.
+wall=ET.SubElement(w,'model',name='world_acceptance_wall')
+ET.SubElement(wall,'static').text='true';ET.SubElement(wall,'pose').text='8 0 4 0 0 0'
+link=ET.SubElement(wall,'link',name='wall');collision=ET.SubElement(link,'collision',name='wall')
+geometry=ET.SubElement(collision,'geometry');box=ET.SubElement(geometry,'box');ET.SubElement(box,'size').text='.2 40 8'
 body=w.find("model[@name='static_uav']/link[@name='base_link']")
 body_values=[.08,-.04,.06,.03,-.05,.07]
 sensor_values=[.30,.02,.12,.10,-.20,.30]
@@ -59,6 +64,11 @@ try:
   if time.monotonic()>deadline:raise RuntimeError('health timeout')
   time.sleep(.5)
  collector=subprocess.Popen(['/usr/bin/python3',str(Path(__file__).with_name('collect_pairs.py')),str(run/'pose_pairs.json'),'--seconds','56'])
+ ready_deadline=time.monotonic()+120
+ while not (run/'pose_pairs.ready.json').exists():
+  if collector.poll() is not None:raise RuntimeError('collector exited before ready')
+  if time.monotonic()>ready_deadline:raise TimeoutError('collector readiness timeout')
+  time.sleep(.1)
  pause=rospy.ServiceProxy('/gazebo/pause_physics',Empty);unpause=rospy.ServiceProxy('/gazebo/unpause_physics',Empty)
  set_pose=rospy.ServiceProxy('/gazebo/set_model_state',SetModelState);get_pose=rospy.ServiceProxy('/gazebo/get_model_state',GetModelState)
  time.sleep(2)

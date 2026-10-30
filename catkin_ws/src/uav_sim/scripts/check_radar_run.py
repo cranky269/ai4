@@ -24,7 +24,7 @@ def check(root):
             assert int(row['frame']) == i
             assert int(row['stamp_sec']) == msg.header.stamp.secs
             assert int(row['stamp_nsec']) == msg.header.stamp.nsecs
-            assert row['frame_id'] == msg.header.frame_id
+            assert row['frame_id'] == msg.header.frame_id == 'world'
             assert t == msg.header.stamp
             actual = root/row['file']
             scratch = Path(temp)/'frame.npz'
@@ -57,7 +57,7 @@ def check(root):
         fig = plt.figure(figsize=(8,6)); ax = fig.add_subplot(111,projection='3d')
         ax.scatter(a['x'][v],a['y'][v],a['z'][v],c=a['ring'][v],s=4)
         ax.set_xlabel('x [m]'); ax.set_ylabel('y [m]'); ax.set_zlabel('z [m]')
-        ax.set_title('Measured Ray cloud in radar_link')
+        ax.set_title('Measured Ray cloud in world')
         fig.savefig(str(root/'pointcloud_preview.png')); plt.close(fig)
     (root/'verification.json').write_text(json.dumps(result,indent=2))
     print(json.dumps(result,indent=2))

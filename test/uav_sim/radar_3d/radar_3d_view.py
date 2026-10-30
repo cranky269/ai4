@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """三维雷达点云实时 3D 显示（matplotlib，可鼠标旋转/缩放）。
 
-雷达系坐标：x 前 / y 左 / z 上。status=1 黄色、3/4 边界红色，
+world 场景轴：z 向上，单位米。status=1 黄色、3/4 边界红色，
 绿色立方体线框为五块标定靶当前位置，蓝点为雷达原点。
 """
 import math
@@ -20,11 +20,11 @@ from gazebo_msgs.srv import GetModelState
 
 BOARDS = ["radar_board_%d" % i for i in range(5)]
 MODE_NAMES = ["static", "sway", "figure8", "circle_v", "fast"]
-# 板尺寸 0.2(X) x 2.4(Y) x 0.18(Z)，radar_link 系：world 位置减去 (0,-2,1)
+# 板尺寸 0.2(X) x 2.4(Y) x 0.18(Z)，world 系
 
 
 def board_corners_radar(pose):
-    """Gazebo 位姿 -> radar_link 系下的 8 个角点。"""
+    """Gazebo 位姿 -> world 系下的 8 个角点。"""
     ox, oy, oz = pose.position.x, pose.position.y, pose.position.z
     q = pose.orientation
     yaw = 2 * math.atan2(q.z, q.w)
@@ -53,8 +53,8 @@ def main():
     plt.ion()
     fig = plt.figure(figsize=(11, 7.5))
     ax = fig.add_subplot(111, projection="3d")
-    ax.set_xlabel("x forward (m)")
-    ax.set_ylabel("y left (m)")
+    ax.set_xlabel("world x (m)")
+    ax.set_ylabel("world y (m)")
     ax.set_zlabel("z up (m)")
     ax.set_xlim(0, 10)
     ax.set_ylim(-6, 6)
@@ -62,10 +62,10 @@ def main():
     ax.view_init(elev=22, azim=-110)
     title = ax.set_title("waiting...")
     scat = ax.scatter([], [], [], s=4, c="yellow", depthshade=False)
-    origin = ax.scatter([0], [0], [0], s=60, c="cyan", marker="^")
+    origin = ax.scatter([0], [-2], [1], s=60, c="cyan", marker="^")
     board_lines = [ax.plot([], [], [], c="lime", lw=1.2)[0] for _ in BOARDS]
     mode_texts = [ax.text(0, 0, 0, "", fontsize=7, color="lime") for _ in BOARDS]
-    ax.text(0, 0, -0.35, "radar", color="cyan", fontsize=8)
+    ax.text(0, -2, .65, "radar", color="cyan", fontsize=8)
     fig.canvas.draw_idle()
     plt.show(block=False)
 
@@ -74,6 +74,7 @@ def main():
     print("showing 3D cloud. drag to rotate.")
     frames = 0
     while not rospy.is_shutdown():
+        assert msg.header.frame_id == 'world', 'Legacy local cloud rejected'
         xs, ys, zs, cs = [], [], [], []
         for p in point_cloud2.read_points(msg, field_names=("x", "y", "z", "status"),
                                           skip_nans=False):
@@ -91,8 +92,7 @@ def main():
             except rospy.ServiceException:
                 continue
             corners = board_corners_radar(r.pose)
-            # world -> radar_link: 平移差 (0, -2, 1)
-            pts = [(c[0], c[1] + 2.0, c[2] - 1.0) for c in corners]
+            pts = corners
             exs = [pts[a][0] for a, b in EDGES] + [pts[b][0] for a, b in EDGES]
             eys = [pts[a][1] for a, b in EDGES] + [pts[b][1] for a, b in EDGES]
             ezs = [pts[a][2] for a, b in EDGES] + [pts[b][2] for a, b in EDGES]

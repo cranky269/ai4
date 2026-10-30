@@ -50,7 +50,7 @@ result['cluster_complete']=collections.Counter(stamps(cluster))==saved_radar and
 assert result['camera_complete'],'native camera / publisher / disk stamp mismatch'
 assert result['radar_complete'],'native radar / disk mismatch'
 assert result['cluster_complete'],'cluster did not process every radar frame'
-assert result['cluster_input_frames']==['radar_link']
+assert result['cluster_input_frames']==['world']
 by_stamp={k:int(r['valid_points']) for k,r in zip(stamps(radar_rows),radar_rows)}
 assert all(int(r['finite_points'])==by_stamp[k] for k,r in zip(stamps(cluster),cluster))
 assert not result['camera_source_sequence_gaps']

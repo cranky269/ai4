@@ -8,6 +8,16 @@ import rospy
 from sensor_msgs.msg import Image,PointCloud2,PointField
 from rosgraph_msgs.msg import Clock
 from rviz import bindings as rviz
+def validate_recording_coordinates(root):
+ rows=list(csv.DictReader((Path(root)/'frames.csv').open()))
+ if not rows:raise ValueError('Empty radar recording rejected')
+ for row in rows:
+  if not row.get('frame_id'):raise ValueError('Missing coordinate metadata: world frame_id required; recording rejected')
+  if row['frame_id']!='world':raise ValueError('Legacy/local radar recording: world frames required; recording rejected')
+  with np.load(Path(root)/row['file']) as cloud:
+   if 'frame_id' not in cloud:raise ValueError('Missing coordinate metadata: world frame_id required; cloud rejected')
+   if str(cloud['frame_id'])!='world':raise ValueError('Local cloud cannot be replayed as world; cloud rejected')
+
 class Window(QtWidgets.QMainWindow):
  camera_signal=QtCore.pyqtSignal(object)
  radar_signal=QtCore.pyqtSignal(object)
@@ -16,18 +26,18 @@ class Window(QtWidgets.QMainWindow):
   self.setWindowTitle('AI4 Camera + 3D Radar | '+('Recorded frames' if offline else 'LIVE'))
   self.resize(1500,820);self.counts={'camera':0,'radar':0};self.latest={};self.pixmap=None;self.index=0;self.playing=False
   body=QtWidgets.QWidget();self.setCentralWidget(body);layout=QtWidgets.QVBoxLayout(body)
-  title=QtWidgets.QLabel('Camera: uav_camera_optical_frame | Radar: radar_link (X forward, Y left, Z up), metres | Mouse: left rotate, wheel zoom, middle pan')
+  title=QtWidgets.QLabel('Camera: uav_camera_optical_frame | Radar: world (scene X/Y, Z up), metres | Mouse: left rotate, wheel zoom, middle pan')
   title.setWordWrap(True);layout.addWidget(title)
   split=QtWidgets.QSplitter();layout.addWidget(split,1)
   self.image=QtWidgets.QLabel('Waiting for actual camera image');self.image.setAlignment(QtCore.Qt.AlignCenter);self.image.setMinimumSize(320,240);self.image.setStyleSheet('background:#15181c;color:white');split.addWidget(self.image)
   self.render=rviz.VisualizationFrame();self.render.setSplashPath('');self.render.initialize();self.render.setMenuBar(None);self.render.setStatusBar(None);self.render.setHideButtonVisibility(False);[dock.hide() for dock in self.render.findChildren(QtWidgets.QDockWidget)];split.addWidget(self.render);split.setSizes([640,740])
-  self.manager=self.render.getManager();self.manager.setFixedFrame('radar_link')
+  self.manager=self.render.getManager();self.manager.setFixedFrame('world')
   options=self.manager.getRootDisplayGroup().subProp('Global Options')
   if options is not None:
    frame_rate=options.subProp('Frame Rate')
    if frame_rate is not None:frame_rate.setValue(10)
   grid=self.manager.createDisplay('rviz/Grid','Metre grid',True);grid.subProp('Cell Size').setValue(1.0)
-  axes=self.manager.createDisplay('rviz/Axes','Radar axes [m]',True);axes.subProp('Length').setValue(.5);axes.subProp('Radius').setValue(.015)
+  axes=self.manager.createDisplay('rviz/Axes','World axes [m]',True);axes.subProp('Length').setValue(.5);axes.subProp('Radius').setValue(.015)
   self.cloud=self.manager.createDisplay('rviz/PointCloud2','Measured Ray XYZ',True)
   self.cloud.subProp('Position Transformer').setValue('XYZ')
   self.cloud.subProp('Topic').setValue('/viewer/points' if offline else '/radar/points')
@@ -51,6 +61,8 @@ class Window(QtWidgets.QMainWindow):
   if offline:
    self.evidence.stop()
    self.camera_rows=list(csv.DictReader((self.root/'camera_frames.csv').open()));self.radar_rows=list(csv.DictReader((self.root/'frames.csv').open()))
+   if any(not r.get('frame_id') for r in self.radar_rows):raise ValueError('Missing coordinate metadata: world frame_id required; recording rejected')
+   if any(r['frame_id'] != 'world' for r in self.radar_rows):raise ValueError('Legacy/local radar recording: world frames required')
    self.times=[[int(r['stamp_sec'])+int(r['stamp_nsec'])*1e-9 for r in rows] for rows in (self.camera_rows,self.radar_rows)]
    self.publisher=rospy.Publisher('/viewer/points',PointCloud2,queue_size=10,latch=True);self.clock=rospy.Publisher('/clock',Clock,queue_size=10)
    self.mode.setCurrentIndex(0);self.change_mode();QtCore.QTimer.singleShot(1200,self.display_pair)
@@ -100,6 +112,8 @@ class Window(QtWidgets.QMainWindow):
   self.latest={'camera':[ci,self.times[0][ci]],'radar':[ri,self.times[1][ri]]}
   row=self.radar_rows[ri]
   with np.load(self.root/row['file']) as a:
+   if 'frame_id' not in a:raise ValueError('Missing coordinate metadata: world frame_id required; cloud rejected')
+   if str(a['frame_id']) != 'world':raise ValueError('Local cloud cannot be replayed as world')
    dtype=np.dtype({'names':['x','y','z','range','ring','column','status'],'formats':['<f4','<f4','<f4','<f4','<u2','<u2','u1'],'offsets':[0,4,8,12,16,18,20],'itemsize':24})
    raw=np.zeros(a['x'].shape,dtype=dtype)
    for k in dtype.names:raw[k]=a[k]
@@ -138,6 +152,7 @@ class Window(QtWidgets.QMainWindow):
   QtWidgets.QApplication.primaryScreen().grabWindow(0).save(str(folder/(name+'_desktop.png')))
   (folder/(name+'.json')).write_text(json.dumps(dict(mode='offline' if self.offline else 'live',displayed=self.counts,latest=self.latest,index=self.index),indent=2))
  def test_controls(self):
+  (self.root/'viewer_evidence').mkdir(exist_ok=True)
   self.slider.setValue(min(30,max(0,self.slider.maximum()-2)));initial=self.index;self.next.click();forward=self.index;self.prev.click();back=self.index
   assert forward==initial+1 and back==initial
   self.toggle()
@@ -153,6 +168,10 @@ class Window(QtWidgets.QMainWindow):
   QtCore.QTimer.singleShot(1500,finish)
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('--run');p.add_argument('--offline',action='store_true');p.add_argument('--self-test',action='store_true');args,_=p.parse_known_args()
+ if args.offline:
+  try:validate_recording_coordinates(args.run)
+  except (ValueError,KeyError) as exc:
+   print('拒收录制：'+str(exc),file=sys.stderr);sys.exit(2)
  rospy.init_node('sensor_viewer',disable_signals=True)
  run=args.run or rospy.get_param('~run_dir')
  app=QtWidgets.QApplication(sys.argv);window=Window(run,args.offline,args.self_test);window.show()

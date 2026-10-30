@@ -24,6 +24,8 @@ def utc():
 
 
 def save_cloud(path, msg):
+    if msg.header.frame_id != 'world':
+        raise ValueError('World recorder rejects legacy/local radar cloud')
     if msg.is_bigendian:
         endian = '>'
     else:
@@ -80,7 +82,7 @@ class Recorder:
         self.pressure=threading.Thread(target=self.backpressure)
         self.pressure.start()
         self.subs = []
-        topics = [('/radar/points',PointCloud2),('/tf',TFMessage),('/tf_static',TFMessage),
+        topics = [('/radar/points',PointCloud2),('/radar/uav_pose_world',PoseStamped),('/tf',TFMessage),('/tf_static',TFMessage),
                   ('/camera_motion_demo/actual_pose',PoseStamped),
                   ('/target/ground_truth/pose',PoseStamped),('/clock',Clock),
                   ('/uav/front_camera/image_raw',Image),('/uav/front_camera/camera_info',CameraInfo),

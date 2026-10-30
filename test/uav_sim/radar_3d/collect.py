@@ -43,7 +43,7 @@ def collect(name,count):
    if len(frames)==count:break
   time.sleep(.02)
  if len(frames)!=count:raise TimeoutError(name+': '+str(len(frames))+' frames')
- assert all(m.header.frame_id=='radar_link' and m.width==181 and m.height==5 for m in frames)
+ assert all(m.header.frame_id=='world' and m.width==181 and m.height==5 for m in frames)
  m=frames[0]
  dtype=np.dtype({'names':['x','y','z','range','ring','column','status'],
                  'formats':['<f4','<f4','<f4','<f4','<u2','<u2','u1'],
@@ -52,7 +52,7 @@ def collect(name,count):
  data=np.stack([np.frombuffer(f.data,dtype=dtype).reshape(5,181) for f in frames])
  stamps=np.array([m.header.stamp.to_sec() for m in frames]);wall=np.array(wall)
  raw=np.stack([np.frombuffer(m.data,dtype=np.uint8) for m in frames])
- np.savez_compressed(str(OUT/(name+'.npz')),points=data,stamps=stamps,wall=wall,raw_pointcloud2_data=raw)
+ np.savez_compressed(str(OUT/(name+'.npz')),points=data,frame_id="world",stamps=stamps,wall=wall,raw_pointcloud2_data=raw)
  (OUT/(name+'_header.json')).write_text(json.dumps({'frame_id':m.header.frame_id,'width':m.width,'height':m.height,'row_step':m.row_step,'point_step':m.point_step,'is_dense':m.is_dense,'fields':[{'name':f.name,'offset':f.offset,'datatype':f.datatype,'count':f.count} for f in m.fields],'frames':len(frames),'sim_hz':(count-1)/(stamps[-1]-stamps[0]),'wall_hz':(count-1)/(wall[-1]-wall[0])},indent=2))
  print(name,count,'frames',flush=True)
  return data,stamps
