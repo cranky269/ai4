@@ -11,7 +11,7 @@ import time
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[4]
-RUNS = ROOT / 'reports/unified-static-runs'
+RUNS = ROOT / 'data/radar/unified-static-runs'
 STATE = RUNS / 'active.json'
 children = []
 

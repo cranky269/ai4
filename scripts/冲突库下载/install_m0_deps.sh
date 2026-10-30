@@ -10,7 +10,10 @@ if [[ $# -gt 0 ]]; then
   exit 2
 fi
 if [[ -d "$REPO/lib/venv/sensor_python" ]]; then
-  echo '隔离依赖已存在；仅检查，不覆盖。' >&2
+  echo '隔离依赖已存在；补齐缺失的回归测试依赖，不升级现有包。' >&2
+  if ! PYTHONPATH="$REPO/lib/venv/sensor_python${PYTHONPATH:+:$PYTHONPATH}" /usr/bin/python3 -c 'import pytest' 2>/dev/null; then
+    /usr/bin/python3 -m pip install --target "$REPO/lib/venv/sensor_python" -r "$REPO/lib/venv/requirements.txt"
+  fi
 else
   /usr/bin/python3 -m pip install --target "$REPO/lib/venv/sensor_python" -r "$REPO/lib/venv/requirements.txt"
 fi

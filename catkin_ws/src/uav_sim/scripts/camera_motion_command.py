@@ -9,7 +9,7 @@ root=Path(__file__).resolve().parents[4]
 action=sys.argv[1] if len(sys.argv)==2 else 'status'
 if action not in ['run','stop','home','status']:
     sys.exit('用法：camera_motion_command.py [run|stop|home|status]')
-state=json.loads((root/'reports/unified-static-runs/active.json').read_text())
+state=json.loads((root/'data/radar/unified-static-runs/active.json').read_text())
 if Path('/proc/'+str(state['pid'])+'/stat').read_text().rsplit(')',1)[1].split()[19]!=state['birth']:
     sys.exit('活动实例身份不匹配，拒绝连接')
 lines=(Path(state['log'])/'scene.log').read_text(errors='replace').splitlines()

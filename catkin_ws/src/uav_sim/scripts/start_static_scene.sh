@@ -20,8 +20,8 @@ set -- "${RADAR_ARGS[@]}"
 source /opt/ros/noetic/setup.bash
 source "$REPO/catkin_ws/devel/setup.bash"
 # 同一入口的并发启动在分配端口之前拒绝；锁随本次launch释放。
-mkdir -p "$REPO/reports/static-scene-runs"
-exec 9>"$REPO/reports/static-scene-runs/instance.lock"
+mkdir -p "$REPO/data/radar/static-scene-runs"
+exec 9>"$REPO/data/radar/static-scene-runs/instance.lock"
 if ! flock -n 9; then
   echo '已有场景入口正在运行，请复用现有窗口；未启动新实例。' >&2
   exit 1
@@ -51,7 +51,7 @@ PY
 export ROS_MASTER_URI="http://127.0.0.1:$SCENE_ROS_PORT"
 export GAZEBO_MASTER_URI="http://127.0.0.1:$SCENE_GAZEBO_PORT"
 export ROS_IP=127.0.0.1 ROS_HOSTNAME=127.0.0.1 GAZEBO_IP=127.0.0.1
-SCENE_LOG_DIR="$REPO/reports/static-scene-runs/$(date +%Y%m%d_%H%M%S)-$$"
+SCENE_LOG_DIR="$REPO/data/radar/static-scene-runs/$(date +%Y%m%d_%H%M%S)-$$"
 mkdir -p "$SCENE_LOG_DIR"
 export ROS_HOME="$SCENE_LOG_DIR/ros_home" ROS_LOG_DIR="$SCENE_LOG_DIR/ros"
 printf 'export ROS_MASTER_URI=%q\nexport GAZEBO_MASTER_URI=%q\nexport ROS_IP=127.0.0.1 ROS_HOSTNAME=127.0.0.1\n' "$ROS_MASTER_URI" "$GAZEBO_MASTER_URI" > "$SCENE_LOG_DIR/connection.bash"

@@ -4,14 +4,17 @@ import os,sys,time,subprocess,signal,xmlrpc.client,json
 from pathlib import Path
 import yaml
 ROOT=Path(__file__).resolve().parents[3]
-OUT=Path(os.environ.get('RADAR_AUDIT_OUT',str(ROOT/'reports'/time.strftime('%Y%m%d_%H%M%S_三维Ray雷达验收'))))
-OUT.mkdir(exist_ok=True);Path('/tmp/ai4-radar-output').write_text(str(OUT))
+OUT=Path(os.environ.get('RADAR_AUDIT_OUT',str(ROOT/'data'/'radar'/time.strftime('%Y%m%d_%H%M%S_三维Ray雷达验收'))))
+OUT.mkdir(parents=True,exist_ok=True);Path('/tmp/ai4-radar-output').write_text(str(OUT))
 print(OUT,flush=True)
 phases=sys.argv[1:] or ['zero','noisy','boundary']
 returns={}
 for phase in phases:
  if phase not in ['zero','noisy','boundary']:raise ValueError('unknown phase')
  config=yaml.safe_load((ROOT/'catkin_ws/src/uav_sim/config/radar_3d.yaml').read_text())
+ # The established calibration geometry and thresholds use five elevation rings.
+ # Keep the production 25-ring configuration unchanged.
+ config['vertical_samples']=5
  config['noise_stddev']=0 if phase=='zero' else .02
  if phase=='boundary':config.update(range_min=4.99,range_max=5.01)
  cfg=OUT/(phase+'_config.yaml');cfg.write_text(yaml.safe_dump(config))
