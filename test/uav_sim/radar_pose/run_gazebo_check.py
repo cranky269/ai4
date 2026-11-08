@@ -15,6 +15,7 @@ import socket
 import subprocess
 import sys
 import time
+import threading
 import xml.etree.ElementTree as ET
 import yaml
 import numpy as np
@@ -44,6 +45,9 @@ os.environ.update(ROS_MASTER_URI='http://127.0.0.1:%d'%ros_port,GAZEBO_MASTER_UR
 log=(run/'console.log').open('w')
 launch=subprocess.Popen(['roslaunch','-p',str(ros_port),'uav_sim','mounted_radar.launch','world_file:='+str(run/'mounted.world'),'run_dir:='+str(run),'gui:=false','camera_view:=false','dynamic_target:=false','observer_motion:=false'],stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
 collector=None
+scan_sub=None
+scan_rows=[]
+scan_lock=threading.Lock()
 try:
  import rospy
  from gazebo_msgs.srv import SetModelState,GetModelState
@@ -58,6 +62,18 @@ try:
  while json.loads((run/'startup_health.json').read_text())['status']!='running':
   if time.monotonic()>deadline:raise RuntimeError('health timeout')
   time.sleep(.5)
+ from sensor_msgs.msg import PointCloud2
+ scan_epoch=[0];scan_last=[-1]
+ (run/'actual_scans').mkdir(exist_ok=True)
+ def save_actual_scan(msg):
+  with scan_lock:
+   stamp=msg.header.stamp.to_nsec()
+   if stamp<scan_last[0]:scan_epoch[0]+=1
+   scan_last[0]=stamp
+   name='actual_scans/%06d.npz'%len(scan_rows)
+   np.savez(run/name,data=np.frombuffer(msg.data,np.uint8),width=msg.width,height=msg.height,point_step=msg.point_step)
+   scan_rows.append(dict(epoch=scan_epoch[0],sec=msg.header.stamp.secs,nsec=msg.header.stamp.nsecs,file=name,frame=msg.header.frame_id))
+ scan_sub=rospy.Subscriber('/radar/points',PointCloud2,save_actual_scan,queue_size=200)
  collector=subprocess.Popen(['/usr/bin/python3',str(Path(__file__).with_name('collect_pairs.py')),str(run/'pose_pairs.json'),'--seconds','56'])
  pause=rospy.ServiceProxy('/gazebo/pause_physics',Empty);unpause=rospy.ServiceProxy('/gazebo/unpause_physics',Empty)
  set_pose=rospy.ServiceProxy('/gazebo/set_model_state',SetModelState);get_pose=rospy.ServiceProxy('/gazebo/get_model_state',GetModelState)
@@ -90,6 +106,8 @@ try:
  finally:
   fixture_bridge.send_signal(signal.SIGINT);fixture_bridge.wait(timeout=10)
 finally:
+ if scan_sub:scan_sub.unregister()
+ with scan_lock:(run/'actual_scans.json').write_text(json.dumps(scan_rows,indent=2))
  if collector and collector.poll() is None:collector.terminate();collector.wait(timeout=10)
  if launch.poll() is None:os.killpg(launch.pid,signal.SIGINT)
  try: launch.wait(timeout=45)

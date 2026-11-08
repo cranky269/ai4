@@ -38,7 +38,7 @@ class Window(QtWidgets.QMainWindow):
   self.cloud.subProp('Queue Size').setValue(2);self.cloud.subProp('Style').setValue('Flat Squares');self.cloud.subProp('Size (m)').setValue(.035);self.cloud.subProp('Size (Pixels)').setValue(4)
   self.cloud.subProp('Color Transformer').setValue('AxisColor');self.cloud.subProp('Axis').setValue('Z');self.cloud.subProp('Decay Time').setValue(0.0)
   self.manager.getViewManager().setCurrentViewControllerType('rviz/Orbit')
-  view=self.manager.getViewManager().getCurrent();view.subProp('Distance').setValue(7.0);view.subProp('Focal Point').subProp('X').setValue(2.0);view.subProp('Pitch').setValue(.5);view.subProp('Yaw').setValue(.9)
+  view=self.manager.getViewManager().getCurrent();view.subProp('Distance').setValue(13.0);view.subProp('Focal Point').subProp('X').setValue(4.0);view.subProp('Focal Point').subProp('Z').setValue(1.4);view.subProp('Pitch').setValue(.5);view.subProp('Yaw').setValue(.9)
   self.status=QtWidgets.QLabel();layout.addWidget(self.status)
   controls=QtWidgets.QHBoxLayout();layout.addLayout(controls)
   self.mode=QtWidgets.QComboBox();self.mode.addItems(['Camera frames','Radar frames']);controls.addWidget(self.mode)

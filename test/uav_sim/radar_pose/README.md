@@ -25,3 +25,16 @@ RUN_DIR="data/radar/pose_validation_$(date +%Y%m%d_%H%M%S)"
 ## M0-01 world 更新
 
 `world_cloud_check.cpp` 直接调用生产桥接数学函数，离线测试固定世界点在不同机体位姿/完整安装偏移下的重建、机体回算和非法位姿拒绝。`test_world_recording.py` 测试实际记录器bag/NPZ/CSV读写、大小端及NaN、采样epoch配对和历史局部数据拒绝；输入为构造消息，不能替代仿真。`invalid_pose_check` 现要求非法源位姿不发布点云，并数值核验90度旋转后的XYZ、原range及无效点。真实Gazebo回归还需有本地socket与显示访问权限。
+
+## 实际扫描 XYZ 独立对照
+
+受控真实 Gazebo 测试同时保存 `actual_scans/*.npz` 和按接收顺序分段的
+`actual_scans.json`。完成后执行：
+
+```bash
+/usr/bin/python3 test/uav_sim/radar_pose/check_actual_scans.py "$RUN_DIR"
+```
+
+该检查使用物理步插件记录的模型真值、生成世界中的完整 SDF 安装链及实际扫描
+range/ring/column 对应射线方向，独立重建 world XYZ，不读取所发布的机体位姿作为真值。
+报告区分无有效回波的空帧，并列出漏转换、重复转换的反例误差；不把离线构造输入当真实扫描。
