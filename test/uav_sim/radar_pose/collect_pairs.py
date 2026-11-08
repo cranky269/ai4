@@ -36,7 +36,7 @@ def match(k):
     if abs(sum(v*v for v in q)-1) > 1e-6: errors.append('nonunit quaternion')
     expected = [('x',0,7),('y',4,7),('z',8,7),('range',12,7),('ring',16,4),('column',18,4),('status',20,2)]
     if ([(f.name,f.offset,f.datatype) for f in c.fields] != expected or
-        c.header.frame_id != 'radar_link' or c.point_step != 24 or
+        c.header.frame_id != 'world' or c.point_step != 24 or
         c.row_step != c.width*24 or len(c.data) != c.row_step*c.height): errors.append('cloud schema changed')
     rows.append(dict(epoch=k[0], sec=k[1], nsec=k[2], xyz=xyz, quaternion_xyzw=q,
                      cloud_frame=c.header.frame_id, width=c.width, height=c.height))

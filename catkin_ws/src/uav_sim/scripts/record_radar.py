@@ -22,7 +22,7 @@ def utc():
     return datetime.datetime.now(datetime.timezone.utc).isoformat()
 
 
-def save_cloud(path, msg):
+def save_cloud(path, msg, epoch=None):
     if msg.is_bigendian:
         endian = '>'
     else:
@@ -36,9 +36,11 @@ def save_cloud(path, msg):
                                  buffer=msg.data, offset=f.offset,
                                  strides=(msg.row_step, msg.point_step)).copy()
     valid = np.isfinite(arrays['x']) & np.isfinite(arrays['y']) & np.isfinite(arrays['z'])
-    np.savez_compressed(str(path), **arrays, valid=valid,
+    metadata = {} if epoch is None else {'simulation_epoch': epoch}
+    np.savez_compressed(str(path), **arrays, **metadata, valid=valid,
                         stamp_sec=msg.header.stamp.secs, stamp_nsec=msg.header.stamp.nsecs,
-                        frame_id=msg.header.frame_id)
+                        frame_id=msg.header.frame_id, coordinate_units='m',
+                        range_reference='sensor', coordinate_schema=2)
     return int(valid.sum())
 
 
@@ -67,14 +69,19 @@ class Recorder:
         self.bag = rosbag.Bag(str(self.root/'raw.bag'), 'w', compression='lz4')
         self.index_file = (self.root/'frames.csv').open('w', newline='')
         self.index = csv.writer(self.index_file)
-        self.index.writerow(['frame','seq','stamp_sec','stamp_nsec','frame_id','valid_points','file'])
+        self.index.writerow(['frame','seq','stamp_sec','stamp_nsec','frame_id','valid_points','file','epoch'])
+        self.pose_file = (self.root/'radar_poses.csv').open('w', newline='')
+        self.pose_index = csv.writer(self.pose_file)
+        self.pose_index.writerow(['epoch','stamp_sec','stamp_nsec','frame_id','x','y','z','qx','qy','qz','qw'])
+        self.sample_last = {}
+        self.sample_epoch = {}
         self.worker = threading.Thread(target=self.write_loop)
         self.worker.start()
         self.pressure_stop=threading.Event()
         self.pressure=threading.Thread(target=self.backpressure)
         self.pressure.start()
         self.subs = []
-        topics = [('/radar/points',PointCloud2),('/tf',TFMessage),('/tf_static',TFMessage),
+        topics = [('/radar/points',PointCloud2),('/radar/uav_pose_world',PoseStamped),('/tf',TFMessage),('/tf_static',TFMessage),
                   ('/camera_motion_demo/actual_pose',PoseStamped),
                   ('/target/ground_truth/pose',PoseStamped),('/clock',Clock),
                   ('/uav/front_camera/image_raw',Image),('/uav/front_camera/camera_info',CameraInfo),
@@ -82,7 +89,10 @@ class Recorder:
                   ('/target/pose',PoseStamped)]
         self.stats['topics'] = {t: cls._type for t,cls in topics}
         self.stats['config'] = self.config
-        self.stats['mount'] = dict(parent='uav_base_link', child='radar_link', xyz_m=[.30,0,.12], quaternion_xyzw=[0,0,0,1])
+        self.stats['mount'] = yaml.safe_load((self.root/'radar_pose.yaml').read_text())
+        self.stats['coordinates'] = dict(xyz_frame='world', units='m',
+            range_origin='sensor', pose_reference='static_uav model origin',
+            pairing='exact header.stamp within each simulation epoch')
         for topic, cls in topics:
             self.subs.append(rospy.Subscriber(topic, cls, self.receive, callback_args=topic,
                                              queue_size=200, buff_size=64*1024*1024))
@@ -147,11 +157,24 @@ class Recorder:
                     PILImage.fromarray(a).save(str(self.root/name),compress_level=1)
                     self.camera_index.writerow([i,msg.header.seq,msg.header.stamp.secs,msg.header.stamp.nsecs,msg.header.frame_id,msg.encoding,msg.width,msg.height,name])
                     self.camera_file.flush();self.camera_count+=1
+                if topic in ('/radar/points','/radar/uav_pose_world'):
+                    ns = stamp.to_nsec()
+                    epoch = self.sample_epoch.get(topic, 0)
+                    if topic in self.sample_last and ns < self.sample_last[topic]:
+                        epoch += 1
+                        rospy.logwarn('Recording %s simulation epoch %s', topic, epoch)
+                    self.sample_epoch[topic] = epoch
+                    self.sample_last[topic] = ns
+                if topic == '/radar/uav_pose_world':
+                    p, q = msg.pose.position, msg.pose.orientation
+                    self.pose_index.writerow([epoch,stamp.secs,stamp.nsecs,msg.header.frame_id,
+                                              p.x,p.y,p.z,q.x,q.y,q.z,q.w])
+                    self.pose_file.flush()
                 if topic == '/radar/points':
                     i = self.stats['radar_frames']
                     name = 'frames/%08d.npz' % i
-                    valid = save_cloud(self.root/name,msg)
-                    self.index.writerow([i,msg.header.seq,stamp.secs,stamp.nsecs,msg.header.frame_id,valid,name])
+                    valid = save_cloud(self.root/name,msg,epoch)
+                    self.index.writerow([i,msg.header.seq,stamp.secs,stamp.nsecs,msg.header.frame_id,valid,name,epoch])
                     self.index_file.flush()
                     t = stamp.to_sec()
                     if self.last is not None:
@@ -185,6 +208,7 @@ class Recorder:
         try:
             self.bag.close()
             self.index_file.close()
+            self.pose_file.close()
             self.camera_file.close()
         except Exception:
             self.stats['write_errors'] += 1

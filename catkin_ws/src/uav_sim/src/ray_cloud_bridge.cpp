@@ -16,10 +16,40 @@
 #include <limits>
 #include <string>
 
+namespace radar_world {
+bool ReadPose(const gazebo::msgs::LaserScan &scan, ignition::math::Pose3d &sensor_world) {
+  if (!scan.has_world_pose() || !scan.world_pose().has_position() ||
+      !scan.world_pose().has_orientation() ||
+      !scan.world_pose().IsInitialized()) return false;
+  const auto &p = scan.world_pose().position();
+  const auto &q = scan.world_pose().orientation();
+  const double values[] = {p.x(), p.y(), p.z(), q.w(), q.x(), q.y(), q.z()};
+  for (double v : values) if (!std::isfinite(v)) {
+    return false;
+  }
+  const double norm = q.w()*q.w()+q.x()*q.x()+q.y()*q.y()+q.z()*q.z();
+  if (std::abs(norm - 1.0) > 1e-3) {
+    return false;
+  }
+  ignition::math::Quaterniond rotation(q.w(), q.x(), q.y(), q.z());
+  rotation.Normalize();
+  sensor_world = ignition::math::Pose3d(ignition::math::Vector3d(p.x(), p.y(), p.z()), rotation);
+  return true;
+}
+ignition::math::Vector3d Point(const ignition::math::Pose3d &sensor_world,
+                              double range, double elevation, double azimuth) {
+  const ignition::math::Vector3d local(range * std::cos(elevation) * std::cos(azimuth),
+      range * std::cos(elevation) * std::sin(azimuth), range * std::sin(elevation));
+  return sensor_world.Rot().RotateVector(local) + sensor_world.Pos();
+}
+}  // namespace radar_world
+
 class RayCloudBridge {
  public:
   RayCloudBridge() : nh_("~") {
-    nh_.param<std::string>("frame_id", frame_, "radar_link");
+    nh_.param<std::string>("frame_id", frame_, "world");
+    if (frame_ != "world")
+      throw std::runtime_error("Ray bridge outputs world XYZ; frame_id must be world");
     std::string input, output;
     nh_.param<std::string>("gazebo_topic", input,
         "/gazebo/base_scene/radar_3d/radar_link/ray_3d/scan");
@@ -74,9 +104,27 @@ class RayCloudBridge {
       ROS_ERROR_THROTTLE(5, "Rejected non-3D / malformed Gazebo Ray scan");
       return;
     }
+    if (!message->has_time() || message->time().sec() < 0 ||
+        message->time().nsec() < 0 || message->time().nsec() >= 1000000000) {
+      ROS_ERROR_THROTTLE(1, "Rejected invalid radar sampling timestamp");
+      return;
+    }
+    const double limits[] = {scan.angle_min(), scan.angle_max(),
+        scan.vertical_angle_min(), scan.vertical_angle_max(),
+        scan.range_min(), scan.range_max()};
+    for (double v : limits) if (!std::isfinite(v)) {
+      ROS_ERROR_THROTTLE(1, "Rejected nonfinite scan limits");
+      return;
+    }
+    if (scan.range_min() < 0 || scan.range_max() < scan.range_min()) {
+      ROS_ERROR_THROTTLE(1, "Rejected invalid scan range limits");
+      return;
+    }
     sensor_msgs::PointCloud2 cloud;
     cloud.header.stamp = ros::Time(message->time().sec(), message->time().nsec());
     cloud.header.frame_id = frame_;
+    ignition::math::Pose3d sensor_world;
+    if (!ScanPose(message, cloud.header.stamp, sensor_world)) return;
     cloud.width = width;
     cloud.height = height;
     const std::string names[] = {"x", "y", "z", "range", "ring", "column", "status"};
@@ -111,19 +159,25 @@ class RayCloudBridge {
                             range >= scan.range_max() ? 4 : 1;
         else if (range < scan.range_min()) status = 2;
         const size_t at = index * cloud.point_step;
-        Put<float>(cloud, at, valid ? range * std::cos(elevation) * std::cos(azimuth) : nan);
-        Put<float>(cloud, at + 4, valid ? range * std::cos(elevation) * std::sin(azimuth) : nan);
-        Put<float>(cloud, at + 8, valid ? range * std::sin(elevation) : nan);
+        // world_pose already includes the full mounting transform. Apply it once.
+        ignition::math::Vector3d point(nan, nan, nan);
+        if (valid) {
+          point = radar_world::Point(sensor_world, range, elevation, azimuth);
+        }
+        Put<float>(cloud, at, point.X());
+        Put<float>(cloud, at + 4, point.Y());
+        Put<float>(cloud, at + 8, point.Z());
         Put<float>(cloud, at + 12, static_cast<float>(range));
         Put<uint16_t>(cloud, at + 16, v); Put<uint16_t>(cloud, at + 18, h);
         Put<uint8_t>(cloud, at + 20, status);
       }
     }
-    if (publish_pose_) PublishPose(message, cloud.header.stamp);
+    if (publish_pose_ && !PublishPose(sensor_world, cloud.header.stamp)) return;
     publisher_.publish(cloud);
     ROS_INFO_ONCE("Received native %u x %u rays, publishing organized PointCloud2", width, height);
   }
-  void PublishPose(const ConstLaserScanStampedPtr &message, const ros::Time &stamp) {
+  bool ScanPose(const ConstLaserScanStampedPtr &message, const ros::Time &stamp,
+                ignition::math::Pose3d &sensor_world) {
     // No latest-pose lookup, interpolation or cross-frame cache: all pose data
     // belongs to the same native LaserScanStamped as this cloud.
     if (have_stamp_ && stamp < last_stamp_)
@@ -131,32 +185,24 @@ class RayCloudBridge {
     last_stamp_ = stamp;
     have_stamp_ = true;
     const auto &scan = message->scan();
-    if (scan.frame() != scan_parent_ || !scan.has_world_pose() ||
+    if ((publish_pose_ && scan.frame() != scan_parent_) || !scan.has_world_pose() ||
         !scan.world_pose().has_position() || !scan.world_pose().has_orientation()) {
-      ROS_ERROR_THROTTLE(1, "Radar UAV pose pair missing: unexpected parent or absent source pose");
-      return;
+      ROS_ERROR_THROTTLE(1, "Rejected world cloud and UAV pose: unexpected parent or absent source pose");
+      return false;
     }
-    const auto &p = scan.world_pose().position();
-    const auto &q = scan.world_pose().orientation();
-    const double values[] = {p.x(), p.y(), p.z(), q.w(), q.x(), q.y(), q.z()};
-    for (double v : values) if (!std::isfinite(v)) {
-      ROS_ERROR_THROTTLE(1, "Radar UAV pose pair missing: nonfinite source pose");
-      return;
+    if (!radar_world::ReadPose(scan, sensor_world)) {
+      ROS_ERROR_THROTTLE(1, "Rejected world cloud and UAV pose: invalid source world pose");
+      return false;
     }
-    const double norm = q.w()*q.w()+q.x()*q.x()+q.y()*q.y()+q.z()*q.z();
-    if (std::abs(norm - 1.0) > 1e-3) {
-      ROS_ERROR_THROTTLE(1, "Radar UAV pose pair missing: invalid source quaternion");
-      return;
-    }
-    ignition::math::Quaterniond rotation(q.w(), q.x(), q.y(), q.z());
-    rotation.Normalize();
-    const ignition::math::Pose3d sensor_world(ignition::math::Vector3d(p.x(), p.y(), p.z()), rotation);
+    return true;
+  }
+  bool PublishPose(const ignition::math::Pose3d &sensor_world, const ros::Time &stamp) {
     const auto body_world = sensor_world * body_to_sensor_.Inverse();
     const double output[] = {body_world.Pos().X(), body_world.Pos().Y(), body_world.Pos().Z(),
         body_world.Rot().X(), body_world.Rot().Y(), body_world.Rot().Z(), body_world.Rot().W()};
     for (double v : output) if (!std::isfinite(v)) {
-      ROS_ERROR_THROTTLE(1, "Radar UAV pose pair missing: nonfinite transformed pose");
-      return;
+      ROS_ERROR_THROTTLE(1, "Rejected world cloud and UAV pose: nonfinite transformed pose");
+      return false;
     }
     geometry_msgs::PoseStamped pose;
     pose.header.stamp = stamp;
@@ -169,6 +215,7 @@ class RayCloudBridge {
     pose.pose.orientation.z = body_world.Rot().Z();
     pose.pose.orientation.w = body_world.Rot().W();
     pose_publisher_.publish(pose);
+    return true;
   }
   bool publish_pose_ = false, have_stamp_ = false;
   ros::Time last_stamp_;

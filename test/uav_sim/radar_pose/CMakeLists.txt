@@ -11,3 +11,7 @@ include_directories(${catkin_INCLUDE_DIRS})
 add_executable(invalid_pose_check invalid_pose_check.cpp)
 target_compile_features(invalid_pose_check PRIVATE cxx_std_17)
 target_link_libraries(invalid_pose_check ${GAZEBO_LIBRARIES} ${catkin_LIBRARIES})
+
+add_executable(world_cloud_check world_cloud_check.cpp)
+target_compile_features(world_cloud_check PRIVATE cxx_std_17)
+target_link_libraries(world_cloud_check ${GAZEBO_LIBRARIES} ${catkin_LIBRARIES})

@@ -16,7 +16,7 @@ with rosbag.Bag(str(a.bag),'r') as bag:
   last[topic]=t;key=(epochs[topic],t)
   if key in seen[topic]:errors.append('duplicate stamp within epoch: '+topic)
   if topic==cloud_topic:
-   if msg.header.frame_id!='radar_link':errors.append('cloud frame changed')
+   if msg.header.frame_id!='world':errors.append('cloud frame changed')
    seen[topic][key]=dict(width=msg.width,height=msg.height,frame=msg.header.frame_id)
   else:
    v=msg.pose.position;q=msg.pose.orientation;xyz=[v.x,v.y,v.z];quat=[q.x,q.y,q.z,q.w]

@@ -8,6 +8,10 @@ import rospy
 from sensor_msgs.msg import Image,PointCloud2,PointField
 from rosgraph_msgs.msg import Clock
 from rviz import bindings as rviz
+def require_world_recording(rows):
+ if not rows or any(r.get('frame_id') != 'world' for r in rows):
+  raise ValueError('Historical/local or unknown radar frame: cannot display as world; original files unchanged')
+
 class Window(QtWidgets.QMainWindow):
  camera_signal=QtCore.pyqtSignal(object)
  radar_signal=QtCore.pyqtSignal(object)
@@ -16,18 +20,18 @@ class Window(QtWidgets.QMainWindow):
   self.setWindowTitle('AI4 Camera + 3D Radar | '+('Recorded frames' if offline else 'LIVE'))
   self.resize(1500,820);self.counts={'camera':0,'radar':0};self.latest={};self.pixmap=None;self.index=0;self.playing=False
   body=QtWidgets.QWidget();self.setCentralWidget(body);layout=QtWidgets.QVBoxLayout(body)
-  title=QtWidgets.QLabel('Camera: uav_camera_optical_frame | Radar: radar_link (X forward, Y left, Z up), metres | Mouse: left rotate, wheel zoom, middle pan')
+  title=QtWidgets.QLabel('Camera: uav_camera_optical_frame | Radar: Gazebo world (fixed right-handed axes, Z up), metres | Mouse: left rotate, wheel zoom, middle pan')
   title.setWordWrap(True);layout.addWidget(title)
   split=QtWidgets.QSplitter();layout.addWidget(split,1)
   self.image=QtWidgets.QLabel('Waiting for actual camera image');self.image.setAlignment(QtCore.Qt.AlignCenter);self.image.setMinimumSize(320,240);self.image.setStyleSheet('background:#15181c;color:white');split.addWidget(self.image)
   self.render=rviz.VisualizationFrame();self.render.setSplashPath('');self.render.initialize();self.render.setMenuBar(None);self.render.setStatusBar(None);self.render.setHideButtonVisibility(False);[dock.hide() for dock in self.render.findChildren(QtWidgets.QDockWidget)];split.addWidget(self.render);split.setSizes([640,740])
-  self.manager=self.render.getManager();self.manager.setFixedFrame('radar_link')
+  self.manager=self.render.getManager();self.manager.setFixedFrame('world')
   options=self.manager.getRootDisplayGroup().subProp('Global Options')
   if options is not None:
    frame_rate=options.subProp('Frame Rate')
    if frame_rate is not None:frame_rate.setValue(10)
   grid=self.manager.createDisplay('rviz/Grid','Metre grid',True);grid.subProp('Cell Size').setValue(1.0)
-  axes=self.manager.createDisplay('rviz/Axes','Radar axes [m]',True);axes.subProp('Length').setValue(.5);axes.subProp('Radius').setValue(.015)
+  axes=self.manager.createDisplay('rviz/Axes','World axes [m]',True);axes.subProp('Length').setValue(.5);axes.subProp('Radius').setValue(.015)
   self.cloud=self.manager.createDisplay('rviz/PointCloud2','Measured Ray XYZ',True)
   self.cloud.subProp('Position Transformer').setValue('XYZ')
   self.cloud.subProp('Topic').setValue('/viewer/points' if offline else '/radar/points')
@@ -51,7 +55,12 @@ class Window(QtWidgets.QMainWindow):
   if offline:
    self.evidence.stop()
    self.camera_rows=list(csv.DictReader((self.root/'camera_frames.csv').open()));self.radar_rows=list(csv.DictReader((self.root/'frames.csv').open()))
+   # Historical local recordings have no sampled sensor transform in NPZ.
+   # Refuse to relabel or implicitly transform them using a current live TF.
+   require_world_recording(self.radar_rows)
    self.times=[[int(r['stamp_sec'])+int(r['stamp_nsec'])*1e-9 for r in rows] for rows in (self.camera_rows,self.radar_rows)]
+   if any(any(b < a for a,b in zip(times,times[1:])) for times in self.times):
+    raise ValueError('Simulation reset in recording: split by acquisition epoch before image/cloud playback')
    self.publisher=rospy.Publisher('/viewer/points',PointCloud2,queue_size=10,latch=True);self.clock=rospy.Publisher('/clock',Clock,queue_size=10)
    self.mode.setCurrentIndex(0);self.change_mode();QtCore.QTimer.singleShot(1200,self.display_pair)
    if self_test:QtCore.QTimer.singleShot(2500,self.test_controls)
@@ -100,6 +109,7 @@ class Window(QtWidgets.QMainWindow):
   self.latest={'camera':[ci,self.times[0][ci]],'radar':[ri,self.times[1][ri]]}
   row=self.radar_rows[ri]
   with np.load(self.root/row['file']) as a:
+   if str(a['frame_id']) != 'world':raise ValueError('NPZ frame is not world; original file unchanged')
    dtype=np.dtype({'names':['x','y','z','range','ring','column','status'],'formats':['<f4','<f4','<f4','<f4','<u2','<u2','u1'],'offsets':[0,4,8,12,16,18,20],'itemsize':24})
    raw=np.zeros(a['x'].shape,dtype=dtype)
    for k in dtype.names:raw[k]=a[k]
