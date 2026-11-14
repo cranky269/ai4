@@ -1,0 +1,3 @@
+REPLAY_EVIDENCE_DIR=/tmp/m4-acceptance-replay.tm4qkn6r
+{"source": "/home/demo/m4-ort1-exit-reentry.NeAllp/live.bag", "bag_sha256": "139009ec869407a1871a4b2b0fa8f1f7420b6bd68b054d06d301320e0af912ea", "start_offset": 110, "duration_sim": 50, "raw_camera_frames": 356, "detections": 129, "nonempty_detections": 21, "empty_detections": 108, "tracks": 129, "nonempty_tracks": 16, "empty_tracks": 113, "debug_frames": 129, "debug_source_found": 129, "class_ids": [0], "max_debug_age_sim": 0.6459046810014115, "passed": true}
+REPLAY_EVIDENCE_DIR=/tmp/m4-acceptance-replay.tm4qkn6r

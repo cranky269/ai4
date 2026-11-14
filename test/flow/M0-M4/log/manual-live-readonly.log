@@ -1,0 +1,96 @@
+WARNING: may be using simulated time
+
+http://127.0.0.1:39543
+python_script = '/home/demo/ai4-m4-integration-e6a5328/catkin_ws/src/uav_tracking/scripts/detector_node.py'
+python_script = '/home/demo/ai4-m4-integration-e6a5328/catkin_ws/src/uav_tracking/scripts/visual_tracker_node.py'
+dbe087847a1f3a76be1e60d4a4a6fc145ced70586b0f5874eb931e4ca399bed6  code/detector.py
+baseline dbe087847a1f3a76be1e60d4a4a6fc145ced70586b0f5874eb931e4ca399bed6  -
+ee0494bb7cca76cb2eed04ab75faaf01355074fb8df2f89c0650ba37f20e981f  code/visual_tracker.py
+baseline ee0494bb7cca76cb2eed04ab75faaf01355074fb8df2f89c0650ba37f20e981f  -
+91ad932dfcc8fc9013401b31d5020c788ccb091ae028bdd5aa0dd3599758eaea  catkin_ws/src/uav_tracking/msg/Detections.msg
+baseline 91ad932dfcc8fc9013401b31d5020c788ccb091ae028bdd5aa0dd3599758eaea  -
+acc8011a0113c4457fd11069c1dd7fa451733854165f910ce7afdaffaf2f6ca4  catkin_ws/src/uav_tracking/msg/DetectedTarget.msg
+baseline acc8011a0113c4457fd11069c1dd7fa451733854165f910ce7afdaffaf2f6ca4  -
+955ed036cc40c4f241a7a695e5840c56e70def8cf984d3449b7bb76ba3a84270  catkin_ws/src/uav_tracking/msg/VisualTrackArray.msg
+baseline 955ed036cc40c4f241a7a695e5840c56e70def8cf984d3449b7bb76ba3a84270  -
+765c25854606c245f5541788873a52c7ffd0cf8a6cb14c683236ab74614ac343  catkin_ws/src/uav_tracking/msg/VisualTrack.msg
+baseline 765c25854606c245f5541788873a52c7ffd0cf8a6cb14c683236ab74614ac343  -
+model_path=/home/demo/m4-yolo11s-validation.8b694G/yolo11s-drone.onnx
+conf_thres=0.5
+imgsz=640
+image_topic=/camera/image_raw
+device=cpu
+tracker_image=/camera/image_raw
+detector Python dependencies:
+PYTHONPATH=/home/demo/m4-yolo11s-validation.8b694G/onnx-deps:/home/demo/ai4-formal-e6a5328/lib/m4:/home/demo/ai4-m4-integration-e6a5328/lib/venv/sensor_python:/home/demo/ai4-m4-integration-e6a5328/catkin_ws/devel/lib/python3/dist-packages:/opt/ros/noetic/lib/python3/dist-packages
+Type: sensor_msgs/Image
+
+Publishers:
+ * /sensor_interfaces (http://127.0.0.1:40891/)
+
+Subscribers:
+ * /start_sensor_clock (http://127.0.0.1:34591/)
+ * /sensor_viewer (http://127.0.0.1:33619/)
+ * /detector (http://127.0.0.1:40137/)
+ * /visual_tracker (http://127.0.0.1:37335/)
+
+
+Type: uav_tracking/Detections
+
+Publishers:
+ * /detector (http://127.0.0.1:40137/)
+
+Subscribers:
+ * /visual_tracker (http://127.0.0.1:37335/)
+
+
+Type: uav_tracking/VisualTrackArray
+
+Publishers:
+ * /visual_tracker (http://127.0.0.1:37335/)
+
+Subscribers:
+ * /rostopic_359294_1794297996927 (http://127.0.0.1:34763/)
+
+
+Type: sensor_msgs/Image
+
+Publishers:
+ * /detector (http://127.0.0.1:40137/)
+
+Subscribers:
+ * /image_view (http://127.0.0.1:46681/)
+
+
+subscribed to [/detections]
+subscribed to [/visual/tracks]
+    topic         rate   min_delta   max_delta   std_dev   window
+=================================================================
+/visual/tracks   1.316   0.76        0.76        0.0       2
+
+    topic         rate   min_delta   max_delta   std_dev   window
+=================================================================
+/detections      1.333   0.75        0.75        0.0       2
+/visual/tracks   1.325   0.75        0.76        0.005     2
+
+    topic         rate   min_delta   max_delta   std_dev   window
+=================================================================
+/detections      1.37    0.71        0.75        0.02      3
+/visual/tracks   1.357   0.7         0.76        0.02625   3
+
+    topic         rate   min_delta   max_delta   std_dev   window
+=================================================================
+/detections      1.345   0.71        0.77        0.02494   4
+/visual/tracks   1.347   0.7         0.76        0.02487   4
+
+    topic         rate   min_delta   max_delta   std_dev   window
+=================================================================
+/detections      1.351   0.71        0.77        0.02236   5
+/visual/tracks   1.364   0.68        0.76        0.03145   5
+
+    topic         rate   min_delta   max_delta   std_dev   window
+=================================================================
+/detections      1.361   0.71        0.77        0.02141   7
+/visual/tracks   1.354   0.68        0.77        0.03182   7
+
+no new messages

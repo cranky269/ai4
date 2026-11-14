@@ -1,0 +1,55 @@
+{
+  "baseline": "44c89c808fa7119d71517e4902a19beb2627b384",
+  "team_base": "e6a53289f0d58431c3149978787b9c7754fea1d3",
+  "files": [
+    {
+      "filename": "2026-11-10 15-52-25.mp4",
+      "location": "C:\\Users\\Yizh2\\Videos\\2026-11-10 15-52-25.mp4",
+      "bytes": 7220567,
+      "sha256": "5982ba2a6ec7edb9a79f25bc4be8219b85981ec293501d6761d7062171a7eb5b"
+    },
+    {
+      "filename": "2026-11-10 16-06-34.mp4",
+      "location": "C:\\Users\\Yizh2\\Videos\\2026-11-10 16-06-34.mp4",
+      "bytes": 12391304,
+      "sha256": "7ffe710b3da46810456673ea13bbb930ac858d8b74014d9fe169bb631f4f9c12"
+    },
+    {
+      "filename": "live.bag",
+      "location": "C:\\Users\\Yizh2\\Documents\\ChatGPT\\无人机\\M4维护资料\\仿真联调记录\\m4-ort1-exit-reentry.NeAllp\\live.bag",
+      "bytes": 11406562,
+      "sha256": "139009ec869407a1871a4b2b0fa8f1f7420b6bd68b054d06d301320e0af912ea"
+    },
+    {
+      "filename": "live.bag",
+      "location": "C:\\Users\\Yizh2\\Documents\\ChatGPT\\无人机\\M4维护资料\\仿真联调记录\\20261111-M4-ORT补采\\A1\\live.bag",
+      "bytes": 2449450,
+      "sha256": "8353ae859e7388fd5d801bae6efbded6abd4d25b715107484f3fdca40cd2578e"
+    },
+    {
+      "filename": "live.bag",
+      "location": "C:\\Users\\Yizh2\\Documents\\ChatGPT\\无人机\\M4维护资料\\仿真联调记录\\20261111-M4-ORT补采\\A2\\live.bag",
+      "bytes": 2249739,
+      "sha256": "05340815bf1ba2cbb5cccb33989cc68f5641a1f9c7faf39c916f24a1fdeb49a9"
+    },
+    {
+      "filename": "live.bag",
+      "location": "C:\\Users\\Yizh2\\Documents\\ChatGPT\\无人机\\M4维护资料\\仿真联调记录\\20261111-M4-ORT补采\\B1\\live.bag",
+      "bytes": 2214683,
+      "sha256": "86907b6ad237eb5abf4b34af733f7dcfdef81237db0ec28d6bfbb8bccefc1ca0"
+    },
+    {
+      "filename": "live.bag",
+      "location": "C:\\Users\\Yizh2\\Documents\\ChatGPT\\无人机\\M4维护资料\\仿真联调记录\\20261111-M4-ORT补采\\B2\\live.bag",
+      "bytes": 2211070,
+      "sha256": "b9c211e0a0c067a66e43444766370a323c85c6d33adae970ad01d59aeb215104"
+    }
+  ],
+  "model": {
+    "origin": "https://huggingface.co/sapoepsilon/yolov11s-drone-detector",
+    "onnx_sha256": "320ec090ff91a333116d120479f2ad2a9f97a1893e5826e99cf2ad7fd2ca1bd7",
+    "vm_path": "/home/demo/m4-yolo11s-validation.8b694G/yolo11s-drone.onnx",
+    "author_declared_license": "Apache-2.0",
+    "export_metadata_license": "AGPL-3.0"
+  }
+}

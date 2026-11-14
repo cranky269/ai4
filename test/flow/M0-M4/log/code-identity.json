@@ -1,0 +1,46 @@
+{
+  "code/detector.py": {
+    "sha256": "dbe087847a1f3a76be1e60d4a4a6fc145ced70586b0f5874eb931e4ca399bed6",
+    "matches_44c89c8": true
+  },
+  "code/visual_tracker.py": {
+    "sha256": "ee0494bb7cca76cb2eed04ab75faaf01355074fb8df2f89c0650ba37f20e981f",
+    "matches_44c89c8": true
+  },
+  "catkin_ws/src/uav_tracking/scripts/detector_node.py": {
+    "sha256": "e33f87fc4afe8ec4757a9ed711086572c08926134f391231b934cfd7e2b1545c",
+    "matches_44c89c8": true
+  },
+  "catkin_ws/src/uav_tracking/scripts/visual_tracker_node.py": {
+    "sha256": "1a7bc195fb650e5e37bf07252677b813405d577819c2ef596c4fe54bdaa6c85e",
+    "matches_44c89c8": true
+  },
+  "catkin_ws/src/uav_tracking/launch/detector.launch": {
+    "sha256": "0746ad4f6bcb703f8ea0694151fb2e426d58cd7d7c88b2ec679feb077c8bd802",
+    "matches_44c89c8": true
+  },
+  "catkin_ws/src/uav_tracking/launch/visual_tracker.launch": {
+    "sha256": "a855bbd03b10d159593fb884497c6369ed69a8acc9906d9603180b38dea69dce",
+    "matches_44c89c8": true
+  },
+  "catkin_ws/src/uav_tracking/config/detector.yaml": {
+    "sha256": "2e524b0b9d01a76cf5fa03c1e3b4623848d7092458cae631f92367c6b340c436",
+    "matches_44c89c8": true
+  },
+  "catkin_ws/src/uav_tracking/config/visual_tracker.yaml": {
+    "sha256": "6e3e8ee2f3721266f2954e8f2f3f96265f3d11bde21f6d6b27e6beb4c948b273",
+    "matches_44c89c8": true
+  },
+  "catkin_ws/src/uav_tracking/msg/Detections.msg": {
+    "sha256": "91ad932dfcc8fc9013401b31d5020c788ccb091ae028bdd5aa0dd3599758eaea",
+    "matches_44c89c8": true
+  },
+  "catkin_ws/src/uav_tracking/msg/VisualTrackArray.msg": {
+    "sha256": "955ed036cc40c4f241a7a695e5840c56e70def8cf984d3449b7bb76ba3a84270",
+    "matches_44c89c8": true
+  },
+  "test/flow/M0-M4/python/run-detector-ort1.py": {
+    "sha256": "65db86486ff796006381c37907b3167e4220f1e8358f8140f1aa0c891b5406e2",
+    "matches_44c89c8": true
+  }
+}

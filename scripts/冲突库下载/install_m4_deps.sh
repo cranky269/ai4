@@ -166,7 +166,7 @@ do_install() {
 
   hr
   echo "=== 2/6 ultralytics 本体（--no-deps，防止它覆盖 CPU 版 torch）==="
-  if ! pip_retry --index-url "$PYPI" --no-deps ultralytics; then
+  if ! pip_retry --index-url "$PYPI" --no-deps "ultralytics==8.4.173"; then
     bad "ultralytics 安装失败"; exit 1
   fi
   [ -d "$DIR/ultralytics" ] && ok "ultralytics 已就位" || { bad "ultralytics 目录不存在"; exit 1; }

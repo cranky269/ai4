@@ -1,0 +1,5 @@
+{"model": "/home/demo/m4-yolo11s-validation.8b694G/yolo11s-drone.onnx", "sha256": "320ec090ff91a333116d120479f2ad2a9f97a1893e5826e99cf2ad7fd2ca1bd7", "ort": "1.19.2", "provider": ["CPUExecutionProvider"], "metadata": {"end2end": "False", "description": "Ultralytics YOLO11s model trained on /root/drone-ai/data/yolo/dataset.yaml", "channels": "3", "author": "Ultralytics", "docs": "https://docs.ultralytics.com", "head": "Detect", "version": "8.4.173", "batch": "1", "license": "AGPL-3.0 License (https://ultralytics.com/license)", "stride": "32", "task": "detect", "date": "2026-11-09T20:21:50.191635+08:00", "imgsz": "[640, 640]", "names": "{0: 'drone'}", "args": "{'data': None, 'batch': 1, 'fraction': 1.0, 'quantize': None, 'nms': False, 'dynamic': True, 'simplify': False, 'opset': 17}"}}
+Existing dependency directory protected
+Unintended user onnx installation reverted
+?? lib/venv/sensor_python
+已有 /home/demo/ai4-m4-acceptance-44c89c8/lib/m4_onnx；请使用 --check 检查，或在新副本中准备依赖。

@@ -1,0 +1,64 @@
+{
+  "integration": {
+    "head": "a1ffd9ec90c7b6c1da3610c45a124512370843ff",
+    "status": "?? lib/venv/sensor_python\n"
+  },
+  "formal": {
+    "head": "e6a53289f0d58431c3149978787b9c7754fea1d3",
+    "status": ""
+  },
+  "files": {
+    "catkin_ws/src/uav_tracking/scripts/detector_node.py": {
+      "vm_worktree": "e33f87fc4afe8ec4757a9ed711086572c08926134f391231b934cfd7e2b1545c",
+      "vm_head": "e33f87fc4afe8ec4757a9ed711086572c08926134f391231b934cfd7e2b1545c",
+      "formal_worktree": "25c3020908f571673c4e8a36bdabe685fdfafcc41bd756487908d912643a6ed4",
+      "formal_head": "25c3020908f571673c4e8a36bdabe685fdfafcc41bd756487908d912643a6ed4",
+      "fork_blob": "889c201fb5aef7830532a88d64861247f86c596e",
+      "fork_sha256": "e33f87fc4afe8ec4757a9ed711086572c08926134f391231b934cfd7e2b1545c"
+    },
+    "catkin_ws/src/uav_tracking/scripts/visual_tracker_node.py": {
+      "vm_worktree": "1a7bc195fb650e5e37bf07252677b813405d577819c2ef596c4fe54bdaa6c85e",
+      "vm_head": "1a7bc195fb650e5e37bf07252677b813405d577819c2ef596c4fe54bdaa6c85e",
+      "formal_worktree": "1a7bc195fb650e5e37bf07252677b813405d577819c2ef596c4fe54bdaa6c85e",
+      "formal_head": "1a7bc195fb650e5e37bf07252677b813405d577819c2ef596c4fe54bdaa6c85e",
+      "fork_blob": "32782f7d7e5218275ec1de8fd15f78b89518f3aa",
+      "fork_sha256": "1a7bc195fb650e5e37bf07252677b813405d577819c2ef596c4fe54bdaa6c85e"
+    },
+    "catkin_ws/src/uav_tracking/launch/detector.launch": {
+      "vm_worktree": "0746ad4f6bcb703f8ea0694151fb2e426d58cd7d7c88b2ec679feb077c8bd802",
+      "vm_head": "0746ad4f6bcb703f8ea0694151fb2e426d58cd7d7c88b2ec679feb077c8bd802",
+      "formal_worktree": "0746ad4f6bcb703f8ea0694151fb2e426d58cd7d7c88b2ec679feb077c8bd802",
+      "formal_head": "0746ad4f6bcb703f8ea0694151fb2e426d58cd7d7c88b2ec679feb077c8bd802",
+      "fork_blob": "21fa84487b5043a5b12be3a96654fd9787b831c5",
+      "fork_sha256": "0746ad4f6bcb703f8ea0694151fb2e426d58cd7d7c88b2ec679feb077c8bd802"
+    },
+    "catkin_ws/src/uav_tracking/launch/visual_tracker.launch": {
+      "vm_worktree": "a855bbd03b10d159593fb884497c6369ed69a8acc9906d9603180b38dea69dce",
+      "vm_head": "a855bbd03b10d159593fb884497c6369ed69a8acc9906d9603180b38dea69dce",
+      "formal_worktree": "a855bbd03b10d159593fb884497c6369ed69a8acc9906d9603180b38dea69dce",
+      "formal_head": "a855bbd03b10d159593fb884497c6369ed69a8acc9906d9603180b38dea69dce",
+      "fork_blob": "3f9b1b0316e2cdd84ea920954c0eceb0b0d898b1",
+      "fork_sha256": "a855bbd03b10d159593fb884497c6369ed69a8acc9906d9603180b38dea69dce"
+    },
+    "catkin_ws/src/uav_tracking/config/detector.yaml": {
+      "vm_worktree": "2e524b0b9d01a76cf5fa03c1e3b4623848d7092458cae631f92367c6b340c436",
+      "vm_head": "2e524b0b9d01a76cf5fa03c1e3b4623848d7092458cae631f92367c6b340c436",
+      "formal_worktree": "2e524b0b9d01a76cf5fa03c1e3b4623848d7092458cae631f92367c6b340c436",
+      "formal_head": "2e524b0b9d01a76cf5fa03c1e3b4623848d7092458cae631f92367c6b340c436",
+      "fork_blob": "41b252443c3d35bcc5eb3e55f627ab6b13c4314e",
+      "fork_sha256": "2e524b0b9d01a76cf5fa03c1e3b4623848d7092458cae631f92367c6b340c436"
+    },
+    "catkin_ws/src/uav_tracking/config/visual_tracker.yaml": {
+      "vm_worktree": "6e3e8ee2f3721266f2954e8f2f3f96265f3d11bde21f6d6b27e6beb4c948b273",
+      "vm_head": "6e3e8ee2f3721266f2954e8f2f3f96265f3d11bde21f6d6b27e6beb4c948b273",
+      "formal_worktree": "6e3e8ee2f3721266f2954e8f2f3f96265f3d11bde21f6d6b27e6beb4c948b273",
+      "formal_head": "6e3e8ee2f3721266f2954e8f2f3f96265f3d11bde21f6d6b27e6beb4c948b273",
+      "fork_blob": "f9ca68ad7be1e6ac229d22d952f5509fd7c8698e",
+      "fork_sha256": "6e3e8ee2f3721266f2954e8f2f3f96265f3d11bde21f6d6b27e6beb4c948b273"
+    }
+  },
+  "model": {
+    "path": "/home/demo/m4-yolo11s-validation.8b694G/yolo11s-drone.onnx",
+    "sha256": "320ec090ff91a333116d120479f2ad2a9f97a1893e5826e99cf2ad7fd2ca1bd7"
+  }
+}

@@ -1,0 +1,18 @@
+........................................................................ [ 69%]
+...............................                                          [100%]
+=============================== warnings summary ===============================
+test/camera/test_camera_node.py::test_publish_uses_bgr8_and_sets_header
+test/detector/test_detector_node.py::test_image_msg_to_array_bgr8
+test/detector/test_detector_node.py::test_image_msg_to_array_mono8_becomes_3ch
+test/detector/test_detector_node.py::test_image_msg_to_array_creates_bridge_when_none
+test/detector/test_latest_frame_contract.py::test_empty_success_publishes_empty_and_preserves_debug_header
+  /opt/ros/noetic/lib/python3/dist-packages/cv_bridge/core.py:270: DeprecationWarning: tostring() is deprecated. Use tobytes() instead.
+    img_msg.data = cvim.tostring()
+
+test/visual_tracker/test_visual_tracker.py::test_track_bad_image_shape_is_tolerated
+  /home/demo/ai4-m4-acceptance-44c89c8/catkin_ws/src/uav_tracking/lib/visual_tracker.py:363: RuntimeWarning: [visual_tracker] track: image 形状非法，实际为 None；上机阶段按默认值/空结果处理
+    _reject("track: image 形状非法，实际为 %r" % (shape,))
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+--------------- generated xml file: /tmp/m4-acceptance-unit.xml ----------------
+103 passed, 6 warnings in 0.91s

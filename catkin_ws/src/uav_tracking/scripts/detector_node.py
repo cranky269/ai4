@@ -40,6 +40,8 @@ from __future__ import annotations
 import os
 import sys
 import traceback
+import threading
+import time
 
 # --------------------------------------------------------------------------- #
 # ★★ 路径注入必须发生在 `import rospy` 之前 ★★
@@ -87,7 +89,9 @@ __all__ = [
 IMAGE_TOPIC = "/camera/image_raw"
 DETECTIONS_TOPIC = "/detections"
 DEBUG_IMAGE_TOPIC = "/detector/debug_image"
-QUEUE_SIZE = 1                     # 只保最新帧
+QUEUE_SIZE = 1
+IMAGE_BUFFER_SIZE = 2 ** 24
+MAX_RESULT_AGE = 1.5
 DEFAULT_MODEL_PATH = "yolov8n.pt"
 DEBUG_COLOR = (0, 255, 0)          # BGR，全项目统一配色（代码书写原则第 5 条）
 DEBUG_FONT_SCALE = 0.5
@@ -204,7 +208,22 @@ class DetectorNode:
             rospy.Publisher(DEBUG_IMAGE_TOPIC, Image, queue_size=QUEUE_SIZE)
             if self.publish_debug else None
         )
-        rospy.Subscriber(self.image_topic, Image, self.on_image, queue_size=QUEUE_SIZE)
+        self._condition = threading.Condition()
+        self._pending = None
+        self._last_stamp = None
+        self._last_unstamped_seq = None
+        self._last_clock = None
+        self._epoch = 0
+        self._sim_time = rospy.get_param("use_sim_time", False)
+        self._stopping = False
+        self._timing_enabled = os.environ.get("M4_TIMING_LOG") == "1"
+        self._worker = threading.Thread(target=self._run_worker, name="m4-inference", daemon=True)
+        self._subscriber = rospy.Subscriber(
+            self.image_topic, Image, self.on_image,
+            queue_size=QUEUE_SIZE, buff_size=IMAGE_BUFFER_SIZE,
+        )
+        self._worker.start()
+        rospy.on_shutdown(self._stop_worker)
 
         rospy.loginfo(
             "[detector] ready: model=%s conf=%.2f imgsz=%d device=%s in=%s out=%s",
@@ -232,38 +251,117 @@ class DetectorNode:
                 "《组长确认冲突库下载说明文档.md》安装视觉依赖。",
                 _M4_DEPS, np.__version__)
 
-    # ---- 事件层：收到一帧图像处理一帧（本模块无定时器）----
-    def on_image(self, msg):
-        """一帧图像 → 检测 → 发布。
+    def _clock_locked(self):
+        """Detect a ROS clock rewind before accepting or publishing a frame."""
+        now = rospy.Time.now()
+        if self._last_clock is not None and now < self._last_clock:
+            self._epoch += 1
+            self._pending = None
+            self._last_stamp = None
+            self._last_unstamped_seq = None
+        self._last_clock = now
+        return now
 
-        流程严格按「壳」的四件事：拆包 → 调核 → 装包 → 发布。
-        任何异常都不得让节点静默：出错时仍发布**空** ``Detections``。
-        """
+    def on_image(self, msg):
+        received = time.monotonic()
+        stamp = msg.header.stamp
+        with self._condition:
+            if self._stopping:
+                return
+            now = self._clock_locked()
+            receive_age = self._source_age(now, stamp)
+            if self._sim_time and (now.is_zero() or stamp.is_zero()):
+                return  # /clock 未就绪或输入缺失可用于仿真的时间戳
+            if receive_age is not None and not 0 <= receive_age <= MAX_RESULT_AGE:
+                return
+            if not stamp.is_zero():
+                if self._last_stamp is not None and stamp <= self._last_stamp:
+                    return
+                self._last_stamp = stamp
+            elif msg.header.seq:
+                if msg.header.seq == self._last_unstamped_seq:
+                    return
+                self._last_unstamped_seq = msg.header.seq
+            self._pending = (msg, received, receive_age, now, self._epoch)
+            self._condition.notify()
+
+    def _stop_worker(self):
+        with self._condition:
+            self._stopping = True
+            self._pending = None
+            self._condition.notify_all()
+        self._subscriber.unregister()
+        if self._worker is not threading.current_thread():
+            self._worker.join(timeout=MAX_RESULT_AGE)
+            if self._worker.is_alive():
+                rospy.logwarn("[detector] 停止时推理仍在执行，等待进程退出")
+
+    @staticmethod
+    def _source_age(now, stamp):
+        if now.is_zero() or stamp.is_zero():
+            return None
+        return (now - stamp).to_sec()
+
+    def _run_worker(self):
+        while True:
+            with self._condition:
+                ready = self._condition.wait_for(
+                    lambda: self._stopping or self._pending is not None,
+                    timeout=MAX_RESULT_AGE,
+                )
+                if self._stopping:
+                    return
+                item = self._pending
+                self._pending = None
+            if not ready:
+                rospy.logwarn_throttle(5., "[detector] 没有可处理的新相机帧，检测输出暂停")
+                continue
+            self._process_image(*item)
+
+    def _process_image(self, msg, received, receive_age, receive_clock, epoch):
+        started = time.monotonic()
+        with self._condition:
+            now = self._clock_locked()
+            source_age = self._source_age(now, msg.header.stamp)
+            if self._stopping or epoch != self._epoch:
+                return
+        if started - received > MAX_RESULT_AGE or (
+                source_age is not None and not 0 <= source_age <= MAX_RESULT_AGE):
+            rospy.logwarn_throttle(5., "[detector] 跳过过期的相机帧")
+            return
         try:
             image = image_msg_to_array(msg, self.bridge)
-        except Exception as exc:  # 图像转换失败：记日志并发空
-            rospy.logerr("[detector] 图像转换失败: %s", exc)
-            self.pub.publish(detections_to_msg([]))
+        except Exception:
+            rospy.logerr_throttle(5., "[detector] 图像转换失败: %s", traceback.format_exc())
             return
-
-        # 调核：这一行才是"算法"，其余全是搬运
+        converted = time.monotonic()
         try:
             detections = self.detector.detect(image)
-        except Exception as exc:
-            # 只打一行 exc 看不到根因，这里补上完整堆栈（节流，避免刷屏）
-            rospy.logerr_throttle(
-                5.0, "[detector] 推理失败: %s\n%s", exc, traceback.format_exc())
-            self.pub.publish(detections_to_msg([]))
+        except Exception:
+            rospy.logerr_throttle(5., "[detector] 推理失败: %s", traceback.format_exc())
             return
-
-        # 装包发布（无目标时 targets=[] ——「空也发」）
-        self.pub.publish(detections_to_msg(detections))
-
-        if self.pub_debug is not None:
+        inferred = time.monotonic()
+        with self._condition:
+            now = self._clock_locked()
+            source_age = self._source_age(now, msg.header.stamp)
+            if self._stopping or epoch != self._epoch or rospy.is_shutdown():
+                return
+            expired = inferred - received > MAX_RESULT_AGE or (
+                source_age is not None and not 0 <= source_age <= MAX_RESULT_AGE)
+            paused = self._sim_time and now == receive_clock
+            if not expired and not paused:
+                self.pub.publish(detections_to_msg(detections))
+        if expired or paused:
+            rospy.logwarn_throttle(5., "[detector] 图像结果过期或仿真时钟未推进，跳过发布")
+            return
+        published = time.monotonic()
+        if self._timing_enabled:
+            rospy.loginfo("M4_TIMING %.9f %.6f %.6f %.6f %.6f %.6f %.6f %.6f %.9f",
+                          msg.header.stamp.to_sec(), receive_age if receive_age is not None else -1.,
+                          source_age if source_age is not None else -1., started-received,
+                          converted-started, inferred-converted, published-inferred, published-received, published)
+        if self.pub_debug is not None and not rospy.is_shutdown():
             self._publish_debug(image, detections, msg)
-
-        if not detections:
-            rospy.logdebug("[detector] 本帧无目标（已发空 Detections）")
 
     def _publish_debug(self, image, detections, src_msg):
         """发布带 bbox 的调试图（不参与逻辑，仅供联调复盘）。"""

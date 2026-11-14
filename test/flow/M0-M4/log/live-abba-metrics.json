@@ -1,0 +1,215 @@
+{
+  "A1": {
+    "duration": 60.002268019999974,
+    "n": {
+      "camera": 384,
+      "clock": 5336,
+      "tracker": 163,
+      "detector": 163
+    },
+    "hz": {
+      "camera": 6.399758087011061,
+      "detector": 2.716563979642716,
+      "tracker": 2.716563979642716
+    },
+    "rtf": 0.8892883891561857,
+    "detect_wall_ms": [
+      358.557,
+      413.269
+    ],
+    "source_age_sim_ms": [
+      403.0,
+      494.0
+    ],
+    "worker_wait_wall_ms": [
+      77.69,
+      181.434
+    ],
+    "detector_cpu_pct_one_core": 106.0128354811734,
+    "gz_cpu_pct_one_core": 76.49723547533185,
+    "guest_cpu_pct": 65.7334232845027,
+    "count": {
+      "timed_debug": 163,
+      "unknown": 1,
+      "tracks_paired": 163,
+      "empty_tracks": 71,
+      "visible": 162,
+      "hits": 94,
+      "matched_tracks": 92,
+      "id_comparisons": 91,
+      "switch_gap": 25,
+      "switch_direct": 17,
+      "absent": 0,
+      "absent_nonempty_detection": 0,
+      "unpaired_detection": 0,
+      "unpaired_track": 0
+    },
+    "visibility_all": {
+      "visible": 384
+    },
+    "hits_per_processed_visible": 0.5802469135802469,
+    "hits_per_all_visible_source": 0.24479166666666666,
+    "all_visible_source": 384,
+    "empty_track_ratio": 0.43558282208588955
+  },
+  "B1": {
+    "duration": 60.00156425099999,
+    "n": {
+      "camera": 355,
+      "clock": 4823,
+      "detector": 139,
+      "tracker": 139
+    },
+    "hz": {
+      "camera": 5.916512418158891,
+      "detector": 2.3166062707720725,
+      "tracker": 2.3166062707720725
+    },
+    "rtf": 0.8042547115064219,
+    "detect_wall_ms": [
+      421.951,
+      505.386
+    ],
+    "source_age_sim_ms": [
+      425.0,
+      565.0
+    ],
+    "worker_wait_wall_ms": [
+      89.992,
+      215.756
+    ],
+    "detector_cpu_pct_one_core": 141.61332265687008,
+    "gz_cpu_pct_one_core": 70.93165837679642,
+    "guest_cpu_pct": 95.49144553072625,
+    "count": {
+      "timed_debug": 139,
+      "unknown": 1,
+      "tracks_paired": 139,
+      "empty_tracks": 80,
+      "visible": 138,
+      "hits": 73,
+      "matched_tracks": 59,
+      "id_comparisons": 58,
+      "switch_gap": 20,
+      "switch_direct": 2,
+      "absent": 0,
+      "absent_nonempty_detection": 0,
+      "unpaired_detection": 0,
+      "unpaired_track": 0
+    },
+    "visibility_all": {
+      "visible": 355
+    },
+    "hits_per_processed_visible": 0.5289855072463768,
+    "hits_per_all_visible_source": 0.2056338028169014,
+    "all_visible_source": 355,
+    "empty_track_ratio": 0.5755395683453237
+  },
+  "B2": {
+    "duration": 60.001193744000034,
+    "n": {
+      "clock": 4921,
+      "camera": 340,
+      "detector": 138,
+      "tracker": 137
+    },
+    "hz": {
+      "camera": 5.666553926420825,
+      "detector": 2.2999542407237463,
+      "tracker": 2.2832879056460382
+    },
+    "rtf": 0.8226612574975427,
+    "detect_wall_ms": [
+      415.556,
+      498.197
+    ],
+    "source_age_sim_ms": [
+      429.5,
+      630.7
+    ],
+    "worker_wait_wall_ms": [
+      96.343,
+      309.785
+    ],
+    "detector_cpu_pct_one_core": 134.93099239080888,
+    "gz_cpu_pct_one_core": 71.46542679987506,
+    "guest_cpu_pct": 93.66505918456818,
+    "count": {
+      "timed_debug": 138,
+      "unknown": 2,
+      "tracks_paired": 138,
+      "empty_tracks": 70,
+      "visible": 136,
+      "hits": 79,
+      "matched_tracks": 66,
+      "id_comparisons": 64,
+      "switch_gap": 14,
+      "switch_direct": 11,
+      "absent": 0,
+      "absent_nonempty_detection": 0,
+      "unpaired_detection": 0,
+      "unpaired_track": 0
+    },
+    "visibility_all": {
+      "visible": 338,
+      "unknown": 2
+    },
+    "hits_per_processed_visible": 0.5808823529411765,
+    "hits_per_all_visible_source": 0.23372781065088757,
+    "all_visible_source": 338,
+    "empty_track_ratio": 0.5072463768115942
+  },
+  "A2": {
+    "duration": 60.00092750800002,
+    "n": {
+      "camera": 351,
+      "clock": 4934,
+      "detector": 146,
+      "tracker": 146
+    },
+    "hz": {
+      "camera": 5.8499095693679175,
+      "detector": 2.4332957183125807,
+      "tracker": 2.4332957183125807
+    },
+    "rtf": 0.8223607603218468,
+    "detect_wall_ms": [
+      414.826,
+      473.631
+    ],
+    "source_age_sim_ms": [
+      426.0,
+      543.5
+    ],
+    "worker_wait_wall_ms": [
+      92.178,
+      225.383
+    ],
+    "detector_cpu_pct_one_core": 98.66533793069429,
+    "gz_cpu_pct_one_core": 71.46570423088127,
+    "guest_cpu_pct": 84.65671641791045,
+    "count": {
+      "timed_debug": 146,
+      "unknown": 1,
+      "tracks_paired": 146,
+      "empty_tracks": 74,
+      "visible": 145,
+      "hits": 79,
+      "matched_tracks": 71,
+      "id_comparisons": 70,
+      "switch_gap": 25,
+      "switch_direct": 8,
+      "absent": 0,
+      "absent_nonempty_detection": 0,
+      "unpaired_detection": 0,
+      "unpaired_track": 0
+    },
+    "visibility_all": {
+      "visible": 351
+    },
+    "hits_per_processed_visible": 0.5448275862068965,
+    "hits_per_all_visible_source": 0.22507122507122507,
+    "all_visible_source": 351,
+    "empty_track_ratio": 0.5068493150684932
+  }
+}
