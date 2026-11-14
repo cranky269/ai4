@@ -1,0 +1,14 @@
+{
+  "interior_away_interval_sim": [
+    18252,
+    18279
+  ],
+  "messages": 71,
+  "nonempty": 0,
+  "boundary_nonempty": [
+    [
+      18250.167952435,
+      1
+    ]
+  ]
+}

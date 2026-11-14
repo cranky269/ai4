@@ -1,0 +1,50 @@
+{
+  "before": {
+    "det": 42,
+    "empty_det": 26,
+    "track": 42,
+    "empty_track": 29,
+    "ids": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "away": {
+    "det": 83,
+    "empty_det": 82,
+    "track": 83,
+    "empty_track": 82,
+    "ids": [
+      6
+    ]
+  },
+  "reentry": {
+    "det": 139,
+    "empty_det": 80,
+    "track": 139,
+    "empty_track": 86,
+    "ids": [
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "item": 2,
+  "remote_session": "/home/demo/m4-manual-item2-20261114-162027",
+  "connection": "/home/demo/ai4-formal-e6a5328/data/radar/20261114_154958_b258a30a-e054-46a5-9db8-c4bf6f1a0339/connection.bash",
+  "master": "http://127.0.0.1:36667",
+  "source": "current live Gazebo",
+  "processes": [
+    {
+      "name": "viewer",
+      "pid": "96109"
+    },
+    {
+      "name": "controller",
+      "pid": "96122"
+    }
+  ],
+  "start_trigger": "/home/demo/m4-manual-item2-20261114-162027/start.request",
+  "stop_trigger": "/home/demo/m4-manual-item2-20261114-162027/stop.request",
+  "prepared_only": true
+}

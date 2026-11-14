@@ -1,0 +1,5 @@
+{
+  "remote": "/home/demo/m4-manual-item4-sgofeq9e",
+  "start_trigger": "/home/demo/m4-manual-item4-sgofeq9e/start.request",
+  "scope": "controlled PID node; temporary 320x240; no physical flight"
+}

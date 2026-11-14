@@ -1,0 +1,120 @@
+{
+  "checks": [
+    {
+      "name": "low_conf_does_not_lock",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "N_minus_1_no_lock",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "N3_VISUAL_LOCK",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "silence_freezes_state",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "M_minus_1_remains_locked",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "M3_RADAR_GUIDE",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "K_minus_1_no_search",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "K5_SEARCH",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "visual_alone_cannot_exit_search",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "radar_recovers_RADAR_GUIDE",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "relock_after_recovery",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "pid_right_down_far_signs",
+      "passed": false,
+      "detail": [
+        {
+          "phase": "pid_synthetic_right_down_far",
+          "kind": "pid",
+          "wall": 46228.288396425,
+          "x": 0.037500000000000006,
+          "z": -0.7000000000000001,
+          "yaw": -0.8999999761581421,
+          "frame": 9
+        },
+        {
+          "phase": "pid_synthetic_right_down_far",
+          "kind": "pid",
+          "wall": 46228.308610457,
+          "x": 0.037500000000000006,
+          "z": -0.7000000000000001,
+          "yaw": -0.8999999761581421,
+          "frame": 9
+        },
+        {
+          "phase": "pid_synthetic_right_down_far",
+          "kind": "pid",
+          "wall": 46228.329186236,
+          "x": 0.037500000000000006,
+          "z": -0.7000000000000001,
+          "yaw": -0.8999999761581421,
+          "frame": 9
+        }
+      ]
+    },
+    {
+      "name": "pid_silence_zero_after_hold",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "pid_recovers_on_tracks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "pid_empty_settles_zero",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "real_M4_drives_PID_nonzero",
+      "passed": true,
+      "detail": {
+        "pid_commands": 1266,
+        "nonzero": 140,
+        "PID_width": 640,
+        "camera_width": 320,
+        "geometry_consistency": "Mismatch: no parameter changes made"
+      }
+    }
+  ],
+  "scope": "Isolated original ROS receiver nodes; synthetic state tests separate from original real M4 bag driving M5/PID; NOT T1/T2/T3/T4 flight acceptance",
+  "no_px4_mavros_started": true
+}

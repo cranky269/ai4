@@ -1,0 +1,26 @@
+[0m[ INFO] [1794643970.643136851]: Subscribing to /camera/camera_info[0m
+[0m[ INFO] [1794643970.658624761]: Subscribing to /camera/image_raw[0m
+[0m[ INFO] [1794643970.665411579]: Subscribing to /clock[0m
+[0m[ INFO] [1794643970.675937596]: Subscribing to /detections[0m
+[0m[ INFO] [1794643970.689291185]: Subscribing to /detector/debug_image[0m
+[0m[ INFO] [1794643970.705198420]: Subscribing to /gazebo/model_states[0m
+[0m[ INFO] [1794643970.724686953]: Subscribing to /target/ground_truth/pose[0m
+[0m[ INFO] [1794643970.863433613, 937.620000000]: Recording to '/home/demo/m4-manual-acceptance-20261114-160747/manual-item1-161138/live.bag'.[0m
+Traceback (most recent call last):
+  File "/opt/ros/noetic/bin/rosbag", line 35, in <module>
+    rosbag.rosbagmain()
+  File "/opt/ros/noetic/lib/python3/dist-packages/rosbag/rosbag_main.py", line 1032, in rosbagmain
+    cmds[cmd](argv[2:])
+  File "/opt/ros/noetic/lib/python3/dist-packages/rosbag/rosbag_main.py", line 161, in record_cmd
+    process.wait()
+  File "/usr/lib/python3.8/subprocess.py", line 1083, in wait
+    return self._wait(timeout=timeout)
+  File "/usr/lib/python3.8/subprocess.py", line 1806, in _wait
+    (pid, sts) = self._try_wait(0)
+  File "/usr/lib/python3.8/subprocess.py", line 1764, in _try_wait
+    (pid, sts) = os.waitpid(self.pid, wait_flags)
+  File "/opt/ros/noetic/lib/python3/dist-packages/rosbag/rosbag_main.py", line 155, in <lambda>
+    lambda signum, frame: _send_process_sigint(signum, frame, old_handler, process)
+  File "/opt/ros/noetic/lib/python3/dist-packages/rosbag/rosbag_main.py", line 78, in _send_process_sigint
+    old_handler(signum, frame)
+TypeError: 'Handlers' object is not callable

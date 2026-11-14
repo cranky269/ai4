@@ -1,0 +1,13 @@
+pid_controller:
+  image_height: 240
+  image_width: 320
+rosdistro: 'noetic
+
+  '
+roslaunch:
+  uris:
+    host_127_0_0_1__42115: http://127.0.0.1:42115/
+rosversion: '1.16.0
+
+  '
+run_id: 1b782dae-e008-11f1-a732-c36d403db9ec

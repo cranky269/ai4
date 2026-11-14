@@ -1,0 +1,42 @@
+{
+  "provenance": "Existing real Gazebo bag replay, NOT new Gazebo simulation; original M8 receiver instrumented in memory, no receiver source edits",
+  "source": "/home/demo/m4-ort1-exit-reentry.NeAllp/live.bag",
+  "offset": 100,
+  "duration": 100,
+  "camera_frames": 707,
+  "detections": 264,
+  "nonempty_detections": 76,
+  "empty_detections": 188,
+  "tracks": 264,
+  "empty_tracks": 197,
+  "m8_callback_steps": 264,
+  "states": [
+    "RADAR_GUIDE",
+    "SEARCH/RTH"
+  ],
+  "lock_conf_threshold": 0.8,
+  "lock_area_threshold": 0.02,
+  "N": 3,
+  "M": 3,
+  "K": 5,
+  "direct_output_id_changes": 6,
+  "gap_output_id_changes": 29,
+  "identity_ground_truth_switches": "Not established by ID sequence alone",
+  "area_ratio_valid": true,
+  "count_beats_equal": true,
+  "N_seconds_at_2_to_3_hz": [
+    1.0,
+    1.5
+  ],
+  "M_seconds_at_2_to_3_hz": [
+    1.0,
+    1.5
+  ],
+  "K_seconds_at_2_to_3_hz": [
+    1.6666666666666667,
+    2.5
+  ],
+  "real_detection_conf_over_08": 0,
+  "first_to_fifth_detection_seconds": 1.8018010540000091,
+  "m8_receiver_node_note": "Original StateMachineNode class instantiated in /m4_week2_sender_audit; not a full production launch or T4 acceptance."
+}

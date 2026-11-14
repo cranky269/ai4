@@ -1,0 +1,8 @@
+{
+  "radar_routed": true,
+  "N3_visual_routed": true,
+  "third_detection_to_first_visual_ms": 24.703642004169524,
+  "controlled_transport_under_100ms": true,
+  "M3_radar_routed": true,
+  "scope": "Synthetic compliant input, original M8/mux ROS nodes, audit output only; not flight T4 acceptance. Commands are distinguishable markers, not safe flight commands."
+}

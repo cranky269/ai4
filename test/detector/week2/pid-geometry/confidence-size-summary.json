@@ -1,0 +1,62 @@
+[
+  {
+    "source": "new_Gazebo",
+    "file": "仿真联调记录\\20261114-M4第二周\\live-success\\events.json",
+    "detection_messages": 94,
+    "boxes": 48,
+    "conf": {
+      "min": 0.5076361894607544,
+      "median": 0.608418345451355,
+      "max": 0.7357979416847229
+    },
+    "w": {
+      "min": 37.835662841796875,
+      "median": 45.43605041503906,
+      "max": 52.987060546875
+    },
+    "h": {
+      "min": 11.658599853515625,
+      "median": 14.352836608886719,
+      "max": 61.546844482421875
+    },
+    "area": {
+      "min": 0.00596704419041392,
+      "median": 0.008512189687204833,
+      "max": 0.04246336425858317
+    },
+    "confidence_over_08": 0,
+    "box_area_over_002": 2,
+    "same_box_satisfies_both": 0,
+    "caution": "Bounding boxes are model predictions, not human/GT target outlines; cannot infer causal effect of small target size or strict accuracy."
+  },
+  {
+    "source": "historical_bag_replay",
+    "file": "仿真联调记录\\20261114-M4第二周\\events.json",
+    "detection_messages": 264,
+    "boxes": 76,
+    "conf": {
+      "min": 0.5162285566329956,
+      "median": 0.6248344480991364,
+      "max": 0.7735269069671631
+    },
+    "w": {
+      "min": 30.963043212890625,
+      "median": 41.15065002441406,
+      "max": 60.16333770751953
+    },
+    "h": {
+      "min": 9.617935180664062,
+      "median": 13.331939697265625,
+      "max": 62.119384765625
+    },
+    "area": {
+      "min": 0.003989189385611098,
+      "median": 0.007273601326536057,
+      "max": 0.03996619623924744
+    },
+    "confidence_over_08": 0,
+    "box_area_over_002": 2,
+    "same_box_satisfies_both": 0,
+    "caution": "Bounding boxes are model predictions, not human/GT target outlines; cannot infer causal effect of small target size or strict accuracy."
+  }
+]

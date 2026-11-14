@@ -1,0 +1,21 @@
+model_name: "target_uav"
+pose: 
+  position: 
+    x: 3.239154786963864
+    y: 0.5290067270631486
+    z: 1.42
+  orientation: 
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+twist: 
+  linear: 
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  angular: 
+    x: 0.0
+    y: 0.0
+    z: 0.0
+reference_frame: "world"

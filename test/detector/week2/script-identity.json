@@ -1,0 +1,14 @@
+[
+  {
+    "source": "C:\\Users\\Yizh2\\Documents\\ChatGPT\\无人机\\M4维护资料\\tools\\week2_live.py",
+    "delivery": "test\\flow\\M0-M4\\python\\week2-live-check.py",
+    "sha256": "f8628319db569fb3a59ebc5995b6becc97595bf39c9fae85b896bf66e423a3da",
+    "matches_executed_script": true
+  },
+  {
+    "source": "C:\\Users\\Yizh2\\Documents\\ChatGPT\\无人机\\M4维护资料\\tools\\week2_replay.py",
+    "delivery": "test\\detector\\week2\\sender-replay-audit.py",
+    "sha256": "a48618ad87ab8c0a67373e367e1b64710ca0ceecb34cfec0d8fc299fe03a6852",
+    "matches_executed_script": true
+  }
+]

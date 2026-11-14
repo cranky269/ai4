@@ -1,0 +1,75 @@
+[
+  {
+    "item": "item1",
+    "path": "/home/demo/m4-manual-acceptance-20261114-160747/manual-item1-161138/live.bag",
+    "topics": {
+      "/camera/camera_info": 254,
+      "/camera/image_raw": 254,
+      "/clock": 3549,
+      "/detections": 89,
+      "/detector/debug_image": 89,
+      "/gazebo/model_states": 34538,
+      "/target/ground_truth/pose": 442
+    },
+    "seconds": 35.48000000000002
+  },
+  {
+    "item": "item2",
+    "path": "/home/demo/m4-manual-item2-20261114-162027/manual-item2-162032/live.bag",
+    "topics": {
+      "/camera/camera_info": 246,
+      "/camera/image_raw": 246,
+      "/clock": 3539,
+      "/detections": 91,
+      "/detector/debug_image": 91,
+      "/gazebo/model_states": 34949,
+      "/target/ground_truth/pose": 432,
+      "/visual/tracks": 91
+    },
+    "seconds": 35.36999999999989
+  },
+  {
+    "item": "item3",
+    "path": "/home/demo/m4-manual-item3-74o73_05/live.bag",
+    "topics": {
+      "/detections": 13,
+      "/radar/tracks": 3,
+      "/state": 4,
+      "/visual/tracks": 2
+    },
+    "seconds": 41.92766523361206,
+    "state_transitions": [
+      {
+        "state": "VISUAL_LOCK",
+        "detections_since_last_state": 4
+      },
+      {
+        "state": "RADAR_GUIDE",
+        "detections_since_last_state": 3
+      },
+      {
+        "state": "SEARCH/RTH",
+        "detections_since_last_state": 5
+      },
+      {
+        "state": "RADAR_GUIDE",
+        "detections_since_last_state": 1
+      }
+    ]
+  },
+  {
+    "item": "item4",
+    "path": "/home/demo/m4-manual-item4-sgofeq9e/live.bag",
+    "topics": {
+      "/ctrl/visual": 2440,
+      "/visual/tracks": 301
+    },
+    "seconds": 48.77433705329895,
+    "frames": [
+      9
+    ],
+    "masks": [
+      1479
+    ]
+  }
+]

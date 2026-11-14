@@ -1,0 +1,362 @@
+[
+  {
+    "repository_path": "test/detector/week2/away-interior.json",
+    "source_archive": "m4_week2_c421/test/detector/week2/away-interior.json",
+    "sha256": "68c86503c3726b5b5be4d2a53c274d643e7f5ad13143525b65100225d51ec36a"
+  },
+  {
+    "repository_path": "test/detector/week2/m8-steps.json",
+    "source_archive": "m4_week2_c421/test/detector/week2/m8-steps.json",
+    "sha256": "3cf4624e60cbd39c0df67af2cd581f71e55508dc1425d99ce279b9c98cbd07f6"
+  },
+  {
+    "repository_path": "test/detector/week2/phases.json",
+    "source_archive": "m4_week2_c421/test/detector/week2/phases.json",
+    "sha256": "4c7b6704d28949ea4337d914c12c494be6ba105e6a11e52b7f528138cd946aca"
+  },
+  {
+    "repository_path": "test/detector/week2/readme.md",
+    "source_archive": "m4_week2_c421/test/detector/week2/readme.md",
+    "sha256": "945d92b5a7b7af5022eee34df36dc3ca2c47204ebcb80361c6ee4c47c03ce5f5"
+  },
+  {
+    "repository_path": "test/detector/week2/ros-graph-before.json",
+    "source_archive": "m4_week2_c421/test/detector/week2/ros-graph-before.json",
+    "sha256": "52712f43323b7c59d8fa747a7fe086bb42b8a0f5197dbf791a41208423372e1d"
+  },
+  {
+    "repository_path": "test/detector/week2/run-week2.sh",
+    "source_archive": "m4_week2_c421/test/detector/week2/run-week2.sh",
+    "sha256": "f223cf945f71c9ede44e9ddd0825c4cfe97c6d438f00b4a835fc5f3e4cf33e03"
+  },
+  {
+    "repository_path": "test/detector/week2/script-identity.json",
+    "source_archive": "m4_week2_c421/test/detector/week2/script-identity.json",
+    "sha256": "eb63843323d96d3f5c049e96243d7491f9e5e65d2ea1a799e4fa825ac1e689cf"
+  },
+  {
+    "repository_path": "test/detector/week2/sender-replay-audit.py",
+    "source_archive": "m4_week2_c421/test/detector/week2/sender-replay-audit.py",
+    "sha256": "a48618ad87ab8c0a67373e367e1b64710ca0ceecb34cfec0d8fc299fe03a6852"
+  },
+  {
+    "repository_path": "test/detector/week2/summary.json",
+    "source_archive": "m4_week2_c421/test/detector/week2/summary.json",
+    "sha256": "6c932bbb9b37378c2f646fbc4396a4d0ef69c950ce994d9fff7a2e413cdf9eaf"
+  },
+  {
+    "repository_path": "test/detector/week2/pid-geometry/confidence-size-summary.json",
+    "source_archive": "m4_week2_c421/test/detector/week2/pid-geometry/confidence-size-summary.json",
+    "sha256": "ba7528cb48ba417a43777053282ff602eb65ebdfec0c1098187c811cf6ae637e"
+  },
+  {
+    "repository_path": "test/detector/week2/pid-geometry/controlled-pid-geometry.py",
+    "source_archive": "m4_week2_c421/test/detector/week2/pid-geometry/controlled-pid-geometry.py",
+    "sha256": "d344dbdb1e5643453f50db86bdd8fe2fc4e9c62208c4f5e6d9561fce0acfc7df"
+  },
+  {
+    "repository_path": "test/detector/week2/pid-geometry/results.json",
+    "source_archive": "m4_week2_c421/test/detector/week2/pid-geometry/results.json",
+    "sha256": "4188585df1a5407c7487920a7456d41834b4c6bc3463e9538a155efafa86c60b"
+  },
+  {
+    "repository_path": "test/detector/week2/pid-geometry/最终问题清单与复现.md",
+    "source_archive": "m4_week2_c421/test/detector/week2/pid-geometry/最终问题清单与复现.md",
+    "sha256": "dd7e2dcf3c41f7133e2ea70fe73710af014c6ea37a0806fb56226e283d8d3af1"
+  },
+  {
+    "repository_path": "test/detector/week2/receiver-completeness/mux-results.json",
+    "source_archive": "m4_week2_c421/test/detector/week2/receiver-completeness/mux-results.json",
+    "sha256": "a5c1eb6349e3c8768a07cda53080c108e74e9bfc7a47f249d15273b303b22a3b"
+  },
+  {
+    "repository_path": "test/detector/week2/receiver-completeness/readme.md",
+    "source_archive": "m4_week2_c421/test/detector/week2/receiver-completeness/readme.md",
+    "sha256": "823d71cfcc85dda64071ecffa1a6b6d2b836a74f2b22fdedaf9ad4d0d28dc793"
+  },
+  {
+    "repository_path": "test/detector/week2/receiver-completeness/receiver-results.json",
+    "source_archive": "m4_week2_c421/test/detector/week2/receiver-completeness/receiver-results.json",
+    "sha256": "716fe00537af4cacf385c2cd88c9680038ba96c739296899487c18e6ab54220d"
+  },
+  {
+    "repository_path": "test/detector/week2/receiver-completeness/run.sh",
+    "source_archive": "m4_week2_c421/test/detector/week2/receiver-completeness/run.sh",
+    "sha256": "b7f64f41429a8814dd40d29b06f3e3aeacbc8a4b35fb0a77ee6270e98d14ce54"
+  },
+  {
+    "repository_path": "test/detector/week2/receiver-completeness/week2_mux_check.py",
+    "source_archive": "m4_week2_c421/test/detector/week2/receiver-completeness/week2_mux_check.py",
+    "sha256": "53a6792ea74be86e166cb2c74ab0989f92374b476e46d45d13c0a377572742d6"
+  },
+  {
+    "repository_path": "test/detector/week2/receiver-completeness/week2_receiver_checks.py",
+    "source_archive": "m4_week2_c421/test/detector/week2/receiver-completeness/week2_receiver_checks.py",
+    "sha256": "3ea3f7e590c2497ecf198bb2cba88dc39a83edac32851966a708ea6068d5f185"
+  },
+  {
+    "repository_path": "test/flow/M0-M4/week2-20261114/python/week2-live-check.py",
+    "source_archive": "m4_week2_c421/test/flow/M0-M4/python/week2-live-check.py",
+    "sha256": "f8628319db569fb3a59ebc5995b6becc97595bf39c9fae85b896bf66e423a3da"
+  },
+  {
+    "repository_path": "test/flow/M0-M4/week2-20261114/image/week2-debug.png",
+    "source_archive": "m4_week2_c421/test/flow/M0-M4/image/week2-debug.png",
+    "sha256": "e3a951cc59d5a206da8977d3a1c7fb8c1371f69e6dc0f8c5d34ab9a2d628a97b"
+  },
+  {
+    "repository_path": "test/flow/M0-M4/week2-20261114/image/week2-detected-drone.png",
+    "source_archive": "m4_week2_c421/test/flow/M0-M4/image/week2-detected-drone.png",
+    "sha256": "86614339e5af0feab68218d8503f9a8a6c190b1bfc2514de7ffea31102f743ba"
+  },
+  {
+    "repository_path": "test/flow/M0-M4/week2-20261114/log/week2-bag-audit.json",
+    "source_archive": "m4_week2_c421/test/flow/M0-M4/log/week2-bag-audit.json",
+    "sha256": "6edb8825f41b8c7e46737f92ffb955a0f582b2c19c771f82191db6746b4556b0"
+  },
+  {
+    "repository_path": "test/flow/M0-M4/week2-20261114/log/week2-evidence-manifest.json",
+    "source_archive": "m4_week2_c421/test/flow/M0-M4/log/week2-evidence-manifest.json",
+    "sha256": "e598677cb59cf050c0b5e2d35ce5dfa5502ab342a2e839d6d4cb52326f5cbe5b"
+  },
+  {
+    "repository_path": "test/flow/M0-M4/week2-20261114/log/week2-graph.json",
+    "source_archive": "m4_week2_c421/test/flow/M0-M4/log/week2-graph.json",
+    "sha256": "b5fa29d2aab10b517b4346a0bc27f83f3e25e5a0fc406c2b56c09e8da0ed75f7"
+  },
+  {
+    "repository_path": "test/flow/M0-M4/week2-20261114/log/week2-m0.log",
+    "source_archive": "m4_week2_c421/test/flow/M0-M4/log/week2-m0.log",
+    "sha256": "2513dd6dc4ba879c1800fec20b4c3e062ff41a302b58a7df533a37250105b54e"
+  },
+  {
+    "repository_path": "test/flow/M0-M4/week2-20261114/log/week2-m4.log",
+    "source_archive": "m4_week2_c421/test/flow/M0-M4/log/week2-m4.log",
+    "sha256": "774a912bc73a3b940e2d2ef69c62893d82fd76f9ab59e54dd42ef0b51ded3554"
+  },
+  {
+    "repository_path": "test/flow/M0-M4/week2-20261114/log/week2-summary.json",
+    "source_archive": "m4_week2_c421/test/flow/M0-M4/log/week2-summary.json",
+    "sha256": "904514c9217caf831aafbb0de98b84e84de50b1f94b0e7b2039601c86c6b48b5"
+  },
+  {
+    "repository_path": "test/flow/M0-M4/week2-20261114/python/manual_m4_view.py",
+    "source_archive": "tools/manual_m4_view.py",
+    "sha256": "c721327de59eb1d5ac2518d0fbe5b43b4aac15ec91ca48921829ae23f4094218"
+  },
+  {
+    "repository_path": "test/flow/M0-M4/week2-20261114/python/manual_m4_prepare.py",
+    "source_archive": "tools/manual_m4_prepare.py",
+    "sha256": "010fd7b88a1d5e2a7289131a3e731308e44b38342543505684be29691e2d53eb"
+  },
+  {
+    "repository_path": "test/flow/M0-M4/week2-20261114/python/manual_m4_item1_armed.py",
+    "source_archive": "tools/manual_m4_item1_armed.py",
+    "sha256": "1c693d1f923066b6d1cc57b2e95491be5219a567441ed39d0e0a68e2ec29389a"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/python/manual_m4_track_view.py",
+    "source_archive": "tools/manual_m4_track_view.py",
+    "sha256": "768cfd08801b8adbf1a6d174ceb4326ba02226303bd4dc24585aacd13d0e922b"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/python/manual_m4_item2_armed.py",
+    "source_archive": "tools/manual_m4_item2_armed.py",
+    "sha256": "24d1d1440313f46f6d130ca3c94b465963dc49b41f070823b7b431f45fb2574e"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/python/manual_receiver_demo.py",
+    "source_archive": "tools/manual_receiver_demo.py",
+    "sha256": "fd07f0db1ce29b6eef432f3cce68f58de249021460075c8cf5b22f257508bb42"
+  },
+  {
+    "repository_path": "design_module/M4/模块说明文档/week2-20261114/历史基础联调报告.md",
+    "source_archive": "仿真联调记录/20261114-M4第二周/第二周联调报告.md",
+    "sha256": "a705bffd22b2e0cea00e6368b2ead9c215739d72f9d9af1232a16c86f9053965"
+  },
+  {
+    "repository_path": "design_module/M4/模块说明文档/week2-20261114/历史自动化汇总.md",
+    "source_archive": "仿真联调记录/20261114-M4最终验收/M4第二周联调最终验收报告.md",
+    "sha256": "b54ae6bd3c29508a84e1d057323b5e15a9edd91f485a6b20354e28bc5d0de043"
+  },
+  {
+    "repository_path": "design_module/M4/模块说明文档/week2-20261114/PID尺寸与方向核验.md",
+    "source_archive": "仿真联调记录/20261114-M4尺寸方向核验/最终问题清单与复现.md",
+    "sha256": "dd7e2dcf3c41f7133e2ea70fe73710af014c6ea37a0806fb56226e283d8d3af1"
+  },
+  {
+    "repository_path": "design_module/M4/模块说明文档/week2-20261114/四项人工验收审计.md",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/最终审计/四项人工联调最终审计.md",
+    "sha256": "7c9110246b39ddc58afddd30234acaca930737336beb3cc900fc77cdc5f1f452"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/log/第二项/session.json",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/第二项/session.json",
+    "sha256": "47ff025710fc08993655d3cb29ed669762591f49bb455bf6fcbdfcc810052b82"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/log/第二项/controller.log",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/第二项/controller.log",
+    "sha256": "111c47076605071167afc09b2b56ff0378512e4bf7caf5eadf67e43a698bd3f3"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/log/第二项/phase-review.json",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/第二项/phase-review.json",
+    "sha256": "2a6f278b418b2f3427393f1de6783d1cb66643a6f06afbc05a0acf0d2f2f4853"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/log/第二项/viewer-status.json",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/第二项/viewer-status.json",
+    "sha256": "c7b29d82f4f752a956b4789d3ff1b208962b20b3aa4fd35bd1486e3e65e191a0"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/log/第三项/events.json",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/第三项/events.json",
+    "sha256": "9c3ea11f48b7afdeb8f57f5beb7c3700d0437fc739c4cc49c7f299e77b3d189a"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/log/第三项/phase.json",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/第三项/phase.json",
+    "sha256": "bec251b019b0d642fe35b64b4fbd089c9eef8cd556c5118235ad80dd0cf18113"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/log/第三项/viewer-status.json",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/第三项/viewer-status.json",
+    "sha256": "2dfbdbe2294ca623cff9ba7df1a1bebfa386abd0105798e874c49aa3da8487ed"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/log/第四项/session.json",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/第四项/session.json",
+    "sha256": "8966a30d37c2be52c648d6d9916dcf5396a6dc5ca530e061dfe86edfb4ba204d"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/log/第四项/events.json",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/第四项/events.json",
+    "sha256": "68ab9741ab759ed8643cd1dda76e1ca2c9a64715c2bcd7c8fe59ec90e0377a47"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/log/第四项/parameters.yaml",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/第四项/parameters.yaml",
+    "sha256": "8a14b5039a1200e71b9b32e80abb99f2bfb83b53dd9ec7250e28a6e42a684528"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/log/第四项/phase.json",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/第四项/phase.json",
+    "sha256": "4730cf3d6e00fe1798099192aa03fce6286d0338e9102fbe6a414103a31ab67b"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/log/第四项/viewer-status.json",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/第四项/viewer-status.json",
+    "sha256": "05c51ef59f55c7a6babc1adba28c72ea0bccfcd63b1d4a65c4b23fc61a9b614c"
+  },
+  {
+    "repository_path": "test/flow/M0-M4/week2-20261114/log/manual-session.json",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/共享实时会话/session.json",
+    "sha256": "9e83878706620857bddc705628b8e109f54a83c50d51015e8c4f5881501d61fe"
+  },
+  {
+    "repository_path": "test/flow/M0-M4/week2-20261114/log/manual-viewer-status.json",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/共享实时会话/viewer-status.json",
+    "sha256": "b137a7ff40e9fa265cdda61b665248f6a49d962fdc1faa80def5a13faf1a31a6"
+  },
+  {
+    "repository_path": "test/flow/M0-M4/week2-20261114/log/manual-manual-control.json",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/共享实时会话/manual-control.json",
+    "sha256": "c08c0028614c6b7fbdb0c4221b45a5d90d02289939ebed6064815846260d450a"
+  },
+  {
+    "repository_path": "test/flow/M0-M4/week2-20261114/log/manual-m4.log",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/共享实时会话/m4.log",
+    "sha256": "6b983e0068f8d3af3b95c47d2f0bb81ad2d028c904be0135f90776529306cea4"
+  },
+  {
+    "repository_path": "test/flow/M0-M4/week2-20261114/log/manual-item1/bag.log",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/共享实时会话/manual-item1-161138/bag.log",
+    "sha256": "0701dba7effb805823edc5d4392476554ba468b2b435abce9aec7204fe011004"
+  },
+  {
+    "repository_path": "test/flow/M0-M4/week2-20261114/log/manual-item1/events.json",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/共享实时会话/manual-item1-161138/events.json",
+    "sha256": "e3f63dc6f4b936f77f78c336e23383b976df8e116bb98833e37984f933aa0ff5"
+  },
+  {
+    "repository_path": "test/flow/M0-M4/week2-20261114/log/manual-item1/restore-state.yaml",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/共享实时会话/manual-item1-161138/restore-state.yaml",
+    "sha256": "6354f2e3eee0fd0d936501fc85de1792bb4ae57d5366f3ea26857cb17b2bde52"
+  },
+  {
+    "repository_path": "test/flow/M0-M4/week2-20261114/log/manual-item1/verdict.json",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/共享实时会话/manual-item1-161138/verdict.json",
+    "sha256": "9e16d4146a9462c3b880f624673372505aa32ff71cbc1ddc7211ef79432eee5e"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/log/item2-run/bag.log",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/第二项/manual-item2-162032/bag.log",
+    "sha256": "991edfc57c7536239a0eb18a4945e7bb106408ab9bb7892974bf8b121d2d9465"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/log/item2-run/events.json",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/第二项/manual-item2-162032/events.json",
+    "sha256": "6caf4bd8b62b84dfdfc61dad40395034dd10581a15aef2fe8870f61d7e8eacf3"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/log/item2-run/restore-state.yaml",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/第二项/manual-item2-162032/restore-state.yaml",
+    "sha256": "b137a481b19c0adb2516dc1dea007e923a4580a677d60e914600d0de6f767473"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/log/item2-run/verdict.json",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/第二项/manual-item2-162032/verdict.json",
+    "sha256": "9e16d4146a9462c3b880f624673372505aa32ff71cbc1ddc7211ef79432eee5e"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/log/原始录包核验.json",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/最终审计/原始录包核验.json",
+    "sha256": "a1a5f38a9bf450ac2a5e72256c82e406f460f4ac3024f817784e3ed4519bcd30"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/log/N3原始消息序列.log",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/最终审计/N3原始消息序列.log",
+    "sha256": "052eff4f3b1197169f28326d1eca968f4e4d287340a122bdd00d698ac4d38338"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/log/detector.log",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/最终审计/detector.log",
+    "sha256": "fb0f5c2ffbb6504dbb89264677cbe1bd280d5a239e437826a5279988605138e1"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/log/tracker.log",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/最终审计/tracker.log",
+    "sha256": "4dfcf993780ae025d01ba3bd27968bccdfaf0a2b2ce8f1f75a839b7136f05db5"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/log/停止已核实.json",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/最终审计/停止已核实.json",
+    "sha256": "f70c726c22071b023963c4c29890ee3b869cb02dc385c8a869d4ca123d23da24"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/log/T1环境与录包盘点.json",
+    "source_archive": "仿真联调记录/20261114-M4最终验收/T1环境与录包盘点.json",
+    "sha256": "282a5dbfdc3210a34bf7decc7bed2acc8f3717ea7d954f828803d2cde736c3f2"
+  },
+  {
+    "repository_path": "test/flow/M0-M4/week2-20261114/image/manual-video1-contact-sheet.jpg",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/第一项重录01/video-contact-sheet.jpg",
+    "sha256": "2ff05eb0a7d1be86d3cf7aee95a2c4a994ecf536c9694c832d5174e2b3c704c5"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/image/video2-contact-sheet.jpg",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/第二项/video2-contact-sheet.jpg",
+    "sha256": "7f00a6aeab04956470d6f11487e493acbb3ba4213c14d906a403c4700449dc85"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/image/video3-contact-sheet.jpg",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/第三项/video3-contact-sheet.jpg",
+    "sha256": "d4011151a19dee85603d28515e7d2e49d2e4e0f1c17e85d900f735b91e5a02c6"
+  },
+  {
+    "repository_path": "test/detector/week2/manual/image/video4-contact-sheet.jpg",
+    "source_archive": "仿真联调记录/20261114-M4人工验收/第四项/video4-contact-sheet.jpg",
+    "sha256": "a41ded55e922c79188b656462d05ea5db450346f25987a1b085d3de7f789062f"
+  }
+]

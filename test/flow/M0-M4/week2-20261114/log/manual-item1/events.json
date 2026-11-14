@@ -1,0 +1,949 @@
+[
+  {
+    "phase": "ready",
+    "wall": 1794643899.1065915,
+    "sim": 889.83,
+    "deadline": 1794643899.1066015
+  },
+  {
+    "phase": "countdown",
+    "wall": 1794643969.0116668,
+    "sim": 936.43,
+    "deadline": 1794643979.01168
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794643969.6679924,
+    "sim": 936.8,
+    "targets": [
+      {
+        "confidence": 0.5600681900978088,
+        "bbox": [
+          199.51126098632812,
+          113.50906372070312,
+          40.01971435546875,
+          11.59783935546875
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794643970.3237398,
+    "sim": 937.23,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794643971.1097052,
+    "sim": 937.8,
+    "targets": [
+      {
+        "confidence": 0.5926242470741272,
+        "bbox": [
+          180.1053924560547,
+          113.79228210449219,
+          38.531280517578125,
+          11.859756469726562
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794643971.7598186,
+    "sim": 938.25,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794643972.4159505,
+    "sim": 938.79,
+    "targets": [
+      {
+        "confidence": 0.700886607170105,
+        "bbox": [
+          95.78570556640625,
+          113.21797180175781,
+          43.792938232421875,
+          13.3262939453125
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794643973.0485365,
+    "sim": 939.26,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794643973.6590662,
+    "sim": 939.64,
+    "targets": [
+      {
+        "confidence": 0.685288667678833,
+        "bbox": [
+          56.593101501464844,
+          112.20655822753906,
+          50.89784240722656,
+          15.821075439453125
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794643974.2162316,
+    "sim": 940.0,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794643974.8418822,
+    "sim": 940.41,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794643975.3840172,
+    "sim": 940.79,
+    "targets": [
+      {
+        "confidence": 0.6900789737701416,
+        "bbox": [
+          112.24711608886719,
+          111.18984985351562,
+          51.390655517578125,
+          16.990234375
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794643975.95884,
+    "sim": 941.22,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794643976.495016,
+    "sim": 941.6,
+    "targets": [
+      {
+        "confidence": 0.6459943056106567,
+        "bbox": [
+          176.74737548828125,
+          111.94499206542969,
+          50.26318359375,
+          16.294281005859375
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794643977.0664246,
+    "sim": 941.95,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794643977.5600777,
+    "sim": 942.28,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794643978.0487537,
+    "sim": 942.62,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794643978.5744033,
+    "sim": 942.99,
+    "targets": []
+  },
+  {
+    "phase": "normal_visible",
+    "wall": 1794643979.0458047,
+    "sim": 943.34,
+    "deadline": 1794643994.045826
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643979.0867581,
+    "sim": 943.36,
+    "targets": [
+      {
+        "confidence": 0.6123186945915222,
+        "bbox": [
+          182.43927001953125,
+          112.57936096191406,
+          43.93524169921875,
+          13.46051025390625
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643979.7095895,
+    "sim": 943.82,
+    "targets": [
+      {
+        "confidence": 0.5285137891769409,
+        "bbox": [
+          157.11688232421875,
+          112.9380111694336,
+          41.09381103515625,
+          13.167892456054688
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643980.2789984,
+    "sim": 944.19,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643980.8681748,
+    "sim": 944.5,
+    "targets": [
+      {
+        "confidence": 0.6209089756011963,
+        "bbox": [
+          108.95829772949219,
+          113.85079956054688,
+          39.09197998046875,
+          12.361572265625
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643981.4431598,
+    "sim": 944.82,
+    "targets": [
+      {
+        "confidence": 0.5991377234458923,
+        "bbox": [
+          93.81204223632812,
+          113.90913391113281,
+          39.730224609375,
+          11.329177856445312
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643982.0903962,
+    "sim": 945.22,
+    "targets": [
+      {
+        "confidence": 0.609886109828949,
+        "bbox": [
+          87.9377670288086,
+          113.73043823242188,
+          39.274200439453125,
+          12.873138427734375
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643982.702446,
+    "sim": 945.62,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643983.2069943,
+    "sim": 945.94,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643983.7279441,
+    "sim": 946.25,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643984.270325,
+    "sim": 946.57,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643984.8489623,
+    "sim": 946.94,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643985.411825,
+    "sim": 947.35,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643985.9309893,
+    "sim": 947.68,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643986.4572928,
+    "sim": 948.06,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643986.9803846,
+    "sim": 948.41,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643987.6194527,
+    "sim": 948.72,
+    "targets": [
+      {
+        "confidence": 0.506625235080719,
+        "bbox": [
+          197.6607208251953,
+          113.57540130615234,
+          40.320587158203125,
+          12.454788208007812
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643988.2328312,
+    "sim": 949.03,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643988.8549566,
+    "sim": 949.39,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643989.3591702,
+    "sim": 949.7,
+    "targets": [
+      {
+        "confidence": 0.6092607975006104,
+        "bbox": [
+          157.90853881835938,
+          113.6744384765625,
+          39.66522216796875,
+          12.899322509765625
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643989.8264074,
+    "sim": 950.02,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643990.3111186,
+    "sim": 950.31,
+    "targets": [
+      {
+        "confidence": 0.5587425231933594,
+        "bbox": [
+          118.94351196289062,
+          112.6574478149414,
+          42.52288818359375,
+          14.089462280273438
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643990.9429748,
+    "sim": 950.76,
+    "targets": [
+      {
+        "confidence": 0.700886607170105,
+        "bbox": [
+          95.78570556640625,
+          113.21797180175781,
+          43.792938232421875,
+          13.3262939453125
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643991.6532433,
+    "sim": 951.15,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643992.218074,
+    "sim": 951.52,
+    "targets": [
+      {
+        "confidence": 0.7045393586158752,
+        "bbox": [
+          56.836631774902344,
+          112.263671875,
+          50.58673095703125,
+          15.742645263671875
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643992.9004102,
+    "sim": 952.04,
+    "targets": [
+      {
+        "confidence": 0.685288667678833,
+        "bbox": [
+          56.593101501464844,
+          112.20655822753906,
+          50.89784240722656,
+          15.821075439453125
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643993.5032842,
+    "sim": 952.45,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794643994.073718,
+    "sim": 952.86,
+    "targets": [
+      {
+        "confidence": 0.5829939842224121,
+        "bbox": [
+          124.00057983398438,
+          112.14213562011719,
+          47.395843505859375,
+          16.01324462890625
+        ]
+      }
+    ]
+  },
+  {
+    "phase": "target_away",
+    "wall": 1794643994.1002054,
+    "sim": 952.87,
+    "deadline": 1794644009.1002162
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794643994.512584,
+    "sim": 953.17,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794643995.146382,
+    "sim": 953.6,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794643995.633069,
+    "sim": 953.93,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794643996.3054726,
+    "sim": 954.41,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794643996.8306663,
+    "sim": 954.8,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794643997.2935326,
+    "sim": 955.09,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794643997.8157303,
+    "sim": 955.47,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794643998.4377694,
+    "sim": 955.93,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794643999.028529,
+    "sim": 956.29,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794643999.6173518,
+    "sim": 956.64,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644000.107911,
+    "sim": 956.98,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644000.6511152,
+    "sim": 957.41,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644001.4571564,
+    "sim": 957.93,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644002.435114,
+    "sim": 958.61,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644002.921421,
+    "sim": 958.94,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644003.397928,
+    "sim": 959.27,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644003.9172826,
+    "sim": 959.6,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644004.3940027,
+    "sim": 959.88,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644004.9275963,
+    "sim": 960.18,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644005.7466755,
+    "sim": 960.6,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644006.384501,
+    "sim": 960.99,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644006.9094024,
+    "sim": 961.35,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644007.3799796,
+    "sim": 961.66,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644007.8660142,
+    "sim": 961.97,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644008.9692194,
+    "sim": 962.8,
+    "targets": []
+  },
+  {
+    "phase": "target_restored",
+    "wall": 1794644009.1364284,
+    "sim": 962.9,
+    "deadline": 1794644024.1364386
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644009.593871,
+    "sim": 963.17,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644010.208693,
+    "sim": 963.56,
+    "targets": [
+      {
+        "confidence": 0.7148945927619934,
+        "bbox": [
+          168.2330322265625,
+          112.44657897949219,
+          49.9266357421875,
+          15.531585693359375
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644010.8856106,
+    "sim": 964.05,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644011.3815184,
+    "sim": 964.36,
+    "targets": [
+      {
+        "confidence": 0.6098568439483643,
+        "bbox": [
+          207.618408203125,
+          111.59794616699219,
+          53.1060791015625,
+          61.30657958984375
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644011.898159,
+    "sim": 964.75,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644012.5507138,
+    "sim": 965.16,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644013.160901,
+    "sim": 965.63,
+    "targets": [
+      {
+        "confidence": 0.6037861704826355,
+        "bbox": [
+          176.71536254882812,
+          112.7313003540039,
+          43.365234375,
+          13.177261352539062
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644013.658997,
+    "sim": 965.99,
+    "targets": [
+      {
+        "confidence": 0.559104323387146,
+        "bbox": [
+          163.5335693359375,
+          112.84774780273438,
+          40.69219970703125,
+          13.656951904296875
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644014.0600502,
+    "sim": 966.27,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644015.3705025,
+    "sim": 967.28,
+    "targets": [
+      {
+        "confidence": 0.534308671951294,
+        "bbox": [
+          86.17732238769531,
+          113.58036804199219,
+          39.72084045410156,
+          13.291473388671875
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644015.9790218,
+    "sim": 967.68,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644016.6028578,
+    "sim": 968.06,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644017.146817,
+    "sim": 968.39,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644017.721058,
+    "sim": 968.8,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644018.230264,
+    "sim": 969.16,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644018.7538328,
+    "sim": 969.47,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644019.6058104,
+    "sim": 970.0,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644020.2632113,
+    "sim": 970.43,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644020.718696,
+    "sim": 970.76,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644021.2127237,
+    "sim": 971.1,
+    "targets": [
+      {
+        "confidence": 0.5551484823226929,
+        "bbox": [
+          194.30819702148438,
+          112.96603393554688,
+          39.0638427734375,
+          12.80963134765625
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644021.6954627,
+    "sim": 971.39,
+    "targets": [
+      {
+        "confidence": 0.6663087010383606,
+        "bbox": [
+          180.84292602539062,
+          113.68846130371094,
+          38.88201904296875,
+          12.83587646484375
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644022.737894,
+    "sim": 972.14,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644023.6130588,
+    "sim": 972.69,
+    "targets": []
+  },
+  {
+    "phase": "finished",
+    "wall": 1794644024.156804,
+    "sim": 973.09,
+    "deadline": 1794644024.1568303
+  },
+  {
+    "kind": "detections",
+    "phase": "finished",
+    "wall": 1794644024.5992832,
+    "sim": 973.36,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "finished",
+    "wall": 1794644025.4184954,
+    "sim": 973.95,
+    "targets": [
+      {
+        "confidence": 0.6912758350372314,
+        "bbox": [
+          56.61045837402344,
+          112.4981689453125,
+          50.81770324707031,
+          15.446380615234375
+        ]
+      }
+    ]
+  }
+]

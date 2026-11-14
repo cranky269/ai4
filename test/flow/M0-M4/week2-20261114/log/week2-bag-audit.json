@@ -1,0 +1,14 @@
+{
+  "bag_counts": {
+    "/clock": 5031,
+    "/target/ground_truth/pose": 903,
+    "/camera/camera_info": 336,
+    "/camera/image_raw": 336,
+    "/detections": 96,
+    "/visual/tracks": 97,
+    "/detector/debug_image": 97
+  },
+  "debug_source_matches": 97,
+  "debug_total": 97,
+  "note": "Bag and observer connection windows may differ by startup/shutdown samples; no frame-pairing claim for headerless Detections."
+}

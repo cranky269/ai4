@@ -1,0 +1,169 @@
+{
+  "scope": "/home/demo at directory depth <=3, skip hidden/lib/PX4 source; metadata only; no remote teammates or unindexed bag.active examined",
+  "bags": [
+    {
+      "path": "/home/demo/m4-ort-recovery.i44xyvzx/A1/live.bag",
+      "topics": {
+        "/target/ground_truth/pose": {
+          "messages": 804,
+          "type": "geometry_msgs/PoseStamped"
+        }
+      },
+      "has_mavros_pose": false,
+      "has_mavros_state": false,
+      "has_setpoint": false
+    },
+    {
+      "path": "/home/demo/m4-ort1-exit-reentry.NeAllp/live.bag",
+      "topics": {
+        "/target/ground_truth/pose": {
+          "messages": 3817,
+          "type": "geometry_msgs/PoseStamped"
+        }
+      },
+      "has_mavros_pose": false,
+      "has_mavros_state": false,
+      "has_setpoint": false
+    },
+    {
+      "path": "/home/demo/m4-ort-live-recovery-abba.JMeDfU/A1/live.bag",
+      "topics": {
+        "/target/ground_truth/pose": {
+          "messages": 961,
+          "type": "geometry_msgs/PoseStamped"
+        }
+      },
+      "has_mavros_pose": false,
+      "has_mavros_state": false,
+      "has_setpoint": false
+    },
+    {
+      "path": "/home/demo/m4-ort-live-recovery-abba.JMeDfU/B2/live.bag",
+      "topics": {
+        "/target/ground_truth/pose": {
+          "messages": 887,
+          "type": "geometry_msgs/PoseStamped"
+        }
+      },
+      "has_mavros_pose": false,
+      "has_mavros_state": false,
+      "has_setpoint": false
+    },
+    {
+      "path": "/home/demo/m4-ort-live-recovery-abba.JMeDfU/A2/live.bag",
+      "topics": {
+        "/target/ground_truth/pose": {
+          "messages": 890,
+          "type": "geometry_msgs/PoseStamped"
+        }
+      },
+      "has_mavros_pose": false,
+      "has_mavros_state": false,
+      "has_setpoint": false
+    },
+    {
+      "path": "/home/demo/m4-ort-live-recovery-abba.JMeDfU/B1/live.bag",
+      "topics": {
+        "/target/ground_truth/pose": {
+          "messages": 869,
+          "type": "geometry_msgs/PoseStamped"
+        }
+      },
+      "has_mavros_pose": false,
+      "has_mavros_state": false,
+      "has_setpoint": false
+    },
+    {
+      "path": "/home/demo/m4-priority-retest.5by9duhv/live.bag",
+      "topics": {
+        "/target/ground_truth/pose": {
+          "messages": 529,
+          "type": "geometry_msgs/PoseStamped"
+        }
+      },
+      "has_mavros_pose": false,
+      "has_mavros_state": false,
+      "has_setpoint": false
+    },
+    {
+      "path": "/home/demo/m4-delivery.MY0uHa/live.bag",
+      "topics": {
+        "/target/pose": {
+          "messages": 897,
+          "type": "geometry_msgs/PoseStamped"
+        }
+      },
+      "has_mavros_pose": false,
+      "has_mavros_state": false,
+      "has_setpoint": false
+    },
+    {
+      "path": "/home/demo/m4-dual-identity.eeghNF/dual-identity.bag",
+      "topics": {},
+      "has_mavros_pose": false,
+      "has_mavros_state": false,
+      "has_setpoint": false
+    },
+    {
+      "path": "/home/demo/m4-ort1-ab/B-ort1.bag",
+      "topics": {
+        "/target/ground_truth/pose": {
+          "messages": 808,
+          "type": "geometry_msgs/PoseStamped"
+        }
+      },
+      "has_mavros_pose": false,
+      "has_mavros_state": false,
+      "has_setpoint": false
+    },
+    {
+      "path": "/home/demo/m4-ort1-ab/A-default.bag",
+      "topics": {
+        "/target/ground_truth/pose": {
+          "messages": 890,
+          "type": "geometry_msgs/PoseStamped"
+        }
+      },
+      "has_mavros_pose": false,
+      "has_mavros_state": false,
+      "has_setpoint": false
+    },
+    {
+      "path": "/home/demo/m4-latest-frame.X0CTog/live/live.bag",
+      "topics": {
+        "/target/pose": {
+          "messages": 659,
+          "type": "geometry_msgs/PoseStamped"
+        }
+      },
+      "has_mavros_pose": false,
+      "has_mavros_state": false,
+      "has_setpoint": false
+    },
+    {
+      "path": "/home/demo/m4-latest-frame.X0CTog/integration-live/live.bag",
+      "topics": {
+        "/target/pose": {
+          "messages": 530,
+          "type": "geometry_msgs/PoseStamped"
+        }
+      },
+      "has_mavros_pose": false,
+      "has_mavros_state": false,
+      "has_setpoint": false
+    }
+  ],
+  "errors": [
+    {
+      "path": "/home/demo/m4-ort-recovery.i44xyvzx/A1/live.orig.bag",
+      "error": "Unindexed bag"
+    },
+    {
+      "path": "/home/demo/m4-ort-live-abba.kTX5kO/A1/live.bag",
+      "error": "Unindexed bag"
+    }
+  ],
+  "processes": "13465 bash -lc source /opt/ros/noetic/setup.bash; /usr/bin/python3 - <<'PY' import os,json,subprocess,rosbag from pathlib import Path bags=[];errors=[] for base,dirs,files in os.walk('/home/demo'):  depth=len(Path(base).relative_to('/home/demo').parts)  dirs[:]=[d for d in dirs if not d.startswith('.') and d not in ['PX4-Autopilot','lib','node_modules'] and depth<3]  for n in files:   if n.endswith('.bag'):    p=Path(base)/n    try:     with rosbag.Bag(str(p)) as b:      topics=b.get_type_and_topic_info().topics      wanted={k:{'messages':v.message_count,'type':v.msg_type} for k,v in topics.items() if k.startswith(('/mavros/','/ctrl/','/radar/','/target/'))}      bags.append({'path':str(p),'topics':wanted,'has_mavros_pose':'/mavros/local_position/pose' in topics,'has_mavros_state':'/mavros/state' in topics,'has_setpoint':'/mavros/setpoint_raw/local' in topics})    except Exception as ex:errors.append({'path':str(p),'error':str(ex)}) result={'scope':'/home/demo at directory depth <=3, skip hidden/lib/PX4 source; metadata only; no remote teammates or unindexed bag.active examined','bags':bags,'errors':errors,'processes':subprocess.run(['pgrep','-af','gzserver|rosmaster|mavros_node|px4|navigator_node|pid_controller_node|control_mux_node'],stdout=subprocess.PIPE,text=True).stdout,'px4_binary':Path('/home/demo/PX4-Autopilot/build/px4_sitl_default/bin/px4').is_file(),'mavros_binary':Path('/opt/ros/noetic/lib/mavros/mavros_node').is_file()} print(json.dumps(result,ensure_ascii=False,indent=2))  PY\n",
+  "px4_binary": true,
+  "mavros_binary": true
+}

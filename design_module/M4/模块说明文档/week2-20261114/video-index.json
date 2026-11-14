@@ -1,0 +1,50 @@
+[
+  {
+    "bytes": 7918757,
+    "sha256": "283806bf3495048ffad8fab1fec5c89dd948ac87a598928f9c10d20e2c0ed60b",
+    "fps": 60.0,
+    "expected_frames": 4397,
+    "decoded_frames": 4397,
+    "duration": 73.28333333333333,
+    "video_stream_complete": true,
+    "name": "01_M0-M4_相机检测.mp4",
+    "delivery": "由项目成员另行通过团队群聊交付；不上传GitHub",
+    "link": null
+  },
+  {
+    "bytes": 10599524,
+    "sha256": "519697f30f298f38f6278d7f06b27b2793b00f57b76cf2b2b5eac87e82f102d0",
+    "fps": 60.0,
+    "expected_frames": 5579,
+    "decoded_frames": 5579,
+    "duration": 92.98333333333333,
+    "video_stream_complete": true,
+    "name": "02_M4-M5_视觉跟踪.mp4",
+    "delivery": "由项目成员另行通过团队群聊交付；不上传GitHub",
+    "link": null
+  },
+  {
+    "bytes": 9195600,
+    "sha256": "9c0971a5d527b18bac0c5c4f0c71974dff53e9db855ac1266dad7b92fc024da6",
+    "fps": 60.0,
+    "expected_frames": 4659,
+    "decoded_frames": 4659,
+    "duration": 77.65,
+    "video_stream_complete": true,
+    "name": "03_M4-M8_状态机切换.mp4",
+    "delivery": "由项目成员另行通过团队群聊交付；不上传GitHub",
+    "link": null
+  },
+  {
+    "bytes": 9591106,
+    "sha256": "9820f70224cc164485fc19e58fbf3ef20ded13bc4bb31699413e57f60b4c7f3e",
+    "fps": 60.0,
+    "expected_frames": 3670,
+    "decoded_frames": 3670,
+    "duration": 61.166666666666664,
+    "video_stream_complete": true,
+    "name": "04_M4-PID_控制响应.mp4",
+    "delivery": "由项目成员另行通过团队群聊交付；不上传GitHub",
+    "link": null
+  }
+]

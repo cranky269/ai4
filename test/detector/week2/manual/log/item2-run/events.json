@@ -1,0 +1,1982 @@
+[
+  {
+    "phase": "ready",
+    "wall": 1794644432.4844017,
+    "sim": 1246.94,
+    "deadline": 1794644432.484414
+  },
+  {
+    "phase": "countdown",
+    "wall": 1794644680.7212238,
+    "sim": 1413.71,
+    "deadline": 1794644690.7212384
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794644680.8815932,
+    "sim": 1413.77,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "countdown",
+    "wall": 1794644680.883893,
+    "sim": 1413.77,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794644681.5944407,
+    "sim": 1414.18,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "countdown",
+    "wall": 1794644681.5951126,
+    "sim": 1414.18,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794644682.3291178,
+    "sim": 1414.73,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "countdown",
+    "wall": 1794644682.329687,
+    "sim": 1414.73,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794644683.047337,
+    "sim": 1415.18,
+    "targets": [
+      {
+        "confidence": 0.5049625039100647,
+        "bbox": [
+          191.13426208496094,
+          112.95068359375,
+          39.420440673828125,
+          13.462982177734375
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "tracks",
+    "phase": "countdown",
+    "wall": 1794644683.0475354,
+    "sim": 1415.18,
+    "tracks": [
+      {
+        "id": 147,
+        "bbox": [
+          191.13424682617188,
+          112.95068359375,
+          39.420440673828125,
+          13.462982177734375
+        ],
+        "area_ratio": 0.006910373456776142
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794644683.7375605,
+    "sim": 1415.58,
+    "targets": [
+      {
+        "confidence": 0.6771831512451172,
+        "bbox": [
+          174.8251495361328,
+          113.81475830078125,
+          38.414459228515625,
+          12.54278564453125
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "tracks",
+    "phase": "countdown",
+    "wall": 1794644683.739455,
+    "sim": 1415.58,
+    "tracks": [
+      {
+        "id": 147,
+        "bbox": [
+          181.14486694335938,
+          113.49073791503906,
+          38.70905685424805,
+          12.88005256652832
+        ],
+        "area_ratio": 0.006491857580840588
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794644684.3298168,
+    "sim": 1415.89,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "countdown",
+    "wall": 1794644684.330684,
+    "sim": 1415.89,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794644684.9473221,
+    "sim": 1416.23,
+    "targets": [
+      {
+        "confidence": 0.6309769749641418,
+        "bbox": [
+          122.04818725585938,
+          113.05793762207031,
+          40.71588134765625,
+          13.0213623046875
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "tracks",
+    "phase": "countdown",
+    "wall": 1794644684.9485586,
+    "sim": 1416.23,
+    "tracks": [
+      {
+        "id": 149,
+        "bbox": [
+          122.04818725585938,
+          113.05793762207031,
+          40.71588134765625,
+          13.0213623046875
+        ],
+        "area_ratio": 0.0069033363834023476
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794644685.566045,
+    "sim": 1416.63,
+    "targets": [
+      {
+        "confidence": 0.6941280364990234,
+        "bbox": [
+          100.15664672851562,
+          112.529541015625,
+          43.88818359375,
+          14.484527587890625
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "tracks",
+    "phase": "countdown",
+    "wall": 1794644685.567744,
+    "sim": 1416.63,
+    "tracks": [
+      {
+        "id": 148,
+        "bbox": [
+          100.1566390991211,
+          112.529541015625,
+          43.888179779052734,
+          14.484526634216309
+        ],
+        "area_ratio": 0.00827733799815178
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794644686.2204688,
+    "sim": 1417.04,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "countdown",
+    "wall": 1794644686.2207706,
+    "sim": 1417.04,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794644686.9028773,
+    "sim": 1417.49,
+    "targets": [
+      {
+        "confidence": 0.6155878305435181,
+        "bbox": [
+          59.67396545410156,
+          112.158447265625,
+          49.63551330566406,
+          15.7725830078125
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "tracks",
+    "phase": "countdown",
+    "wall": 1794644686.904197,
+    "sim": 1417.49,
+    "tracks": [
+      {
+        "id": 150,
+        "bbox": [
+          59.67396545410156,
+          112.158447265625,
+          49.63551330566406,
+          15.7725830078125
+        ],
+        "area_ratio": 0.01019375305622816
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794644687.5223367,
+    "sim": 1417.84,
+    "targets": [
+      {
+        "confidence": 0.5509503483772278,
+        "bbox": [
+          57.80318069458008,
+          112.92913818359375,
+          51.67153549194336,
+          15.159881591796875
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "tracks",
+    "phase": "countdown",
+    "wall": 1794644687.5226269,
+    "sim": 1417.84,
+    "tracks": [
+      {
+        "id": 150,
+        "bbox": [
+          57.803367614746094,
+          112.92906188964844,
+          51.67133331298828,
+          15.159942626953125
+        ],
+        "area_ratio": 0.01019966695457697
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794644688.1743608,
+    "sim": 1418.31,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "countdown",
+    "wall": 1794644688.1750405,
+    "sim": 1418.31,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794644688.6610398,
+    "sim": 1418.63,
+    "targets": [
+      {
+        "confidence": 0.7324197292327881,
+        "bbox": [
+          89.55796813964844,
+          112.69520568847656,
+          50.67626953125,
+          15.383392333984375
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "tracks",
+    "phase": "countdown",
+    "wall": 1794644688.6623745,
+    "sim": 1418.63,
+    "tracks": [
+      {
+        "id": 148,
+        "bbox": [
+          90.39859008789062,
+          112.66651916503906,
+          50.35707473754883,
+          15.358575820922852
+        ],
+        "area_ratio": 0.010070481337606907
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794644689.1560216,
+    "sim": 1418.97,
+    "targets": [
+      {
+        "confidence": 0.5296292901039124,
+        "bbox": [
+          123.87867736816406,
+          112.00473022460938,
+          46.9608154296875,
+          16.2047119140625
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "tracks",
+    "phase": "countdown",
+    "wall": 1794644689.1577191,
+    "sim": 1418.97,
+    "tracks": [
+      {
+        "id": 149,
+        "bbox": [
+          123.87867736816406,
+          112.00473022460938,
+          46.9608039855957,
+          16.2047061920166
+        ],
+        "area_ratio": 0.009908671490848064
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794644689.64968,
+    "sim": 1419.31,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "countdown",
+    "wall": 1794644689.6502926,
+    "sim": 1419.31,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794644690.170411,
+    "sim": 1419.65,
+    "targets": [
+      {
+        "confidence": 0.6892569661140442,
+        "bbox": [
+          167.9443817138672,
+          112.00764465332031,
+          49.428955078125,
+          16.194091796875
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "tracks",
+    "phase": "countdown",
+    "wall": 1794644690.1713407,
+    "sim": 1419.65,
+    "tracks": [
+      {
+        "id": 147,
+        "bbox": [
+          167.70767211914062,
+          112.05806732177734,
+          49.20001220703125,
+          16.11057472229004
+        ],
+        "area_ratio": 0.010320838540792465
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "countdown",
+    "wall": 1794644690.6969798,
+    "sim": 1420.0,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "countdown",
+    "wall": 1794644690.6991084,
+    "sim": 1420.0,
+    "tracks": []
+  },
+  {
+    "phase": "normal_visible",
+    "wall": 1794644690.763108,
+    "sim": 1420.06,
+    "deadline": 1794644705.7631254
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794644691.2988148,
+    "sim": 1420.4,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "normal_visible",
+    "wall": 1794644691.2999306,
+    "sim": 1420.4,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794644691.8553731,
+    "sim": 1420.73,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "normal_visible",
+    "wall": 1794644691.8562007,
+    "sim": 1420.73,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794644692.3960571,
+    "sim": 1421.1,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "normal_visible",
+    "wall": 1794644692.3965194,
+    "sim": 1421.1,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794644693.0316575,
+    "sim": 1421.59,
+    "targets": [
+      {
+        "confidence": 0.6862908005714417,
+        "bbox": [
+          187.81585693359375,
+          110.93931579589844,
+          46.640625,
+          16.364959716796875
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "tracks",
+    "phase": "normal_visible",
+    "wall": 1794644693.032922,
+    "sim": 1421.59,
+    "tracks": [
+      {
+        "id": 147,
+        "bbox": [
+          182.76339721679688,
+          111.03771209716797,
+          47.99994659423828,
+          16.58197784423828
+        ],
+        "area_ratio": 0.010363724082708359
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794644693.6540182,
+    "sim": 1422.06,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "normal_visible",
+    "wall": 1794644693.6551986,
+    "sim": 1422.06,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794644694.3811433,
+    "sim": 1422.58,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "normal_visible",
+    "wall": 1794644694.3817897,
+    "sim": 1422.58,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794644695.0521955,
+    "sim": 1422.96,
+    "targets": [
+      {
+        "confidence": 0.5565441846847534,
+        "bbox": [
+          91.95262145996094,
+          113.54340362548828,
+          40.246917724609375,
+          12.762680053710938
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "tracks",
+    "phase": "normal_visible",
+    "wall": 1794644695.053977,
+    "sim": 1422.96,
+    "tracks": [
+      {
+        "id": 148,
+        "bbox": [
+          91.09306335449219,
+          113.51423645019531,
+          41.24372482299805,
+          12.953045845031738
+        ],
+        "area_ratio": 0.006956143770366907
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794644695.5493262,
+    "sim": 1423.27,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "normal_visible",
+    "wall": 1794644695.5501192,
+    "sim": 1423.27,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794644696.1314487,
+    "sim": 1423.53,
+    "targets": [
+      {
+        "confidence": 0.5155729651451111,
+        "bbox": [
+          83.56612396240234,
+          113.8371810913086,
+          38.817291259765625,
+          12.154342651367188
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "tracks",
+    "phase": "normal_visible",
+    "wall": 1794644696.1328127,
+    "sim": 1423.53,
+    "tracks": [
+      {
+        "id": 148,
+        "bbox": [
+          86.25720977783203,
+          113.77246856689453,
+          39.20844650268555,
+          12.307108879089355
+        ],
+        "area_ratio": 0.0062831067480146885
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794644696.7423887,
+    "sim": 1423.96,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "normal_visible",
+    "wall": 1794644696.743874,
+    "sim": 1423.96,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794644697.2443876,
+    "sim": 1424.3,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "normal_visible",
+    "wall": 1794644697.2446692,
+    "sim": 1424.3,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794644697.7861447,
+    "sim": 1424.67,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "normal_visible",
+    "wall": 1794644697.7865992,
+    "sim": 1424.67,
+    "tracks": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "normal_visible",
+    "wall": 1794644698.3054123,
+    "sim": 1425.02,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794644698.3061097,
+    "sim": 1425.03,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794644698.9362261,
+    "sim": 1425.4,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "normal_visible",
+    "wall": 1794644698.9376373,
+    "sim": 1425.4,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794644699.5826519,
+    "sim": 1425.85,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "normal_visible",
+    "wall": 1794644699.5832057,
+    "sim": 1425.85,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794644700.1553776,
+    "sim": 1426.26,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "normal_visible",
+    "wall": 1794644700.163766,
+    "sim": 1426.26,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794644700.7164965,
+    "sim": 1426.62,
+    "targets": [
+      {
+        "confidence": 0.5994409322738647,
+        "bbox": [
+          199.41871643066406,
+          113.51708984375,
+          39.840179443359375,
+          12.098480224609375
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "tracks",
+    "phase": "normal_visible",
+    "wall": 1794644700.7188368,
+    "sim": 1426.62,
+    "tracks": [
+      {
+        "id": 147,
+        "bbox": [
+          199.4156494140625,
+          113.31377410888672,
+          40.321468353271484,
+          12.387801170349121
+        ],
+        "area_ratio": 0.006503832992166281
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794644701.334627,
+    "sim": 1427.02,
+    "targets": [
+      {
+        "confidence": 0.5703570246696472,
+        "bbox": [
+          195.30474853515625,
+          113.8551025390625,
+          41.864166259765625,
+          11.95819091796875
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "tracks",
+    "phase": "normal_visible",
+    "wall": 1794644701.3378215,
+    "sim": 1427.03,
+    "tracks": [
+      {
+        "id": 147,
+        "bbox": [
+          197.67747497558594,
+          113.69586944580078,
+          40.920799255371094,
+          12.002513885498047
+        ],
+        "area_ratio": 0.006395214237272739
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794644701.893701,
+    "sim": 1427.4,
+    "targets": [
+      {
+        "confidence": 0.6934611201286316,
+        "bbox": [
+          183.83349609375,
+          113.67422485351562,
+          38.128753662109375,
+          12.7821044921875
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "tracks",
+    "phase": "normal_visible",
+    "wall": 1794644701.897593,
+    "sim": 1427.4,
+    "tracks": [
+      {
+        "id": 147,
+        "bbox": [
+          191.81846618652344,
+          113.79495239257812,
+          39.38359832763672,
+          12.18026065826416
+        ],
+        "area_ratio": 0.006246125791221857
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794644702.442425,
+    "sim": 1427.76,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "normal_visible",
+    "wall": 1794644702.443875,
+    "sim": 1427.76,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794644703.0132349,
+    "sim": 1428.19,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "normal_visible",
+    "wall": 1794644703.0142899,
+    "sim": 1428.19,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794644703.600122,
+    "sim": 1428.62,
+    "targets": [
+      {
+        "confidence": 0.6922516226768494,
+        "bbox": [
+          106.71810913085938,
+          113.46498107910156,
+          42.51507568359375,
+          12.865203857421875
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "tracks",
+    "phase": "normal_visible",
+    "wall": 1794644703.601453,
+    "sim": 1428.62,
+    "tracks": [
+      {
+        "id": 151,
+        "bbox": [
+          106.71810913085938,
+          113.46498107910156,
+          42.51507568359375,
+          12.865203857421875
+        ],
+        "area_ratio": 0.007121941540390253
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794644704.1983995,
+    "sim": 1428.96,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "normal_visible",
+    "wall": 1794644704.199473,
+    "sim": 1428.96,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794644704.9318116,
+    "sim": 1429.49,
+    "targets": [
+      {
+        "confidence": 0.5337029099464417,
+        "bbox": [
+          61.994049072265625,
+          111.67558288574219,
+          49.62457275390625,
+          15.994110107421875
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "tracks",
+    "phase": "normal_visible",
+    "wall": 1794644704.9329147,
+    "sim": 1429.49,
+    "tracks": [
+      {
+        "id": 148,
+        "bbox": [
+          62.46239471435547,
+          111.78618621826172,
+          48.91371154785156,
+          15.76523494720459
+        ],
+        "area_ratio": 0.010040834546089172
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "normal_visible",
+    "wall": 1794644705.4545257,
+    "sim": 1429.81,
+    "targets": [
+      {
+        "confidence": 0.5509503483772278,
+        "bbox": [
+          57.80318069458008,
+          112.92913818359375,
+          51.67153549194336,
+          15.159881591796875
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "tracks",
+    "phase": "normal_visible",
+    "wall": 1794644705.4571555,
+    "sim": 1429.81,
+    "tracks": [
+      {
+        "id": 148,
+        "bbox": [
+          59.12273025512695,
+          112.36121368408203,
+          50.79096984863281,
+          15.542494773864746
+        ],
+        "area_ratio": 0.010278885252773762
+      }
+    ]
+  },
+  {
+    "phase": "target_away",
+    "wall": 1794644705.8682976,
+    "sim": 1430.07,
+    "deadline": 1794644720.868312
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644706.0463004,
+    "sim": 1430.2,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644706.0477147,
+    "sim": 1430.2,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644706.5232637,
+    "sim": 1430.51,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644706.5247064,
+    "sim": 1430.51,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644707.051967,
+    "sim": 1430.87,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644707.0525725,
+    "sim": 1430.87,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644707.6140618,
+    "sim": 1431.27,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644707.6148183,
+    "sim": 1431.27,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644708.1811106,
+    "sim": 1431.62,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644708.1818087,
+    "sim": 1431.62,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644708.9713557,
+    "sim": 1432.2,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644708.972822,
+    "sim": 1432.2,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644709.5420241,
+    "sim": 1432.63,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644709.5424306,
+    "sim": 1432.63,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644710.0382125,
+    "sim": 1432.94,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644710.0386267,
+    "sim": 1432.94,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644711.0293992,
+    "sim": 1433.65,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644711.029822,
+    "sim": 1433.65,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644711.5473893,
+    "sim": 1433.98,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644711.5479162,
+    "sim": 1433.98,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644712.098763,
+    "sim": 1434.36,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644712.0992763,
+    "sim": 1434.36,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644712.6688807,
+    "sim": 1434.76,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644712.6694176,
+    "sim": 1434.76,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644713.3095984,
+    "sim": 1435.17,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644713.3202047,
+    "sim": 1435.18,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644713.929123,
+    "sim": 1435.6,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644713.9344409,
+    "sim": 1435.6,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644714.401751,
+    "sim": 1435.92,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644714.4063702,
+    "sim": 1435.92,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644714.9837828,
+    "sim": 1436.3,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644714.9868562,
+    "sim": 1436.3,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644715.5256803,
+    "sim": 1436.68,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644715.5298026,
+    "sim": 1436.68,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644716.0341923,
+    "sim": 1437.0,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644716.0375865,
+    "sim": 1437.01,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644716.5847175,
+    "sim": 1437.4,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644716.584772,
+    "sim": 1437.4,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644717.1109574,
+    "sim": 1437.76,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644717.117662,
+    "sim": 1437.77,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644717.6508157,
+    "sim": 1438.13,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644717.6525168,
+    "sim": 1438.13,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644718.1519754,
+    "sim": 1438.43,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644718.1554089,
+    "sim": 1438.43,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644718.6634362,
+    "sim": 1438.79,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644718.66489,
+    "sim": 1438.79,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644719.2604685,
+    "sim": 1439.22,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644719.2605348,
+    "sim": 1439.22,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644719.8184812,
+    "sim": 1439.64,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644719.8185275,
+    "sim": 1439.64,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644720.292533,
+    "sim": 1439.97,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644720.293445,
+    "sim": 1439.97,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_away",
+    "wall": 1794644720.7540283,
+    "sim": 1440.27,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_away",
+    "wall": 1794644720.7540946,
+    "sim": 1440.27,
+    "tracks": []
+  },
+  {
+    "phase": "target_restored",
+    "wall": 1794644720.9357646,
+    "sim": 1440.39,
+    "deadline": 1794644735.9357767
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644721.4524927,
+    "sim": 1440.76,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_restored",
+    "wall": 1794644721.4541404,
+    "sim": 1440.76,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644722.0182788,
+    "sim": 1441.16,
+    "targets": [
+      {
+        "confidence": 0.6900629997253418,
+        "bbox": [
+          111.6020278930664,
+          110.85569763183594,
+          51.26653289794922,
+          17.413711547851562
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_restored",
+    "wall": 1794644722.0183244,
+    "sim": 1441.16,
+    "tracks": [
+      {
+        "id": 152,
+        "bbox": [
+          111.6020278930664,
+          110.85569763183594,
+          51.26653289794922,
+          17.413711547851562
+        ],
+        "area_ratio": 0.011624226346611977
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644722.5205483,
+    "sim": 1441.47,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_restored",
+    "wall": 1794644722.5206144,
+    "sim": 1441.47,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644723.0938654,
+    "sim": 1441.93,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_restored",
+    "wall": 1794644723.0983922,
+    "sim": 1441.93,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644723.6032922,
+    "sim": 1442.31,
+    "targets": [
+      {
+        "confidence": 0.5396049618721008,
+        "bbox": [
+          186.8338623046875,
+          111.944091796875,
+          52.23883056640625,
+          16.5093994140625
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_restored",
+    "wall": 1794644723.610916,
+    "sim": 1442.31,
+    "tracks": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_restored",
+    "wall": 1794644724.1185431,
+    "sim": 1442.69,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644724.1192985,
+    "sim": 1442.69,
+    "targets": [
+      {
+        "confidence": 0.5013288259506226,
+        "bbox": [
+          205.12045288085938,
+          112.34815979003906,
+          54.316131591796875,
+          60.589599609375
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644724.6878603,
+    "sim": 1443.12,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_restored",
+    "wall": 1794644724.6892905,
+    "sim": 1443.12,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644725.258711,
+    "sim": 1443.47,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_restored",
+    "wall": 1794644725.260609,
+    "sim": 1443.47,
+    "tracks": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_restored",
+    "wall": 1794644725.8720696,
+    "sim": 1443.85,
+    "tracks": [
+      {
+        "id": 153,
+        "bbox": [
+          183.32589721679688,
+          113.08033752441406,
+          44.20489501953125,
+          13.557769775390625
+        ],
+        "area_ratio": 0.007803643122315407
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644725.8731334,
+    "sim": 1443.85,
+    "targets": [
+      {
+        "confidence": 0.6824837923049927,
+        "bbox": [
+          183.32589721679688,
+          113.08033752441406,
+          44.20489501953125,
+          13.557769775390625
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_restored",
+    "wall": 1794644726.4286256,
+    "sim": 1444.24,
+    "tracks": [
+      {
+        "id": 153,
+        "bbox": [
+          157.20999145507812,
+          112.89102172851562,
+          42.24106979370117,
+          14.133853912353516
+        ],
+        "area_ratio": 0.0077738165855407715
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644726.4297907,
+    "sim": 1444.24,
+    "targets": [
+      {
+        "confidence": 0.550037145614624,
+        "bbox": [
+          157.20741271972656,
+          112.89100646972656,
+          42.240875244140625,
+          14.1339111328125
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_restored",
+    "wall": 1794644726.972487,
+    "sim": 1444.63,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644726.9746575,
+    "sim": 1444.63,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_restored",
+    "wall": 1794644727.529871,
+    "sim": 1445.04,
+    "tracks": [
+      {
+        "id": 153,
+        "bbox": [
+          107.29667663574219,
+          113.90701293945312,
+          38.4466667175293,
+          12.391873359680176
+        ],
+        "area_ratio": 0.006203466560691595
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644727.5313017,
+    "sim": 1445.04,
+    "targets": [
+      {
+        "confidence": 0.6975102424621582,
+        "bbox": [
+          107.30111694335938,
+          113.91044616699219,
+          38.4468994140625,
+          12.384765625
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_restored",
+    "wall": 1794644728.0773163,
+    "sim": 1445.41,
+    "tracks": [
+      {
+        "id": 153,
+        "bbox": [
+          94.84105682373047,
+          114.1295394897461,
+          37.718353271484375,
+          11.865793228149414
+        ],
+        "area_ratio": 0.005827580112963915
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644728.0781944,
+    "sim": 1445.41,
+    "targets": [
+      {
+        "confidence": 0.686600923538208,
+        "bbox": [
+          99.58064270019531,
+          114.02342224121094,
+          38.161407470703125,
+          11.992218017578125
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644728.6647372,
+    "sim": 1445.84,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_restored",
+    "wall": 1794644728.6655962,
+    "sim": 1445.84,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644729.1845126,
+    "sim": 1446.19,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_restored",
+    "wall": 1794644729.1931338,
+    "sim": 1446.2,
+    "tracks": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_restored",
+    "wall": 1794644729.9933238,
+    "sim": 1446.72,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644729.9941642,
+    "sim": 1446.73,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_restored",
+    "wall": 1794644730.4640245,
+    "sim": 1446.97,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644730.464481,
+    "sim": 1446.97,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_restored",
+    "wall": 1794644731.0307932,
+    "sim": 1447.32,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644731.0311568,
+    "sim": 1447.32,
+    "targets": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644731.6132796,
+    "sim": 1447.76,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_restored",
+    "wall": 1794644731.6152658,
+    "sim": 1447.76,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644732.1802638,
+    "sim": 1448.23,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_restored",
+    "wall": 1794644732.1816716,
+    "sim": 1448.24,
+    "tracks": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_restored",
+    "wall": 1794644732.783939,
+    "sim": 1448.65,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644732.78416,
+    "sim": 1448.65,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_restored",
+    "wall": 1794644733.356521,
+    "sim": 1448.95,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644733.3565931,
+    "sim": 1448.95,
+    "targets": [
+      {
+        "confidence": 0.5704323053359985,
+        "bbox": [
+          199.28555297851562,
+          113.52796173095703,
+          40.2164306640625,
+          12.222824096679688
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_restored",
+    "wall": 1794644733.9460638,
+    "sim": 1449.32,
+    "tracks": []
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644733.947326,
+    "sim": 1449.32,
+    "targets": [
+      {
+        "confidence": 0.5180857181549072,
+        "bbox": [
+          194.47579956054688,
+          113.80093383789062,
+          40.483642578125,
+          11.048233032226562
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_restored",
+    "wall": 1794644734.535035,
+    "sim": 1449.72,
+    "tracks": [
+      {
+        "id": 154,
+        "bbox": [
+          184.77420043945312,
+          113.4852066040039,
+          39.50341796875,
+          12.982177734375
+        ],
+        "area_ratio": 0.0066776094026863575
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644734.5458379,
+    "sim": 1449.73,
+    "targets": [
+      {
+        "confidence": 0.6308199763298035,
+        "bbox": [
+          184.77420043945312,
+          113.4852066040039,
+          39.50341796875,
+          12.982177734375
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_restored",
+    "wall": 1794644735.1661878,
+    "sim": 1450.14,
+    "tracks": [
+      {
+        "id": 154,
+        "bbox": [
+          175.9479522705078,
+          113.82202911376953,
+          39.08024215698242,
+          11.98898983001709
+        ],
+        "area_ratio": 0.0061006853356957436
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644735.1669655,
+    "sim": 1450.14,
+    "targets": [
+      {
+        "confidence": 0.6245755553245544,
+        "bbox": [
+          175.94708251953125,
+          113.82205963134766,
+          39.0802001953125,
+          11.9888916015625
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "target_restored",
+    "wall": 1794644735.7027767,
+    "sim": 1450.43,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "target_restored",
+    "wall": 1794644735.704062,
+    "sim": 1450.43,
+    "tracks": []
+  },
+  {
+    "phase": "finished",
+    "wall": 1794644735.9477766,
+    "sim": 1450.58,
+    "deadline": 1794644735.9477944
+  },
+  {
+    "kind": "detections",
+    "phase": "finished",
+    "wall": 1794644736.284561,
+    "sim": 1450.79,
+    "targets": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "finished",
+    "wall": 1794644736.2859194,
+    "sim": 1450.79,
+    "tracks": []
+  },
+  {
+    "kind": "tracks",
+    "phase": "finished",
+    "wall": 1794644736.945363,
+    "sim": 1451.25,
+    "tracks": [
+      {
+        "id": 152,
+        "bbox": [
+          84.63042449951172,
+          112.22372436523438,
+          47.33613586425781,
+          14.855560302734375
+        ],
+        "area_ratio": 0.009156312793493271
+      }
+    ]
+  },
+  {
+    "kind": "detections",
+    "phase": "finished",
+    "wall": 1794644736.9454386,
+    "sim": 1451.25,
+    "targets": [
+      {
+        "confidence": 0.5681098699569702,
+        "bbox": [
+          84.63041687011719,
+          112.22372436523438,
+          47.33613586425781,
+          14.855560302734375
+        ]
+      }
+    ]
+  }
+]

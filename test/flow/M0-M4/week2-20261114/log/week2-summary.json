@@ -1,0 +1,18 @@
+{
+  "connection": "/home/demo/ai4-formal-e6a5328/data/radar/20261114_001812_31195c53-5af8-4b86-a912-93b00afa3cdb/connection.bash",
+  "master": "http://127.0.0.1:38191",
+  "source": "new Gazebo M0 desktop, unchanged c421ec7 M4, ORT1",
+  "duration_wall": 60,
+  "camera_count": 332,
+  "camera_hz": 6.49500777160027,
+  "det_count": 94,
+  "det_hz": 2.7335111302617197,
+  "track_count": 95,
+  "track_hz": 2.7629636690382253,
+  "debug_count": 95,
+  "debug_hz": 2.764076504653023,
+  "empty_det": 46,
+  "empty_track": 54,
+  "debug_age_sim_max": 0.8260000000000005,
+  "nonempty_det": 48
+}

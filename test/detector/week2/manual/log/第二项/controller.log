@@ -1,0 +1,6 @@
+{"phase": "ready", "wall": 1794644432.4844017, "sim": 1246.94, "deadline": 1794644432.484414}
+{"phase": "countdown", "wall": 1794644680.7212238, "sim": 1413.71, "deadline": 1794644690.7212384}
+{"phase": "normal_visible", "wall": 1794644690.763108, "sim": 1420.06, "deadline": 1794644705.7631254}
+{"phase": "target_away", "wall": 1794644705.8682976, "sim": 1430.07, "deadline": 1794644720.868312}
+{"phase": "target_restored", "wall": 1794644720.9357646, "sim": 1440.39, "deadline": 1794644735.9357767}
+{"phase": "finished", "wall": 1794644735.9477766, "sim": 1450.58, "deadline": 1794644735.9477944}

@@ -1,0 +1,332 @@
+[
+  {
+    "mode": "original_defaults",
+    "dimensions": [
+      640,
+      480
+    ],
+    "case": "center",
+    "bbox": [
+      150,
+      110,
+      20,
+      20
+    ],
+    "actual_image_center": [
+      160,
+      120
+    ],
+    "PID_error_pixels": [
+      -160.0,
+      -120.0
+    ],
+    "output": {
+      "phase": "original_defaults/center",
+      "wall": 46994.456858943,
+      "x": 0.09479166651144624,
+      "y": 0.0,
+      "z": 1.0,
+      "yaw": 1.0,
+      "frame": 9,
+      "mask": 1479
+    },
+    "source": "original unmodified ROS node; temporary parameters only in isolated test"
+  },
+  {
+    "mode": "original_defaults",
+    "dimensions": [
+      640,
+      480
+    ],
+    "case": "left",
+    "bbox": [
+      110,
+      110,
+      20,
+      20
+    ],
+    "actual_image_center": [
+      160,
+      120
+    ],
+    "PID_error_pixels": [
+      -200.0,
+      -120.0
+    ],
+    "output": {
+      "phase": "original_defaults/left",
+      "wall": 46994.796795343,
+      "x": 0.09479166651144624,
+      "y": 0.0,
+      "z": 1.0,
+      "yaw": 1.0,
+      "frame": 9,
+      "mask": 1479
+    },
+    "source": "original unmodified ROS node; temporary parameters only in isolated test"
+  },
+  {
+    "mode": "original_defaults",
+    "dimensions": [
+      640,
+      480
+    ],
+    "case": "right",
+    "bbox": [
+      190,
+      110,
+      20,
+      20
+    ],
+    "actual_image_center": [
+      160,
+      120
+    ],
+    "PID_error_pixels": [
+      -120.0,
+      -120.0
+    ],
+    "output": {
+      "phase": "original_defaults/right",
+      "wall": 46995.116933122,
+      "x": 0.09479166651144624,
+      "y": 0.0,
+      "z": 1.0,
+      "yaw": 1.0,
+      "frame": 9,
+      "mask": 1479
+    },
+    "source": "original unmodified ROS node; temporary parameters only in isolated test"
+  },
+  {
+    "mode": "original_defaults",
+    "dimensions": [
+      640,
+      480
+    ],
+    "case": "up",
+    "bbox": [
+      150,
+      80,
+      20,
+      20
+    ],
+    "actual_image_center": [
+      160,
+      120
+    ],
+    "PID_error_pixels": [
+      -160.0,
+      -150.0
+    ],
+    "output": {
+      "phase": "original_defaults/up",
+      "wall": 46995.457117978,
+      "x": 0.09479166651144624,
+      "y": 0.0,
+      "z": 1.0,
+      "yaw": 1.0,
+      "frame": 9,
+      "mask": 1479
+    },
+    "source": "original unmodified ROS node; temporary parameters only in isolated test"
+  },
+  {
+    "mode": "original_defaults",
+    "dimensions": [
+      640,
+      480
+    ],
+    "case": "down",
+    "bbox": [
+      150,
+      140,
+      20,
+      20
+    ],
+    "actual_image_center": [
+      160,
+      120
+    ],
+    "PID_error_pixels": [
+      -160.0,
+      -90.0
+    ],
+    "output": {
+      "phase": "original_defaults/down",
+      "wall": 46995.797146033,
+      "x": 0.09479166651144624,
+      "y": 0.0,
+      "z": 0.9,
+      "yaw": 1.0,
+      "frame": 9,
+      "mask": 1479
+    },
+    "source": "original unmodified ROS node; temporary parameters only in isolated test"
+  },
+  {
+    "mode": "temporary_test_dimensions",
+    "dimensions": [
+      320,
+      240
+    ],
+    "case": "center",
+    "bbox": [
+      150,
+      110,
+      20,
+      20
+    ],
+    "actual_image_center": [
+      160,
+      120
+    ],
+    "PID_error_pixels": [
+      0.0,
+      0.0
+    ],
+    "output": {
+      "phase": "temporary_test_dimensions/center",
+      "wall": 46997.464367335,
+      "x": 0.09479166651144624,
+      "y": 0.0,
+      "z": 0.0,
+      "yaw": 0.0,
+      "frame": 9,
+      "mask": 1479
+    },
+    "source": "original unmodified ROS node; temporary parameters only in isolated test"
+  },
+  {
+    "mode": "temporary_test_dimensions",
+    "dimensions": [
+      320,
+      240
+    ],
+    "case": "left",
+    "bbox": [
+      110,
+      110,
+      20,
+      20
+    ],
+    "actual_image_center": [
+      160,
+      120
+    ],
+    "PID_error_pixels": [
+      -40.0,
+      0.0
+    ],
+    "output": {
+      "phase": "temporary_test_dimensions/left",
+      "wall": 46997.804282168,
+      "x": 0.09479166651144624,
+      "y": 0.0,
+      "z": 0.0,
+      "yaw": 0.4000000059604645,
+      "frame": 9,
+      "mask": 1479
+    },
+    "source": "original unmodified ROS node; temporary parameters only in isolated test"
+  },
+  {
+    "mode": "temporary_test_dimensions",
+    "dimensions": [
+      320,
+      240
+    ],
+    "case": "right",
+    "bbox": [
+      190,
+      110,
+      20,
+      20
+    ],
+    "actual_image_center": [
+      160,
+      120
+    ],
+    "PID_error_pixels": [
+      40.0,
+      0.0
+    ],
+    "output": {
+      "phase": "temporary_test_dimensions/right",
+      "wall": 46998.123561388,
+      "x": 0.09479166651144624,
+      "y": 0.0,
+      "z": 0.0,
+      "yaw": -0.4000000059604645,
+      "frame": 9,
+      "mask": 1479
+    },
+    "source": "original unmodified ROS node; temporary parameters only in isolated test"
+  },
+  {
+    "mode": "temporary_test_dimensions",
+    "dimensions": [
+      320,
+      240
+    ],
+    "case": "up",
+    "bbox": [
+      150,
+      80,
+      20,
+      20
+    ],
+    "actual_image_center": [
+      160,
+      120
+    ],
+    "PID_error_pixels": [
+      0.0,
+      -30.0
+    ],
+    "output": {
+      "phase": "temporary_test_dimensions/up",
+      "wall": 46998.463816976,
+      "x": 0.09479166651144624,
+      "y": 0.0,
+      "z": 0.3,
+      "yaw": 0.0,
+      "frame": 9,
+      "mask": 1479
+    },
+    "source": "original unmodified ROS node; temporary parameters only in isolated test"
+  },
+  {
+    "mode": "temporary_test_dimensions",
+    "dimensions": [
+      320,
+      240
+    ],
+    "case": "down",
+    "bbox": [
+      150,
+      140,
+      20,
+      20
+    ],
+    "actual_image_center": [
+      160,
+      120
+    ],
+    "PID_error_pixels": [
+      0.0,
+      30.0
+    ],
+    "output": {
+      "phase": "temporary_test_dimensions/down",
+      "wall": 46998.80381626,
+      "x": 0.09479166651144624,
+      "y": 0.0,
+      "z": -0.3,
+      "yaw": 0.0,
+      "frame": 9,
+      "mask": 1479
+    },
+    "source": "original unmodified ROS node; temporary parameters only in isolated test"
+  }
+]

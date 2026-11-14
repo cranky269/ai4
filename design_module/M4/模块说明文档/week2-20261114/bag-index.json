@@ -1,0 +1,80 @@
+[
+  {
+    "archive_relative_path": "20261114-M4第二周/receiver.bag",
+    "bytes": 2069636,
+    "sha256": "be141b5fb81e1443b99eb470a9de41821a80c54365a01d2796105c99b85aa407",
+    "delivery": "原始bag保留本地，未上传源码；可按需由成员另行交付"
+  },
+  {
+    "archive_relative_path": "20261114-M4第二周/live/live.bag",
+    "bytes": 150543,
+    "sha256": "3c8f0ccc36499c61813aee0861302dd6e27a58ad1d22321027f1f0bbcc0d12e2",
+    "delivery": "原始bag保留本地，未上传源码；可按需由成员另行交付"
+  },
+  {
+    "archive_relative_path": "20261114-M4第二周/live-success/live.bag",
+    "bytes": 1111174,
+    "sha256": "5d7434a12df8db3fde735669d3e16b27a35ee0ced59dadc25d206358aaebb7da",
+    "delivery": "原始bag保留本地，未上传源码；可按需由成员另行交付"
+  },
+  {
+    "archive_relative_path": "20261114-M4完整性补测/initial-harness-failure/controlled.bag",
+    "bytes": 6746,
+    "sha256": "76c329a5261e7b227c14ac25c1985bc29d3929dd9902aad5865f5350e5f8a406",
+    "delivery": "原始bag保留本地，未上传源码；可按需由成员另行交付"
+  },
+  {
+    "archive_relative_path": "20261114-M4完整性补测/mux/controlled.bag",
+    "bytes": 25134,
+    "sha256": "aa01384be05e126b6251532c848f5d9dac2d368800e9d534833a9b4553a1de49",
+    "delivery": "原始bag保留本地，未上传源码；可按需由成员另行交付"
+  },
+  {
+    "archive_relative_path": "20261114-M4完整性补测/receivers/controlled.bag",
+    "bytes": 50750,
+    "sha256": "d97825c671921c5cfe60f325fd4cf22fe6e45ea4bb9da9bd63f80a22fe2bd760",
+    "delivery": "原始bag保留本地，未上传源码；可按需由成员另行交付"
+  },
+  {
+    "archive_relative_path": "20261114-M4完整性补测/receivers/real-receiver.bag",
+    "bytes": 310579,
+    "sha256": "b2e369efa7c6a6974566106fbb96e024bbf1450ddde7cfa0d71149cf34c9e89c",
+    "delivery": "原始bag保留本地，未上传源码；可按需由成员另行交付"
+  },
+  {
+    "archive_relative_path": "20261114-M4尺寸方向核验/controlled.bag",
+    "bytes": 17158,
+    "sha256": "5a80cafc0780867988795191809c0518662723a2406a7897f46310bdeb3a5cf3",
+    "delivery": "原始bag保留本地，未上传源码；可按需由成员另行交付"
+  },
+  {
+    "archive_relative_path": "20261114-M4人工验收/第三项/live.bag",
+    "bytes": 7550,
+    "sha256": "6e04c349fd39d96a21fcf1bc4e2ef4d1dc186bf39d700db7748fc8c1128b68d1",
+    "delivery": "原始bag保留本地，未上传源码；可按需由成员另行交付"
+  },
+  {
+    "archive_relative_path": "20261114-M4人工验收/第四项/live.bag",
+    "bytes": 75398,
+    "sha256": "330ace41376f0f3dd19238044e968dc3a00e28fa6b1c83be24bfaa23e4de067e",
+    "delivery": "原始bag保留本地，未上传源码；可按需由成员另行交付"
+  },
+  {
+    "archive_relative_path": "20261114-M4人工验收/第二项/manual-item2-162032/live.bag",
+    "bytes": 1437570,
+    "sha256": "0226425163ea6adc30f192aefc37b50b71be21ef3d7b24f4e733ef4c0d6e6094",
+    "delivery": "原始bag保留本地，未上传源码；可按需由成员另行交付"
+  },
+  {
+    "archive_relative_path": "20261114-M4人工验收/共享实时会话/manual-item1/live.bag",
+    "bytes": 1402020,
+    "sha256": "904fe579faa64eb43d9f4a0fabd04ce1759b2039eab8f3d9903c0ce874666640",
+    "delivery": "原始bag保留本地，未上传源码；可按需由成员另行交付"
+  },
+  {
+    "archive_relative_path": "20261114-M4人工验收/共享实时会话/manual-item1-161138/live.bag",
+    "bytes": 1435238,
+    "sha256": "2d94214304a300426c660beee78cabaf4981f01cf21c438e9aff95b5af6d25aa",
+    "delivery": "原始bag保留本地，未上传源码；可按需由成员另行交付"
+  }
+]

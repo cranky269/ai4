@@ -1,0 +1,23 @@
+{
+  "item": 1,
+  "state": "waiting_for_user_start",
+  "connection": "/home/demo/ai4-formal-e6a5328/data/radar/20261114_154958_b258a30a-e054-46a5-9db8-c4bf6f1a0339/connection.bash",
+  "master": "http://127.0.0.1:36667",
+  "model": "/home/demo/m4-yolo11s-validation.8b694G/yolo11s-drone.onnx",
+  "processes": [
+    {
+      "name": "m4",
+      "pid": 63051
+    },
+    {
+      "name": "viewer",
+      "pid": 63057
+    },
+    {
+      "name": "armed-controller",
+      "pid": 63059
+    }
+  ],
+  "automatic_target_actions": false,
+  "recording": "User OBS; not started by Work"
+}

@@ -1,0 +1,31 @@
+{
+  "normal_visible": {
+    "detections": 25,
+    "nonempty_detections": 9,
+    "tracks": 25,
+    "nonempty_tracks": 9,
+    "ids": [
+      147,
+      148,
+      151
+    ]
+  },
+  "target_away": {
+    "detections": 27,
+    "nonempty_detections": 0,
+    "tracks": 27,
+    "nonempty_tracks": 0,
+    "ids": []
+  },
+  "target_restored": {
+    "detections": 26,
+    "nonempty_detections": 11,
+    "tracks": 26,
+    "nonempty_tracks": 7,
+    "ids": [
+      152,
+      153,
+      154
+    ]
+  }
+}
