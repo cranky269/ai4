@@ -1,4 +1,7 @@
 <launch>
+  <arg name="observer_world_x" default="0.0"/>
+  <arg name="observer_world_y" default="0.45"/>
+  <arg name="observer_world_z" default="1.3"/>
   <arg name="continuous_observer" default="false"/>
   <arg name="wait_for_radar_gui" default="false"/>
   <arg name="paused" default="false"/>
@@ -33,7 +36,7 @@
   <node if="$(arg gui)" pkg="uav_sim" type="native_gzclient.sh" name="gazebo_gui" args="--verbose" output="screen"><env name="AI4_WAIT_RADAR_GUI" value="$(arg wait_for_radar_gui)"/><env name="AI4_WAIT_TARGET_GUI" value="$(arg dynamic_target)"/></node>
   <!-- Static model pose and physical camera mounting; optical z=body x, x=-body y, y=-body z. -->
   <!-- Actual model pose TF; movement is idle unless explicitly triggered. -->
-  <node pkg="uav_sim" type="camera_motion_demo.py" name="world_uav_tf" output="screen"><param name="continuous" value="$(arg continuous_observer)"/></node>
+  <node pkg="uav_sim" type="camera_motion_demo.py" name="world_uav_tf" output="screen"><param name="observer_world_x" value="$(arg observer_world_x)"/><param name="observer_world_y" value="$(arg observer_world_y)"/><param name="observer_world_z" value="$(arg observer_world_z)"/><param name="continuous" value="$(arg continuous_observer)"/></node>
   <node pkg="tf2_ros" type="static_transform_publisher" name="uav_camera_mount_tf" args="0.20 0 0.12 0 0 0 1 uav_base_link uav_camera_link"/>
   <node pkg="tf2_ros" type="static_transform_publisher" name="uav_camera_optical_tf" args="0 0 0 -0.5 0.5 -0.5 0.5 uav_camera_link uav_camera_optical_frame"/>
   <node if="$(arg camera_view)" pkg="image_view" type="image_view" name="onboard_camera_view" output="screen">
