@@ -1,0 +1,24 @@
+TOPIC /test/detections
+  type: uav_tracking/Detections
+  publishers: ['/m5_m6_real_flow_audit_403888']
+  subscribers: ['/m5_flow_visual_tracker_403888']
+TOPIC /test/camera/image_raw
+  type: sensor_msgs/Image
+  publishers: ['/m5_m6_real_flow_audit_403888']
+  subscribers: ['/m5_flow_visual_tracker_403888']
+TOPIC /test/visual_tracks
+  type: uav_tracking/VisualTrackArray
+  publishers: ['/m5_flow_visual_tracker_403888']
+  subscribers: ['/m5_m6_real_flow_audit_403888', '/m6_flow_pid_controller_403888']
+TOPIC /test/ctrl_visual
+  type: mavros_msgs/PositionTarget
+  publishers: ['/m6_flow_pid_controller_403888']
+  subscribers: ['/m5_m6_real_flow_audit_403888']
+TOPIC /ctrl/visual
+  type: <not published>
+  publishers: []
+  subscribers: []
+TOPIC /mavros/setpoint_raw/local
+  type: <not published>
+  publishers: []
+  subscribers: []

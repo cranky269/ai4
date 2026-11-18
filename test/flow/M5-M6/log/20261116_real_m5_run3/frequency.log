@@ -1,0 +1,26 @@
+{
+  "controlled_detections_overall_hz": 18.63063678542743,
+  "real_m5_visual_tracks_overall_hz": 18.636325105016528,
+  "controlled_detections_active_phase_mean_hz": 19.969509781264836,
+  "real_m5_visual_tracks_active_phase_mean_hz": 19.979573491656335,
+  "real_m6_ctrl_visual_hz": 49.99794057724645,
+  "controlled_image_nominal_hz": 10.0,
+  "controlled_detections_by_phase_hz": {
+    "CENTER": 19.981026830839482,
+    "RIGHT_DOWN_FAR": 20.011955661275454,
+    "TERMINAL_035": 19.960778238765588,
+    "BELOW_03499": 19.98161576679237,
+    "ABOVE_03501": 19.949917259419436,
+    "PRE_TIMEOUT_FAR": 19.922753758616604,
+    "RECOVERY": 19.97852095314492
+  },
+  "real_m5_visual_tracks_by_phase_hz": {
+    "CENTER": 20.01796940468491,
+    "RIGHT_DOWN_FAR": 20.010754431799203,
+    "TERMINAL_035": 19.959533391445284,
+    "BELOW_03499": 20.016256629327497,
+    "ABOVE_03501": 19.92235288953867,
+    "PRE_TIMEOUT_FAR": 19.93079273498743,
+    "RECOVERY": 19.99935495981135
+  }
+}

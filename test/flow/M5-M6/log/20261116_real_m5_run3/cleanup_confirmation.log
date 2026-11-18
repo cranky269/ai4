@@ -1,0 +1,7 @@
+ROS_MASTER_URI=http://127.0.0.1:38983
+ROS_HOME=/tmp/ai4_m5_m6_ros_home_qu7uwp4z
+pid_controller pid=403949 exit=0 stopped=true
+visual_tracker pid=403943 exit=0 stopped=true
+roscore pid=403928 exit=0 stopped=true
+all_task_processes_stopped=true
+alive=[]

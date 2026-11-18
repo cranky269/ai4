@@ -1,0 +1,6 @@
+Type: uav_tracking/CentroidArray
+
+Publishers: None
+
+Subscribers:
+ * /m2_live_tracker (http://127.0.0.1:42067/)

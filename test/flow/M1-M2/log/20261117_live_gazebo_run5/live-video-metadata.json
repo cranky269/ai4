@@ -1,0 +1,40 @@
+{
+  "live": true,
+  "source": "active ROS topics from live M0 Gazebo, real M1 and real M2",
+  "video": "/home/demo/桌面/ai4_flow_videos_live_20261116/M1-M2_live_gazebo.mp4",
+  "frames": 1000,
+  "fps": 25.0,
+  "resolution": [
+    1280,
+    720
+  ],
+  "capture_wall_duration_s": 65.43982256500749,
+  "video_duration_s": 40.0,
+  "codec": "H.264/avc1",
+  "develop_sha": "3e3a5d57f8e59ceecf35cbf5fa8a78c41d8b347d",
+  "run_dir": "/home/demo/桌面/ai4_pr_worktree/data/radar/20261116_223844_9e2bac8e-daba-4925-9c3c-21bfc7b49a4e",
+  "ros_master_uri": [
+    1,
+    "",
+    "http://127.0.0.1:50889/"
+  ],
+  "frame_ids": [
+    "world"
+  ],
+  "empty_messages_seen": 6,
+  "track_deleted": true,
+  "recovered": true,
+  "ids_before_fault": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "ids_after_fault": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "flight_controller_connected": false
+}

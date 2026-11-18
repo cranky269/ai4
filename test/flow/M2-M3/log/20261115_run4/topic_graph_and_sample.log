@@ -1,0 +1,139 @@
+2026-11-15T05:46:51-08:00
+/cluster
+/figure_eight_target
+/gazebo
+/m1_m2_real_relay
+/mounted_radar_tf
+/navigator_flow_m3_run4
+/ray_cloud_bridge
+/rosout
+/sensor_interfaces
+/sensor_source_audit
+/start_sensor_clock
+/tracker_flow_m2
+/uav_camera_mount_tf
+/uav_camera_optical_tf
+/world_uav_tf
+--------------------------------------------------------------------------------
+Node [/tracker_flow_m2]
+Publications:
+ * /radar/tracks [uav_tracking/TrackArray]
+ * /rosout [rosgraph_msgs/Log]
+
+Subscriptions:
+ * /clock [rosgraph_msgs/Clock]
+ * /test/radar_centroid [uav_tracking/CentroidArray]
+
+Services:
+ * /tracker_flow_m2/get_loggers
+ * /tracker_flow_m2/set_logger_level
+
+
+contacting node http://127.0.0.1:46147/ ...
+Pid: 133128
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (43039 - 127.0.0.1:38932) [14]
+    * transport: TCPROS
+ * topic: /clock
+    * to: /gazebo (http://127.0.0.1:37841/)
+    * direction: inbound
+    * transport: TCPROS
+ * topic: /test/radar_centroid
+    * to: /m1_m2_real_relay (http://127.0.0.1:42105/)
+    * direction: inbound
+    * transport: TCPROS
+
+--------------------------------------------------------------------------------
+Node [/navigator_flow_m3_run4]
+Publications:
+ * /rosout [rosgraph_msgs/Log]
+ * /test/ctrl_radar [mavros_msgs/PositionTarget]
+
+Subscriptions:
+ * /clock [rosgraph_msgs/Clock]
+ * /test/local_pose [unknown type]
+ * /test/radar_tracks [unknown type]
+
+Services:
+ * /navigator_flow_m3_run4/get_loggers
+ * /navigator_flow_m3_run4/set_logger_level
+
+
+contacting node http://127.0.0.1:46333/ ...
+Pid: 235098
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (44027 - 127.0.0.1:47556) [15]
+    * transport: TCPROS
+ * topic: /clock
+    * to: /gazebo (http://127.0.0.1:37841/)
+    * direction: inbound
+    * transport: TCPROS
+
+TOPIC=/radar/tracks
+uav_tracking/TrackArray
+Type: uav_tracking/TrackArray
+
+Publishers:
+ * /tracker_flow_m2 (http://127.0.0.1:46147/)
+
+Subscribers: None
+
+
+TOPIC=/test/radar_tracks
+uav_tracking/TrackArray
+Type: uav_tracking/TrackArray
+
+Publishers: None
+
+Subscribers:
+ * /navigator_flow_m3_run4 (http://127.0.0.1:46333/)
+
+
+TOPIC=/test/local_pose
+geometry_msgs/PoseStamped
+Type: geometry_msgs/PoseStamped
+
+Publishers: None
+
+Subscribers:
+ * /navigator_flow_m3_run4 (http://127.0.0.1:46333/)
+
+
+TOPIC=/test/ctrl_radar
+mavros_msgs/PositionTarget
+Type: mavros_msgs/PositionTarget
+
+Publishers:
+ * /navigator_flow_m3_run4 (http://127.0.0.1:46333/)
+
+Subscribers: None
+
+
+OUTPUT_SAMPLE
+header:
+  seq: 635
+  stamp:
+    secs: 0
+    nsecs:         0
+  frame_id: ''
+coordinate_frame: 1
+type_mask: 3576
+position:
+  x: 10.0
+  y: 20.0
+  z: 5.0
+velocity:
+  x: 0.0
+  y: 0.0
+  z: 0.0
+acceleration_or_force:
+  x: 0.0
+  y: 0.0
+  z: 0.0
+yaw: 0.0
+yaw_rate: 0.0
+---

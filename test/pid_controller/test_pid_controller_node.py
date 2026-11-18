@@ -64,6 +64,33 @@ def test_lateral_velocity_is_always_enabled_and_zero():
     assert not msg.type_mask & PositionTarget.IGNORE_VY
 
 
+def test_ros_float32_terminal_area_enters_terminal_branch(monkeypatch):
+    """ROS float32 的数学值 0.35 仍必须触发末端零前进速度。"""
+    clock = [10.0]
+    published = []
+    monkeypatch.setattr(rospy.Time, "now", lambda: rospy.Time.from_sec(clock[0]))
+    monkeypatch.setattr(rospy, "get_param", lambda name, default: default)
+    monkeypatch.setattr(rospy, "Publisher", lambda *a, **kw: SimpleNamespace(publish=published.append))
+    monkeypatch.setattr(rospy, "Subscriber", lambda *a, **kw: None)
+    monkeypatch.setattr(rospy, "Timer", lambda *a, **kw: None)
+    instance = node.PIDControllerNode()
+
+    msg = VisualTrackArray()
+    item = VisualTrackMsg()
+    item.id = 1
+    item.bbox = [76.0, 40.0, 168.0, 160.0]
+    item.area_ratio = 0.35
+    assert float(item.area_ratio) == pytest.approx(0.3499999940395355)
+    msg.tracks.append(item)
+
+    instance.on_tracks(msg)
+    instance.on_timer(None)
+    target = published[-1]
+    assert target.velocity.x == pytest.approx(0.0)
+    assert target.coordinate_frame == PositionTarget.FRAME_BODY_OFFSET_NED
+    assert target.type_mask == 1479
+
+
 @pytest.mark.parametrize("send_empty", [False, True], ids=["upstream_silent", "empty_array"])
 def test_valid_target_then_loss_stops(monkeypatch, send_empty):
     # Mock transport/time only: run the real callbacks and pure PID logic.

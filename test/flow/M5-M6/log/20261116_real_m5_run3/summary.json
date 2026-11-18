@@ -1,0 +1,141 @@
+{
+  "develop_sha": "431c049408f323580a351d6e3532daba8c6742f5",
+  "result": "PASS",
+  "real_m5_used": true,
+  "real_m6_used": true,
+  "real_detector_m4_used": false,
+  "detections_source": "controlled",
+  "image_source": "controlled compliant sensor_msgs/Image",
+  "image_width": 320,
+  "image_height": 240,
+  "m5_m6_interface_result": "PASS",
+  "m6_float32_boundary_result": "PASS",
+  "live_m4_chain_result": "NOT_REPRODUCED: M4 dependencies and accepted model assets are not deployed on this machine",
+  "checks": {
+    "real_m5_node_present": true,
+    "real_m6_node_present": true,
+    "detections_type": true,
+    "visual_tracks_type": true,
+    "ctrl_visual_type": true,
+    "no_real_control_publisher": true,
+    "no_unremapped_ctrl_visual_publisher": true,
+    "center_track_created": true,
+    "right_down_far_track_created": true,
+    "bbox_xywh_semantics": true,
+    "area_ratio_computed_by_m5": true,
+    "id_stable_within_each_phase": true,
+    "empty_detections_produce_empty_tracks": true,
+    "detection_silence_produces_no_m5_events": true,
+    "frame_9": true,
+    "mask_1479": true,
+    "vy_zero": true,
+    "m6_rate_near_50hz": true,
+    "right_yaw_negative": true,
+    "down_vz_negative": true,
+    "far_vx_positive": true,
+    "float32_035_observed": true,
+    "terminal_035_zero": true,
+    "below_03499_not_terminal": true,
+    "above_03501_terminal": true,
+    "empty_has_hold": true,
+    "empty_stops_after_0_2": true,
+    "stop_latency_matches_0_2_seconds": true,
+    "silence_stays_stopped": true,
+    "recovery_tracks": true,
+    "recovery_restores_control": true,
+    "isolated_output_has_only_auditor_subscriber": true
+  },
+  "frequencies": {
+    "controlled_detections_overall_hz": 18.63063678542743,
+    "real_m5_visual_tracks_overall_hz": 18.636325105016528,
+    "controlled_detections_active_phase_mean_hz": 19.969509781264836,
+    "real_m5_visual_tracks_active_phase_mean_hz": 19.979573491656335,
+    "real_m6_ctrl_visual_hz": 49.99794057724645,
+    "controlled_image_nominal_hz": 10.0,
+    "controlled_detections_by_phase_hz": {
+      "CENTER": 19.981026830839482,
+      "RIGHT_DOWN_FAR": 20.011955661275454,
+      "TERMINAL_035": 19.960778238765588,
+      "BELOW_03499": 19.98161576679237,
+      "ABOVE_03501": 19.949917259419436,
+      "PRE_TIMEOUT_FAR": 19.922753758616604,
+      "RECOVERY": 19.97852095314492
+    },
+    "real_m5_visual_tracks_by_phase_hz": {
+      "CENTER": 20.01796940468491,
+      "RIGHT_DOWN_FAR": 20.010754431799203,
+      "TERMINAL_035": 19.959533391445284,
+      "BELOW_03499": 20.016256629327497,
+      "ABOVE_03501": 19.92235288953867,
+      "PRE_TIMEOUT_FAR": 19.93079273498743,
+      "RECOVERY": 19.99935495981135
+    }
+  },
+  "counts": {
+    "detections": 227,
+    "visual_track_arrays": 227,
+    "ctrl_visual": 661,
+    "empty_visual_track_arrays": 51
+  },
+  "ids_by_phase": {
+    "CENTER": [
+      1
+    ],
+    "RIGHT_DOWN_FAR": [
+      2
+    ],
+    "TERMINAL_035": [
+      3
+    ],
+    "BELOW_03499": [
+      4
+    ],
+    "ABOVE_03501": [
+      5
+    ],
+    "PRE_TIMEOUT_FAR": [
+      6
+    ],
+    "RECOVERY": [
+      7
+    ]
+  },
+  "area_ratio_samples": {
+    "terminal_035": [
+      0.3499999940395355,
+      0.3499999940395355,
+      0.3499999940395355,
+      0.3499999940395355,
+      0.3499999940395355
+    ],
+    "below_03499": [
+      0.3498999774456024,
+      0.3498999774456024,
+      0.3498999774456024,
+      0.3498999774456024,
+      0.3498999774456024
+    ],
+    "above_03501": [
+      0.35010001063346863,
+      0.35010001063346863,
+      0.35010001063346863,
+      0.35010001063346863,
+      0.35010001063346863
+    ]
+  },
+  "timeout_observation": {
+    "last_nonempty_visual_track_time": 11.861762981992797,
+    "first_zero_stop_time": 12.07807437099109,
+    "observed_seconds": 0.2163113889982924,
+    "configured_seconds": 0.2
+  },
+  "coordinate_frames": [
+    9
+  ],
+  "type_masks": [
+    1479
+  ],
+  "data_rejected": [],
+  "coordinate_note": "M6 supplies ROS body FLU values; it performs no manual FLU->FRD or ENU->NED conversion",
+  "conclusion": "M5→M6 小联调 PASS：使用受控 Detections 驱动真实 M5，真实 M5 输出 /test/visual_tracks，真实 M6 正确响应。"
+}

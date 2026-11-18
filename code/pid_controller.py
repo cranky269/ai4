@@ -170,7 +170,14 @@ def command_from_track(
     # 面积小于期望值时，期望值 - 实际值为正，明确产生前进速度。
     depth_output = depth_pid.compute(float(desired_area), safe_area, dt)
     velocity_x = _clamp(depth_output, -float(depth_pid.max_out), float(forward_speed_limit))
-    if float(track.area_ratio) >= float(impact_area_threshold):
+    area_ratio = float(track.area_ratio)
+    threshold = float(impact_area_threshold)
+    # VisualTrack.msg 使用 float32；数学值 0.35 经 ROS 序列化后通常为
+    # 0.3499999940395355。边界值仍应进入末端分支，但 0.3499 等真实低于
+    # 阈值的输入不能被提前吸收，因此只使用明确的 float32 量级绝对容差。
+    if area_ratio > threshold or math.isclose(
+        area_ratio, threshold, rel_tol=0.0, abs_tol=1e-7
+    ):
         velocity_x = _clamp(float(terminal_forward_speed), -float(depth_pid.max_out), float(forward_speed_limit))
 
     return PositionCommand(

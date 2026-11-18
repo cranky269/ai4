@@ -1,0 +1,245 @@
+2026-11-15T06:02:05-08:00
+/cluster
+/figure_eight_target
+/gazebo
+/m1_m2_real_relay
+/mounted_radar_tf
+/pid_flow_m6
+/ray_cloud_bridge
+/rosout
+/sensor_interfaces
+/sensor_source_audit
+/start_sensor_clock
+/tracker_flow_m2
+/uav_camera_mount_tf
+/uav_camera_optical_tf
+/world_uav_tf
+--------------------------------------------------------------------------------
+Node [/cluster]
+Publications:
+ * /radar/centroid [uav_tracking/CentroidArray]
+ * /rosout [rosgraph_msgs/Log]
+
+Subscriptions:
+ * /clock [rosgraph_msgs/Clock]
+ * /radar/points [sensor_msgs/PointCloud2]
+
+Services:
+ * /cluster/get_loggers
+ * /cluster/set_logger_level
+
+
+contacting node http://127.0.0.1:39319/ ...
+Pid: 43372
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (41789 - 127.0.0.1:48924) [11]
+    * transport: TCPROS
+ * topic: /radar/centroid
+    * to: /m1_m2_real_relay
+    * direction: outbound (41789 - 127.0.0.1:59940) [15]
+    * transport: TCPROS
+ * topic: /clock
+    * to: /gazebo (http://127.0.0.1:37841/)
+    * direction: inbound
+    * transport: TCPROS
+ * topic: /radar/points
+    * to: /ray_cloud_bridge (http://127.0.0.1:36073/)
+    * direction: inbound
+    * transport: TCPROS
+
+--------------------------------------------------------------------------------
+Node [/tracker_flow_m2]
+Publications:
+ * /radar/tracks [uav_tracking/TrackArray]
+ * /rosout [rosgraph_msgs/Log]
+
+Subscriptions:
+ * /clock [rosgraph_msgs/Clock]
+ * /test/radar_centroid [uav_tracking/CentroidArray]
+
+Services:
+ * /tracker_flow_m2/get_loggers
+ * /tracker_flow_m2/set_logger_level
+
+
+contacting node http://127.0.0.1:46147/ ...
+Pid: 133128
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (43039 - 127.0.0.1:38932) [14]
+    * transport: TCPROS
+ * topic: /clock
+    * to: /gazebo (http://127.0.0.1:37841/)
+    * direction: inbound
+    * transport: TCPROS
+ * topic: /test/radar_centroid
+    * to: /m1_m2_real_relay (http://127.0.0.1:42105/)
+    * direction: inbound
+    * transport: TCPROS
+
+--------------------------------------------------------------------------------
+Node [/m1_m2_real_relay]
+Publications:
+ * /rosout [rosgraph_msgs/Log]
+ * /test/radar_centroid [uav_tracking/CentroidArray]
+
+Subscriptions:
+ * /clock [rosgraph_msgs/Clock]
+ * /radar/centroid [uav_tracking/CentroidArray]
+
+Services:
+ * /m1_m2_real_relay/get_loggers
+ * /m1_m2_real_relay/set_logger_level
+
+
+contacting node http://127.0.0.1:42105/ ...
+Pid: 167874
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (57153 - 127.0.0.1:53996) [15]
+    * transport: TCPROS
+ * topic: /test/radar_centroid
+    * to: /tracker_flow_m2
+    * direction: outbound (57153 - 127.0.0.1:54004) [10]
+    * transport: TCPROS
+ * topic: /clock
+    * to: /gazebo (http://127.0.0.1:37841/)
+    * direction: inbound (55622 - 127.0.0.1:55429) [13]
+    * transport: TCPROS
+ * topic: /radar/centroid
+    * to: /cluster (http://127.0.0.1:39319/)
+    * direction: inbound (59940 - 127.0.0.1:41789) [14]
+    * transport: TCPROS
+
+TOPIC=/radar/centroid
+uav_tracking/CentroidArray
+Type: uav_tracking/CentroidArray
+
+Publishers:
+ * /cluster (http://127.0.0.1:39319/)
+
+Subscribers:
+ * /m1_m2_real_relay (http://127.0.0.1:42105/)
+
+
+TOPIC=/test/radar_centroid
+uav_tracking/CentroidArray
+Type: uav_tracking/CentroidArray
+
+Publishers:
+ * /m1_m2_real_relay (http://127.0.0.1:42105/)
+
+Subscribers:
+ * /tracker_flow_m2 (http://127.0.0.1:46147/)
+
+
+TOPIC=/radar/tracks
+uav_tracking/TrackArray
+Type: uav_tracking/TrackArray
+
+Publishers:
+ * /tracker_flow_m2 (http://127.0.0.1:46147/)
+
+Subscribers: None
+
+
+CENTROID_SAMPLE
+centroids:
+  -
+    header:
+      seq: 17216
+      stamp:
+        secs: 3447
+        nsecs: 202000000
+      frame_id: "world"
+    point:
+      x: 7.87669788165526
+      y: 0.010848097926513716
+      z: 1.5320598906414076
+  -
+    header:
+      seq: 17216
+      stamp:
+        secs: 3447
+        nsecs: 202000000
+      frame_id: "world"
+    point:
+      x: 7.875071894038808
+      y: -1.9979675764387304
+      z: 1.5858277600597253
+  -
+    header:
+      seq: 17216
+      stamp:
+        secs: 3447
+        nsecs: 202000000
+      frame_id: "world"
+    point:
+      x: 7.904932871731845
+      y: 1.9851283127611334
+      z: 1.5913787004622546
+  -
+    header:
+      seq: 17216
+      stamp:
+        secs: 3447
+        nsecs: 202000000
+      frame_id: "world"
+    point:
+      x: 4.569114645322164
+      y: -0.1149363520865639
+      z: 1.4152555465698242
+---
+TRACK_SAMPLE
+tracks:
+  -
+    id: 12
+    position: [7.891807561522843, -0.0066651579604539, 1.5482488345095529]
+    velocity: [0.0023544476350096048, 0.006281252230524044, -0.0064272614225542885]
+    covariance: [0.1385141513362508, 0.0, 0.0, 0.1171389225153027, 0.0, 0.0, 0.0, 0.1385141513362508, 0.0, 0.0, 0.1171389225153027, 0.0, 0.0, 0.0, 0.1385141513362508, 0.0, 0.0, 0.1171389225153027, 0.1171389225153027, 0.0, 0.0, 0.21592116375223097, 0.0, 0.0, 0.0, 0.1171389225153027, 0.0, 0.0, 0.21592116375223097, 0.0, 0.0, 0.0, 0.1171389225153027, 0.0, 0.0, 0.21592116375223097]
+    age: 8419
+  -
+    id: 13
+    position: [7.897616634091103, -1.9763420642466913, 1.5513263526428718]
+    velocity: [0.008277214349842906, 0.006856060726965468, -0.012128544690396367]
+    covariance: [0.1385141513362508, 0.0, 0.0, 0.1171389225153027, 0.0, 0.0, 0.0, 0.1385141513362508, 0.0, 0.0, 0.1171389225153027, 0.0, 0.0, 0.0, 0.1385141513362508, 0.0, 0.0, 0.1171389225153027, 0.1171389225153027, 0.0, 0.0, 0.21592116375223097, 0.0, 0.0, 0.0, 0.1171389225153027, 0.0, 0.0, 0.21592116375223097, 0.0, 0.0, 0.0, 0.1171389225153027, 0.0, 0.0, 0.21592116375223097]
+    age: 8419
+  -
+    id: 14
+    position: [7.9030726714511355, 1.9659545361989663, 1.5519384894855288]
+    velocity: [0.000486378173199427, -0.0003380493024861403, -0.023563558087153963]
+    covariance: [0.1385141513362508, 0.0, 0.0, 0.1171389225153027, 0.0, 0.0, 0.0, 0.1385141513362508, 0.0, 0.0, 0.1171389225153027, 0.0, 0.0, 0.0, 0.1385141513362508, 0.0, 0.0, 0.1171389225153027, 0.1171389225153027, 0.0, 0.0, 0.21592116375223097, 0.0, 0.0, 0.0, 0.1171389225153027, 0.0, 0.0, 0.21592116375223097, 0.0, 0.0, 0.0, 0.1171389225153027, 0.0, 0.0, 0.21592116375223097]
+    age: 8419
+  -
+    id: 16
+    position: [4.30825813938146, -1.0526871579201593, 1.4101069988878434]
+    velocity: [-0.17194058884816182, -0.535714831876991, -0.009734589678679358]
+    covariance: [0.1385141513362508, 0.0, 0.0, 0.1171389225153027, 0.0, 0.0, 0.0, 0.1385141513362508, 0.0, 0.0, 0.1171389225153027, 0.0, 0.0, 0.0, 0.1385141513362508, 0.0, 0.0, 0.1171389225153027, 0.1171389225153027, 0.0, 0.0, 0.21592116375223097, 0.0, 0.0, 0.0, 0.1171389225153027, 0.0, 0.0, 0.21592116375223097, 0.0, 0.0, 0.0, 0.1171389225153027, 0.0, 0.0, 0.21592116375223097]
+    age: 8339
+---
+CENTROID_HZ
+WARNING: may be using simulated time
+subscribed to [/radar/centroid]
+average rate: 5.172
+	min: 0.180s max: 0.210s std dev: 0.01247s window: 4
+average rate: 4.965
+	min: 0.180s max: 0.220s std dev: 0.01245s window: 8
+average rate: 5.023
+	min: 0.170s max: 0.220s std dev: 0.01379s window: 12
+average rate: 5.051
+	min: 0.170s max: 0.230s std dev: 0.01641s window: 16
+TRACK_HZ_EVENT_DRIVEN
+WARNING: may be using simulated time
+subscribed to [/radar/tracks]
+average rate: 4.918
+	min: 0.190s max: 0.220s std dev: 0.01247s window: 4
+average rate: 4.965
+	min: 0.120s max: 0.290s std dev: 0.04642s window: 8
+average rate: 4.977
+	min: 0.120s max: 0.290s std dev: 0.03777s window: 12
+average rate: 4.982
+	min: 0.110s max: 0.290s std dev: 0.04773s window: 15

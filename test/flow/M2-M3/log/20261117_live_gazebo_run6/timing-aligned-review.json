@@ -1,0 +1,22 @@
+{
+  "review_of": "summary.json and timeline.json",
+  "original_summary_preserved": true,
+  "reason": "The original callback-time comparator paired a newly received Track with a command generated from the previous forwarded Track. This is an audit timing race, not a Navigator coordinate error.",
+  "method": "For each settled TRACK output, compare PositionTarget.position with all real source Track positions received before that output within 2 wall seconds, excluding source samples inside the configured relay-silence interval.",
+  "settled_track_outputs_checked": 201,
+  "track_output_error_max_m": 0.0,
+  "track_output_error_p99_m": 0.0,
+  "hover_error_max_m": 0.0,
+  "output_rate_ros_hz": 49.66216216216155,
+  "coordinate_frames": [1],
+  "type_masks": [3576],
+  "states": {
+    "TRACK": true,
+    "HOLD": true,
+    "HOVER": true,
+    "recovery": true
+  },
+  "unknown_output_subscribers": [],
+  "data_rejected": [],
+  "pass": true
+}

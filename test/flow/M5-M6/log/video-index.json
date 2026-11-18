@@ -1,0 +1,25 @@
+{
+  "videos": [
+    {
+      "file_name": "M5-M6_visual_servo_dynamic.mp4",
+      "external_absolute_path": "/home/demo/桌面/ai4_flow_videos_20261116/M5-M6_visual_servo_dynamic.mp4",
+      "relative_delivery_name": "M5-M6_visual_servo_dynamic.mp4",
+      "sha256": "9afbacf8242cd71c52de58e994a90c6cdb7e57aca53932b3631a9697e02f13a2",
+      "size_bytes": 625640,
+      "duration_seconds": 63.52,
+      "resolution": "1280x720",
+      "fps": 25.0,
+      "codec": "H.264 (avc1)",
+      "audio": "none",
+      "data_source": "controlled Detections/Image + real M5 + real M6 timeline",
+      "mode": "offline_replay",
+      "corresponding_run_directory": "test/flow/M5-M6/log/20261116_real_m5_run3",
+      "generation_command": "/usr/bin/python3 -B test/flow/M5-M6/python/render_all_flow_videos.py --root /home/demo/桌面/ai4_pr_worktree --output-dir /home/demo/桌面/ai4_flow_videos_20261116",
+      "result": "PASS",
+      "contact_sheet": "/home/demo/桌面/ai4_pr_worktree/test/flow/M5-M6/image/M5-M6_visual_servo_dynamic_contact_sheet.png",
+      "notes": "离线回放；不是实时 M4 YOLO 链路。 MP4 未加入 Git，避免仓库膨胀。",
+      "develop_sha": "431c049408f323580a351d6e3532daba8c6742f5",
+      "test_date": "2026-11-16"
+    }
+  ]
+}

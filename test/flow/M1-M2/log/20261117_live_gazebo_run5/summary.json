@@ -1,0 +1,35 @@
+{
+  "develop_sha": "3e3a5d57f8e59ceecf35cbf5fa8a78c41d8b347d",
+  "duration_wall_s": 40.148199979012134,
+  "source_centroid_messages": 67,
+  "centroid_messages": 67,
+  "track_messages": 67,
+  "centroid_rate_hz": 1.7065839881595894,
+  "track_event_rate_hz": 1.7066250122077444,
+  "tracker_event_driven": true,
+  "frames_seen": [
+    "empty",
+    "world"
+  ],
+  "data_rejected": [],
+  "ids_seen": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "primary_id_switches": 1,
+  "age_regressions": 0,
+  "empty_frames_seen": true,
+  "injected_empty_frames": 6,
+  "max_consecutive_empty_frames": 6,
+  "deleted_on_or_after_sixth_empty": true,
+  "recovered_after_empty": true,
+  "position_error_mean_m": 0.34050564423917934,
+  "position_error_max_m": 0.6386344774613583,
+  "pass": true
+}

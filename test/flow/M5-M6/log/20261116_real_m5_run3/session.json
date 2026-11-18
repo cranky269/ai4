@@ -1,0 +1,31 @@
+{
+  "develop_sha": "431c049408f323580a351d6e3532daba8c6742f5",
+  "ros_master_uri": "http://127.0.0.1:38983",
+  "ros_home": "/tmp/ai4_m5_m6_ros_home_qu7uwp4z",
+  "processes": [
+    {
+      "name": "roscore",
+      "pid": 403928
+    },
+    {
+      "name": "visual_tracker",
+      "pid": 403943
+    },
+    {
+      "name": "pid_controller",
+      "pid": 403949
+    }
+  ],
+  "nodes": {
+    "m5": "/m5_flow_visual_tracker_403888",
+    "m6": "/m6_flow_pid_controller_403888"
+  },
+  "safety": {
+    "control_mux_started": false,
+    "state_machine_started": false,
+    "mavros_started": false,
+    "px4_started": false,
+    "offboard_started": false,
+    "real_control_topic_published": false
+  }
+}

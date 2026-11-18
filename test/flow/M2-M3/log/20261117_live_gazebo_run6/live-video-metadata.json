@@ -1,0 +1,44 @@
+{
+  "live": true,
+  "source": "live M0/M1/M2 tracks + controlled local pose + real M3",
+  "controlled_pose": true,
+  "mavros_pose": false,
+  "flight_loop": false,
+  "video": "/home/demo/桌面/ai4_flow_videos_live_20261116/M2-M3_live_gazebo_tracks.mp4",
+  "frames": 500,
+  "fps": 25.0,
+  "resolution": [
+    1280,
+    720
+  ],
+  "capture_wall_duration_s": 20.736082281015115,
+  "video_duration_s": 20.0,
+  "codec": "H.264/avc1",
+  "live_rendered_frames": 87,
+  "develop_sha": "3e3a5d57f8e59ceecf35cbf5fa8a78c41d8b347d",
+  "run_dir": "/home/demo/桌面/ai4_pr_worktree/data/radar/20261116_223844_9e2bac8e-daba-4925-9c3c-21bfc7b49a4e",
+  "ros_master_uri": [
+    1,
+    "",
+    "http://127.0.0.1:50889/"
+  ],
+  "states_seen": [
+    "HOLD",
+    "HOVER",
+    "TRACK"
+  ],
+  "hold_events_observed_at_50hz_output": 22,
+  "states_rendered_from_live_topics": [
+    "HOLD",
+    "HOVER",
+    "NO OUTPUT",
+    "TRACK"
+  ],
+  "coordinate_frames": [
+    1
+  ],
+  "type_masks": [
+    3576
+  ],
+  "flight_controller_connected": false
+}

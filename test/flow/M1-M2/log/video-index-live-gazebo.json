@@ -1,0 +1,22 @@
+{
+  "file_name": "M1-M2_live_gazebo.mp4",
+  "absolute_path": "/home/demo/桌面/ai4_flow_videos_live_20261116/M1-M2_live_gazebo.mp4",
+  "relative_delivery_name": "M1-M2_live_gazebo.mp4",
+  "sha256": "ddb9bbe2a9cd7a15166c3e884b7d2a0b9fe8a8be508af61530ff43c32ecffb1b",
+  "size_bytes": 311998,
+  "duration_seconds": 40.0,
+  "resolution": "1280x720",
+  "fps": 25.0,
+  "codec": "H.264 (avc1)",
+  "data_source": "live M0 Gazebo /radar/points and camera, real M1 cluster, real M2 tracker",
+  "live": true,
+  "offline_replay": false,
+  "m0_run_dir": "/home/demo/桌面/ai4_pr_worktree/data/radar/20261116_223844_9e2bac8e-daba-4925-9c3c-21bfc7b49a4e",
+  "ros_master_uri": "http://127.0.0.1:50889",
+  "develop_sha": "3e3a5d57f8e59ceecf35cbf5fa8a78c41d8b347d",
+  "flow_run": "test/flow/M1-M2/log/20261117_live_gazebo_run5",
+  "generate_command": "/usr/bin/python3 test/flow/M1-M2/python/record_live_gazebo.py --duration 40 --empty-count 6 --output /home/demo/桌面/ai4_flow_videos_live_20261116/M1-M2_live_gazebo.mp4",
+  "result": "PASS",
+  "flight_controller_connected": false,
+  "notes": "Six isolated empty CentroidArray messages caused deletion; live input recovery created new IDs. M0 remained owned by the desktop terminal."
+}

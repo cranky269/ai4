@@ -1,0 +1,32 @@
+{
+  "develop_sha": "3e3a5d57f8e59ceecf35cbf5fa8a78c41d8b347d",
+  "source_track_messages": 31,
+  "forwarded_messages": 22,
+  "output_messages": 296,
+  "output_rate_hz": 49.66216216216155,
+  "output_wall_rate_hz": 15.632218716184038,
+  "coordinate_frames": [
+    1
+  ],
+  "type_masks": [
+    3576
+  ],
+  "output_before_first_pose": 0,
+  "states": {
+    "TRACK": true,
+    "HOLD": true,
+    "HOVER": true
+  },
+  "silence": {
+    "start_s": 4.0,
+    "end_s": 10.0,
+    "timeout_s": 0.5
+  },
+  "recovery_seen": true,
+  "unknown_output_subscribers": [],
+  "track_output_error_max_m": 22.350442283890985,
+  "hover_error_max_m": 0.0,
+  "world_local_alignment": "design assumption; not validated by this flow",
+  "data_rejected": [],
+  "pass": false
+}

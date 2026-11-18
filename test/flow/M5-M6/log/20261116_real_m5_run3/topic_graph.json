@@ -1,0 +1,82 @@
+{
+  "nodes": [
+    "/m5_flow_visual_tracker_403888",
+    "/m5_m6_real_flow_audit_403888",
+    "/m6_flow_pid_controller_403888",
+    "/rosout"
+  ],
+  "publishers": {
+    "/rosout": [
+      "/m5_flow_visual_tracker_403888",
+      "/m5_m6_real_flow_audit_403888",
+      "/m6_flow_pid_controller_403888"
+    ],
+    "/rosout_agg": [
+      "/rosout"
+    ],
+    "/test/camera/image_raw": [
+      "/m5_m6_real_flow_audit_403888"
+    ],
+    "/test/ctrl_visual": [
+      "/m6_flow_pid_controller_403888"
+    ],
+    "/test/detections": [
+      "/m5_m6_real_flow_audit_403888"
+    ],
+    "/test/visual_tracks": [
+      "/m5_flow_visual_tracker_403888"
+    ]
+  },
+  "services": {
+    "/m5_flow_visual_tracker_403888/get_loggers": [
+      "/m5_flow_visual_tracker_403888"
+    ],
+    "/m5_flow_visual_tracker_403888/set_logger_level": [
+      "/m5_flow_visual_tracker_403888"
+    ],
+    "/m5_m6_real_flow_audit_403888/get_loggers": [
+      "/m5_m6_real_flow_audit_403888"
+    ],
+    "/m5_m6_real_flow_audit_403888/set_logger_level": [
+      "/m5_m6_real_flow_audit_403888"
+    ],
+    "/m6_flow_pid_controller_403888/get_loggers": [
+      "/m6_flow_pid_controller_403888"
+    ],
+    "/m6_flow_pid_controller_403888/set_logger_level": [
+      "/m6_flow_pid_controller_403888"
+    ],
+    "/rosout/get_loggers": [
+      "/rosout"
+    ],
+    "/rosout/set_logger_level": [
+      "/rosout"
+    ]
+  },
+  "subscribers": {
+    "/rosout": [
+      "/rosout"
+    ],
+    "/test/camera/image_raw": [
+      "/m5_flow_visual_tracker_403888"
+    ],
+    "/test/ctrl_visual": [
+      "/m5_m6_real_flow_audit_403888"
+    ],
+    "/test/detections": [
+      "/m5_flow_visual_tracker_403888"
+    ],
+    "/test/visual_tracks": [
+      "/m5_m6_real_flow_audit_403888",
+      "/m6_flow_pid_controller_403888"
+    ]
+  },
+  "types": {
+    "/rosout": "rosgraph_msgs/Log",
+    "/rosout_agg": "rosgraph_msgs/Log",
+    "/test/camera/image_raw": "sensor_msgs/Image",
+    "/test/ctrl_visual": "mavros_msgs/PositionTarget",
+    "/test/detections": "uav_tracking/Detections",
+    "/test/visual_tracks": "uav_tracking/VisualTrackArray"
+  }
+}

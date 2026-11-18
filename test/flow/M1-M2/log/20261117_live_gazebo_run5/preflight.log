@@ -1,0 +1,36 @@
+start_wall=2026-11-16T23:34:42-08:00
+run_dir=/home/demo/桌面/ai4_pr_worktree/data/radar/20261116_223844_9e2bac8e-daba-4925-9c3c-21bfc7b49a4e
+ros_master_uri=http://127.0.0.1:50889
+develop_sha=3e3a5d57f8e59ceecf35cbf5fa8a78c41d8b347d
+/cluster
+/figure_eight_target
+/gazebo
+/m2_live_tracker
+/mounted_radar_tf
+/ray_cloud_bridge
+/rosout
+/rviz_1794897544065863122
+/sensor_interfaces
+/sensor_source_audit
+/sensor_viewer
+/start_sensor_clock
+/uav_camera_mount_tf
+/uav_camera_optical_tf
+/world_uav_tf
+Type: uav_tracking/CentroidArray
+
+Publishers: None
+
+Subscribers:
+ * /m2_live_tracker (http://127.0.0.1:42067/)
+
+
+Type: uav_tracking/TrackArray
+
+Publishers:
+ * /m2_live_tracker (http://127.0.0.1:42067/)
+
+Subscribers: None
+
+
+ERROR: Unknown topic /mavros/setpoint_raw/local

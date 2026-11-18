@@ -1,0 +1,6 @@
+/test/detections uav_tracking/Detections
+/test/camera/image_raw sensor_msgs/Image
+/test/visual_tracks uav_tracking/VisualTrackArray
+/test/ctrl_visual mavros_msgs/PositionTarget
+/ctrl/visual <not published>
+/mavros/setpoint_raw/local <not published>

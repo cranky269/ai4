@@ -1,4 +1,6 @@
 """模块 6 纯 PID 算法测试，不依赖 ROS master。"""
+import struct
+
 import pytest
 
 import pid_controller as pid
@@ -62,6 +64,31 @@ def test_min_area_protects_tiny_area():
 def test_impact_threshold_uses_terminal_speed():
     command = pid.command_from_track(_track(area=0.5), *_controllers(), dt=0.1, desired_area=0.1, impact_area_threshold=0.4, terminal_forward_speed=0.0)
     assert command.velocity_x == pytest.approx(0.0)
+
+
+@pytest.mark.parametrize(
+    ("area", "terminal"),
+    [
+        (0.35, True),
+        (struct.unpack("f", struct.pack("f", 0.35))[0], True),
+        (0.3499, False),
+        (0.3501, True),
+    ],
+    ids=["python_exact", "ros_float32", "below", "above"],
+)
+def test_impact_threshold_handles_float32_boundary_without_early_trigger(area, terminal):
+    command = pid.command_from_track(
+        _track(area=area),
+        *_controllers(),
+        dt=0.1,
+        desired_area=0.1,
+        impact_area_threshold=0.35,
+        terminal_forward_speed=0.0,
+    )
+    if terminal:
+        assert command.velocity_x == pytest.approx(0.0)
+    else:
+        assert command.velocity_x < 0.0
 
 
 def test_image_right_and_below_have_negative_yaw_and_z():
