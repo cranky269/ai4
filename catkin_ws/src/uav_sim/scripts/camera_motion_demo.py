@@ -36,6 +36,9 @@ class Demo:
     def __init__(self):
         self.lock = threading.RLock()
         self.continuous = rospy.get_param('~continuous', False)
+        self.origin = tuple(float(rospy.get_param('~observer_world_'+a, d)) for a,d in zip('xyz',(0.,.45,1.3)))
+        if not all(math.isfinite(v) for v in self.origin) or self.origin[2] < .2:
+            raise ValueError('observer_world requires finite metres and z >= 0.2')
         self.last_tf_stamp = None
         self.mode = 'idle'
         self.epoch = None
@@ -109,6 +112,10 @@ class Demo:
                     if not ((self.continuous and abs(x)<=.26 and abs(y)<=.46 and 1.2<=z<=1.4 and abs(yaw)<=.09) or
                             (not self.continuous and -.02<=x<=.5 and abs(y)<=.3 and abs(z-.12)<.02 and abs(yaw)<=.16)):
                         raise ValueError('pose outside fixed demonstration bounds')
+                    if self.continuous:
+                        x += self.origin[0]
+                        y += self.origin[1] - .45
+                        z += self.origin[2] - 1.3
                     command = ModelState(model_name='static_uav', reference_frame='world')
                     command.pose.position.x,command.pose.position.y,command.pose.position.z = x,y,z
                     command.pose.orientation.z,command.pose.orientation.w = math.sin(yaw/2),math.cos(yaw/2)

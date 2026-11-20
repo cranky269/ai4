@@ -7,7 +7,10 @@ import xml.etree.ElementTree as ET
 import yaml
 
 
-def prepare(root, output, config, markers=False, scene_only=False, sensor_profile='full'):
+def prepare(root, output, config, markers=False, scene_only=False, sensor_profile='full', observer_world=(0., .45, 1.3)):
+    import math
+    if not all(math.isfinite(v) for v in observer_world) or observer_world[2] < .2:
+        raise ValueError('observer_world requires finite metres and z >= 0.2 (trajectory/ground clearance)')
     root, output = Path(root), Path(output)
     cfg = yaml.safe_load(Path(config).read_text())
     # Reuse the established validation and defaults, but validate before spawning.
@@ -49,7 +52,7 @@ def prepare(root, output, config, markers=False, scene_only=False, sensor_profil
         camera.find('plugin/updateRate').text = '10'
     elif sensor_profile != 'full':
         raise ValueError('unknown sensor profile: ' + sensor_profile)
-    ET.SubElement(model, 'pose').text = '0 0 1.3 0 0 0'
+    ET.SubElement(model, 'pose').text = ' '.join(map(str, (*observer_world, 0, 0, 0)))
     sensor = copy.deepcopy(ET.parse(str(desc/'ai4_radar_3d/model.sdf')).find('.//sensor'))
     # Ray visualization draws 4525 decorative lines in gzclient. The actual
     # measurements remain active and are displayed by the existing cloud viewer.
@@ -104,19 +107,6 @@ def prepare(root, output, config, markers=False, scene_only=False, sensor_profil
         if include.findtext('name') == 'static_uav':
             w.remove(include)
     w.append(model)
-    # Fixed scene geometry makes observer motion visible in the real camera.
-    for index, y in enumerate((-2.0, 0.0, 2.0)):
-        landmark = ET.SubElement(w, 'model', name='background_pillar_%d' % index)
-        ET.SubElement(landmark, 'static').text = 'true'
-        ET.SubElement(landmark, 'pose').text = '8 %s 1.5 0 0 0' % y
-        link = ET.SubElement(landmark, 'link', name='pillar')
-        for kind in ('visual', 'collision'):
-            element = ET.SubElement(link, kind, name=kind)
-            ET.SubElement(ET.SubElement(ET.SubElement(element, 'geometry'), 'box'), 'size').text = '.25 .25 3'
-            if kind == 'visual':
-                mat = ET.SubElement(element, 'material')
-                ET.SubElement(mat, 'ambient').text = '.25 .35 .7 1'
-                ET.SubElement(mat, 'diffuse').text = '.25 .35 .7 1'
     w.find('gui/camera/pose').text = '2 -6 4.2 0 .43 1.57079632679'
     output.mkdir(parents=True, exist_ok=True)
     world.write(str(output/'mounted.world'), encoding='utf-8', xml_declaration=True)
@@ -138,5 +128,7 @@ if __name__ == '__main__':
     p.add_argument('--markers', action='store_true')
     p.add_argument('--scene-only', action='store_true')
     p.add_argument('--sensor-profile', choices=('desktop', 'full'), default='full')
+    for axis, default in zip('xyz', (0., .45, 1.3)):
+        p.add_argument('--observer-world-'+axis, type=float, default=default)
     a = p.parse_args()
-    prepare(a.root, a.output, a.config, a.markers, a.scene_only, a.sensor_profile)
+    prepare(a.root, a.output, a.config, a.markers, a.scene_only, a.sensor_profile, (a.observer_world_x, a.observer_world_y, a.observer_world_z))

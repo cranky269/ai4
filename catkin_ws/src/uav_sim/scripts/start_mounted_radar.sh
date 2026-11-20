@@ -43,7 +43,12 @@ trap 'printf "%s\n" "$?" > "$RUN_DIR/launcher_exit_code.txt"' EXIT
 CONFIG="${RADAR_CONFIG:-$REPO/catkin_ws/src/uav_sim/config/radar_3d.yaml}"
 PREPARE_ARGS=(--sensor-profile "$SENSOR_PROFILE")
 for RADAR_ARG in "$@"; do
-  case "$RADAR_ARG" in markers:=true) PREPARE_ARGS+=(--markers) ;; esac
+  case "$RADAR_ARG" in
+    observer_world_[xyz]:=*)
+      POSITION_OPTION="${RADAR_ARG%%:=*}"
+      PREPARE_ARGS+=("--${POSITION_OPTION//_/-}" "${RADAR_ARG#*:=}") ;;
+    markers:=true) PREPARE_ARGS+=(--markers) ;;
+  esac
 done
 if [[ "$SCENE_ONLY" == true ]]; then PREPARE_ARGS+=(--scene-only); fi
 /usr/bin/python3 "$REPO/catkin_ws/src/uav_sim/scripts/prepare_mounted_radar.py" "$REPO" "$RUN_DIR" "$CONFIG" "${PREPARE_ARGS[@]}"
